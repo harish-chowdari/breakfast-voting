@@ -90,9 +90,9 @@ const Items = () => {
         <button onClick={submitHandler} disabled={listItems.length>=10}>ADD</button>
     </div>
 
-    <div>
-        <ol>{listItems.map((item,index)=>{
-          return <div key={index}>
+    <div >
+        <ol className='items'>{listItems.map((item,index)=>{
+          return <div key={index} className='item'>
             <li>{item.itemName}</li>
             {item.image && <img src={item.image} alt={item.itemName} width="80px" />}
           </div>

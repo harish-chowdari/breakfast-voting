@@ -34,3 +34,18 @@
     font-size: 18px;
     border-radius: 5px;
 }
+
+.items{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

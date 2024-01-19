@@ -47,19 +47,22 @@ const List = () => {
   
   return (
     <div className='container'>
-    <h2 className='title'>Vote for your favorite breakfast</h2>
+    {listItems.length >=0  ? <h2 className='title'>Items List is empty</h2> : <h2 className='title'>Vote for your favorite breakfast</h2>}
     <div >
         <ul className='list-items'>{listItems.map((item,index)=>{
           return <div className='list-item' key={index}>
           
             
-            <p>vote count = {vote[item._id] || 0}</p>
+            <p><strong>{item.itemName}</strong> votes = {vote[item._id] || 0}</p>
             <img src={item.image} width="200px" height="150px" alt='breakfast item'/>
             
             <div className='votes'>
-            {item.itemName}
-            <button onClick={() => voteHandler(item._id)}>vote</button>
+            <p><strong>Item Name :</strong></p>
+              {item.itemName}
+            
             </div>
+
+            <button onClick={() => voteHandler(item._id)}>vote</button>
 
           </div>
         })}
@@ -67,7 +70,8 @@ const List = () => {
       </div>
 
       <div>
-        <h2 className='winner'>Winner : {Winner ? listItems.find(item => item._id === Winner).itemName : 'winner will be announced after 15 seconds'} </h2>
+       {listItems.length <=0 ? <></> :
+         <h2 className='winner'>Winner : {Winner ? listItems.find(item => item._id === Winner).itemName : 'winner will be announced after 15 seconds'} </h2> }
       </div>
 
     </div>

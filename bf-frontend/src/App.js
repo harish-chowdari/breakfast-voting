@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Login/Login.jsx';
 import List from './List/List.jsx';
 import Signup from './Signup/Signup.jsx';
-import Chef from './Chef/Chef.jsx';
 
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
           <Route path="/items" element={<Items />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='chef' element={<Chef/>} />
+          
           {authToken ? (
             <Route path="/list" element={<List />} />
           ) : (

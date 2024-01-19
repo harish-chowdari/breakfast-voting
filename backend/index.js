@@ -28,7 +28,8 @@ app.use("/",bfRoutes)
 const userRoutes = require("./routes/UserRoutes")
 app.use("/",userRoutes)
 
-
+const ChefRoutes = require("./routes/ChefRoutes")
+app.use("/",ChefRoutes)
 
 
 app.listen(2008,()=>{

@@ -8,7 +8,19 @@ const Chef = () => {
   
   const [listItems, setListItems] = React.useState([])
    
+  const [com,setcom]=React.useState({
+    comment:""
+  })
+
+  const changeHandler =(e)=>{
+      setcom({...com, [e.target.name]:e.target.value})
+  }
+
+  const submitHandler =()=>{
+    console.log(com)
+  }
   
+
 
   const fetchData = async()=>{
     const res = await axios.get("http://localhost:2008/getbreakfast")
@@ -25,7 +37,7 @@ const Chef = () => {
   
   return (
     <div className='container'>
-    
+      <h2>Chef Component</h2>
     <div >
         <ul className='chef-items'>{listItems.map((item,index)=>{
           return <div className='chef-item' key={index}>
@@ -35,8 +47,12 @@ const Chef = () => {
             <img src={item.image} width="200px" 
             height="150px" alt='breakfast item'/>
             
-            <textarea placeholder='comment'> </textarea>
-            <button className='submit'>submit</button>
+            <input type='text' 
+            name='comment'
+            value={com.comment}
+            onChange={changeHandler}
+            placeholder='comment' />
+            <button onClick={submitHandler} className='submit'>submit</button>
             
           </div>
         })}

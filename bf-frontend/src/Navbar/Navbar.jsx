@@ -11,7 +11,6 @@ const Navbar = () => {
     <div className='navbar'>
         <Link to="/items"><button>Items</button></Link>
 
-        <Link to="/chef"><button>Chef</button></Link>
 
          {localStorage.getItem("auth-token")
             ? <button onClick={()=>{localStorage.removeItem("auth-token"); window.location.replace("/")} }>Logout</button>: 
