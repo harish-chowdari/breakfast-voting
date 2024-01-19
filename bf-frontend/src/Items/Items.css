@@ -6,6 +6,10 @@
     
 }
 
+img{
+    cursor: pointer;
+}
+
 .menu input{
     width: 250px;
     height: 25px;
@@ -42,6 +46,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     list-style: none;
+    margin-right: 50px;
 }
 
 .item{

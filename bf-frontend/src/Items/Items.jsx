@@ -42,8 +42,8 @@ const Items = () => {
     const imageResponse = await axios.post('http://localhost:2008/upload', formData, {
       headers: { 
         'Content-Type': 'multipart/form-data' 
-      },
-    });
+      }
+    })
 
     return await axios.post("http://localhost:2008/addbreakfast",{
       itemName:String(addItem.itemName),
@@ -79,12 +79,13 @@ const Items = () => {
           value={addItem.itemName}
           onChange={changeHandler}
           placeholder='Enter Breakfast Name' 
-          disabled={listItems.length>=10} />
+          disabled={listItems.length>=10}
+           />
 
 <label htmlFor='file-input'>
   <img src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
 </label>
-<input type='file' name='image' disabled={listItems.length>=10} id='file-input' hidden onChange={imageHandler} />
+<input  type='file' name='image' disabled={listItems.length>=10} id='file-input' hidden onChange={imageHandler} />
 
 
         <button onClick={submitHandler} disabled={listItems.length>=10}>ADD</button>
@@ -94,7 +95,7 @@ const Items = () => {
         <ol className='items'>{listItems.map((item,index)=>{
           return <div key={index} className='item'>
             <li>{item.itemName}</li>
-            {item.image && <img src={item.image} alt={item.itemName} width="80px" />}
+            {item.image && <img  src={item.image} alt={item.itemName} height="180px" width="220px" />}
           </div>
         })}
         </ol>

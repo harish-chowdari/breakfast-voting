@@ -15,12 +15,12 @@ const con = mongoose.connection
 con.on("error",()=>{
     console.log("error")
 }) 
-
+ 
 con.once("open",()=>{
     console.log("db connected")
 })
 
-
+ 
 
 const bfRoutes = require("./routes/bfRoutes")
 app.use("/",bfRoutes) 
