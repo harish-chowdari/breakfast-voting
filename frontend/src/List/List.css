@@ -1,0 +1,25 @@
+.list-items {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    flex-wrap: wrap;
+    list-style: none;
+    
+}
+
+button {
+    width: 50px;
+    height: 25px;
+    font-size: 18px;
+}
+
+.votes{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    margin-left: 50px;
+    
+}

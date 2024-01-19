@@ -1,0 +1,37 @@
+.login-signup-fields{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: center;
+    gap: 30px;
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+.login-signup-fields button {
+    width: 100px;
+    font-size: 18px;
+}
+
+.login-signup-fields input{
+    height: 22px;
+    font-size: 18px;
+}
+
+.bottom{
+    margin-left:100px;
+    margin-top: 20px;
+}
+
+.login {
+    margin-left: 100px;
+    margin-top: 20px;
+    width: 80px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.head{
+    margin-left: 100px;
+}
+

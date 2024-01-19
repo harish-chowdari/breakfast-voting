@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0px;
+    align-items: center;
+    background-color: antiquewhite;
+
+}
+
+.navbar button {
+    height: 35px;
+    width: 100px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+

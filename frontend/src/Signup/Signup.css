@@ -1,0 +1,25 @@
+.signup-fields{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-left: 100px;
+    gap: 20px;
+}
+.signup{
+    margin-left: 100px;
+    margin-top: 20px;
+    font-size: 18px;
+    width: 80px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.signup-fields input{
+    height: 25px;
+    font-size: 18px;
+}
+
+
+.heading{
+    margin-left: 100px;
+}

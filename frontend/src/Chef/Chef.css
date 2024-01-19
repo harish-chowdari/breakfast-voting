@@ -1,0 +1,15 @@
+.chef-items{
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.chef-item{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submit{
+    width: 70px;
+}
