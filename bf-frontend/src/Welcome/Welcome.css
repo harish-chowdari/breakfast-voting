@@ -1,0 +1,8 @@
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; 
+    font-size: 27px;
+    background-color: aliceblue;
+}

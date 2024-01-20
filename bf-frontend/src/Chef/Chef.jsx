@@ -4,7 +4,6 @@ import "./Chef.css"
 
 
 const Chef = () => {
-
   
   const [listItems, setListItems] = React.useState([])
    
@@ -20,8 +19,6 @@ const Chef = () => {
     console.log(com)
   }
   
-
-
   const fetchData = async()=>{
     const res = await axios.get("http://localhost:2008/getbreakfast")
     setListItems(res.data)
@@ -32,9 +29,6 @@ const Chef = () => {
      
   },[])
 
-  
-
-  
   return (
     <div className='container'>
     
@@ -58,8 +52,6 @@ const Chef = () => {
         })}
         </ul>
       </div>
-
-
     </div>
   )
 }

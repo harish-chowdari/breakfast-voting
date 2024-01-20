@@ -66,11 +66,10 @@ const Items = () => {
       fetchData()
     }
     else{
-      alert("Item is already added or items limit exceeded")
+      alert("Item is already added")
     }
     
   }
-
 
   return (
     <div className='container'>
@@ -82,10 +81,10 @@ const Items = () => {
           disabled={listItems.length>=10}
            />
 
-<label htmlFor='file-input'>
-  <img src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
-</label>
-<input  type='file' name='image' disabled={listItems.length>=10} id='file-input' hidden onChange={imageHandler} />
+      <label htmlFor='file-input'>
+        <img src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
+      </label>
+      <input  type='file' name='image' disabled={listItems.length>=10} id='file-input' hidden onChange={imageHandler} />
 
 
         <button onClick={submitHandler} disabled={listItems.length>=10}>ADD</button>

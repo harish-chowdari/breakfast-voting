@@ -4,8 +4,7 @@ import "./Signup.css"
 
 
 const Signup = () => {
-    const [state,setState] = React.useState("SignUp")
-
+ 
     const [signup,setSignup]=React.useState({
       name:"",
       email:"",
@@ -44,8 +43,8 @@ const Signup = () => {
   
     return (
   
-      <div>
-      <h1 className='heading'>Signup</h1>
+      <div className='register'>
+      <h1 className='heading'>Register</h1>
       <div className='signup-fields'>
   
         <input type='text' placeholder='name'
@@ -71,7 +70,7 @@ const Signup = () => {
          />
       
       </div>
-      <button className='signup' onClick={signupForm}>Signup</button>
+      <button className='signup' onClick={signupForm}>Register</button>
   </div>
   )
 }

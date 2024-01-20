@@ -4,8 +4,6 @@ import "./Login.css"
 
 const Login = () => {
 
- 
-
   const [login,setLogin]=React.useState({
     
     email:"",
@@ -15,8 +13,6 @@ const Login = () => {
   const changeHandler =(e)=>{
     setLogin({...login, [e.target.name]:e.target.value})
   }
-
-  
 
   const loginForm = async()=>{
     console.log("login",login)
@@ -61,7 +57,6 @@ const Login = () => {
        name='password'
        />
 
-    
     </div>
     <button className='login' onClick={loginForm}>Login</button>
     </div>

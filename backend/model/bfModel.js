@@ -8,11 +8,7 @@ const bfList = mongoose.Schema({
 
     image:{
         type:String
-    },
-  votes: {
-    type: Number,
-    default: 0
-  }
+    }
 })
 
 module.exports = mongoose.model("bfList",bfList)

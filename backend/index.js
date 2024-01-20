@@ -31,6 +31,9 @@ app.use("/",userRoutes)
 const ChefRoutes = require("./routes/ChefRoutes")
 app.use("/",ChefRoutes)
 
+const VoteRoutes = require("./routes/VotesRoutes")
+app.use("/", VoteRoutes)
+
 
 app.listen(2008,()=>{
     console.log("server running on 2008 port...")

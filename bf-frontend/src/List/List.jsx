@@ -7,7 +7,6 @@ const List = () => {
 
   const [Winner,setWinner] = React.useState(null)
 
-
   const [listItems, setListItems] = React.useState([])
 
   const [vote,setVote] =React.useState({})
@@ -51,7 +50,6 @@ const List = () => {
     <div >
         <ul className='list-items'>{listItems.map((item,index)=>{
           return <div className='list-item' key={index}>
-          
             
             <p><strong>{item.itemName}</strong> votes = {vote[item._id] || 0}</p>
             <img src={item.image} width="200px" height="150px" alt='breakfast item'/>

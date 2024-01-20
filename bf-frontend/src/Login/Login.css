@@ -1,10 +1,17 @@
+.loginform{
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(184, 217, 247);
+}
+
 .login-signup-fields{
     display: flex;
     flex-direction: column;
     width: 300px;
     justify-content: center;
-    gap: 30px;
-    margin-left: 100px;
+    gap: 15px;
     margin-top: 30px;
 }
 
@@ -18,20 +25,14 @@
     font-size: 18px;
 }
 
-.bottom{
-    margin-left:100px;
-    margin-top: 20px;
-}
-
 .login {
-    margin-left: 100px;
     margin-top: 20px;
-    width: 80px;
+    width: 60px;
     height: 27px;
     cursor: pointer;
+    border: none;
+    background-color: rgb(118, 197, 138);
+    border-radius: 5px;
 }
 
-.head{
-    margin-left: 100px;
-}
 

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Login/Login.jsx';
 import List from './List/List.jsx';
 import Signup from './Signup/Signup.jsx';
+import Welcome from './Welcome/Welcome.jsx';
 
 
 const App = () => {
@@ -25,6 +26,8 @@ const App = () => {
           ) : (
             <Route path="/list" element={<Login/>} />
           )}
+
+          <Route path="/" element={<Welcome/>} />
         </Routes>
       </BrowserRouter>
     </div>
