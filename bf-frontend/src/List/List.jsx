@@ -22,7 +22,7 @@ const List = () => {
 
 
   const fetchData = async()=>{
-    const res = await axios.get("http://localhost:2008/getbreakfast")
+    const res = await axios.get("http://localhost:2008/getBreakfastByTimestamp")
     setListItems(res.data)
   }
 

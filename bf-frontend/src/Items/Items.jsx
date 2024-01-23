@@ -21,7 +21,7 @@ const Items = () => {
 
 
   const fetchData = async()=>{
-    const res = await axios.get("http://localhost:2008/getbreakfast")
+    const res = await axios.get("http://localhost:2008/getBreakfastByTimestamp")
     setListItems(res.data)
   }
 
@@ -52,23 +52,15 @@ const Items = () => {
     .then(res=>res.data)
   }
 
-  const isWordAlreadyPresent = listItems.some(
-    (item) => item.itemName.toLowerCase() === addItem.itemName.toLowerCase()
-  );
+ 
 
   const submitHandler = async(e)=>{
     console.log(addItem)
-    if(listItems.length<=10 && !isWordAlreadyPresent)
-    {
+    
       await senReq()
       setAddItem({ itemName: "",image: null })
       setImage(null)
       fetchData()
-    }
-    else{
-      alert("Item is already added")
-    }
-    
   }
 
   return (
@@ -77,17 +69,16 @@ const Items = () => {
         <input type='text' name='itemName'
           value={addItem.itemName}
           onChange={changeHandler}
-          placeholder='Enter Breakfast Name' 
-          disabled={listItems.length>=10}
+          placeholder='Enter Breakfast Name'
            />
 
       <label htmlFor='file-input'>
         <img src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
       </label>
-      <input  type='file' name='image' disabled={listItems.length>=10} id='file-input' hidden onChange={imageHandler} />
+      <input  type='file' name='image' id='file-input' hidden onChange={imageHandler} />
 
 
-        <button onClick={submitHandler} disabled={listItems.length>=10}>ADD</button>
+        <button onClick={submitHandler} >ADD</button>
     </div>
 
     <div >

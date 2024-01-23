@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const Votes = new mongoose.Schema({
   vote: {
-    type: Number,
-    required: true
+    type: Number
   },
   email: {
     type:String,

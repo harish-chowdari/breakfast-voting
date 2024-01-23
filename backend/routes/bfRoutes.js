@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-
+const moment=require("moment")
 const multer = require("multer")
 
 const path = require("path")
@@ -30,30 +30,92 @@ router.post("/upload", upload.single("product"), (req,res)=>{
 
 
     
-router.post("/addbreakfast", async(req,res)=>{
-    const list = new bfList({
-        itemName:req.body.itemName,
-        image:req.body.image
-    }) 
+router.post("/addbreakfast", async (req, res) => {
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinutes = currentTime.getMinutes();
 
-    await list.save()
-    res.json({
-        success:true,
-        itemName:req.body.itemName
-    })  
-})     
+    if (currentHour === 17 && currentMinutes <= 59) {
+        const currentDate = moment().startOf('day');
 
-router.get("/getBreakfast", async(req,res)=>{
-    const data = await bfList.find()
-    res.json(data)
-}) 
+        const itemNameRegex = new RegExp("^" + req.body.itemName + "$", "i");
+
+        const exist = await bfList.findOne({
+            itemName: itemNameRegex,
+            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        });
+
+        if (exist) {
+            return res.json({
+                success: false,
+                message: "Can't add duplicate item for the current day."
+            });
+        }
+
+        const itemCountToday = await bfList.countDocuments({
+            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        });
+
+        if (itemCountToday > 9) {
+            return res.json({
+                success: false,
+                message: "Cannot add more items for the current day, limit reached."
+            });
+        }
+
+        let products = await bfList.find({});
+        let id;
+
+        if (products.length > 0) {
+            let all_prod_array = products.slice(-1);
+            let prod = all_prod_array[0];
+            id = prod.id + 1;
+        } else {
+            id = 1;
+        }
+
+        const list = new bfList({
+            id: id,
+            itemName: req.body.itemName,
+            image: req.body.image,
+            date: currentDate.toDate()
+        });
+
+        console.log(list,currentDate.toDate());
+        await list.save();
+        res.json({
+            success: true,
+            itemName: req.body.itemName
+        });
+    } else {
+        res.json("Cannot add the item before 16 or after 16");
+    }
+});
+
+ 
+
+
+router.get("/getBreakfastByTimestamp", async (req, res) => {
+    try {
+        const currentDate = moment().startOf('day')
+
+        const data = await bfList.find({
+            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        })
+
+        res.json(data)
+    } catch (error) {
+        console.error("Error fetching breakfast items by timestamp:", error)
+        res.status(500).json({ success: false, message: "Failed to fetch breakfast items" })
+    }
+})
 
 
 
 
 
 
-  
+
 
 
 

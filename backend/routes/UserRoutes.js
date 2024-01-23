@@ -18,11 +18,18 @@ router.post("/signup", async(req,res)=>{
         return res.json({ errors: "Passwords do not match" });
     }   
 
+    let vote = {}
+        for (let i=0;i<30;i++)
+        {
+            vote[i]=0
+        }
+
         const user = new userDetails({
             name:req.body.name,
             email:req.body.email,
             password:req.body.password,
-            cnfmpassword:req.body.cnfmpassword
+            cnfmpassword:req.body.cnfmpassword,
+            voteData:vote
         })
 
         
@@ -66,9 +73,6 @@ router.post("/login", async(req,res)=>{
         res.json({errors:"please signup user not exist"})
     }
 }) 
-
-
-
 
 
 

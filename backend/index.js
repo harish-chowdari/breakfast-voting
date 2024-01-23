@@ -3,6 +3,8 @@ const mongoose = require("mongoose")
 
 const app = express()
 app.use(express.json()) 
+process.env.TZ = 'Asia/Kolkata'; // Set to the time zone of your choice
+
     
   
 const cors = require("cors")

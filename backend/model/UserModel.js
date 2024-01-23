@@ -18,7 +18,15 @@ const userDetails = new mongoose.Schema({
   cnfmpassword: {
     type: String,
     required: true
+  },
+  voteData:{
+    type:Object
+}
+},
+  {
+    timestamp:true
   }
-});
+)
+;
 
 module.exports = mongoose.model('UserDetails', userDetails);

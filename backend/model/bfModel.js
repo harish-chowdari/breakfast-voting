@@ -1,14 +1,34 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 
-const bfList = mongoose.Schema({
-    itemName:{
-        type:String,
-        required:true
-    } ,   
+const bfListSchema = mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
+  itemName: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+  },
+  date: {
+    type: String,
+    default: Date.now,
+  },
+  time: {
+    type: String,
+    default: () => {
+      const currentTime = new Date();
+      const options = { hour: '2-digit', 
+      minute: '2-digit', second: '2-digit', hour12: false }
+      return currentTime.toLocaleTimeString('en-US', options)
+    },
+  },
 
-    image:{
-        type:String
+},  {
+    timestamps: true
     }
-})
+);
 
-module.exports = mongoose.model("bfList",bfList)
+module.exports = mongoose.model('bfList', bfListSchema)
