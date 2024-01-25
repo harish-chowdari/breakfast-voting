@@ -1,11 +1,11 @@
-import React from 'react';
-import Items from './Items/Items';
-import Navbar from './Navbar/Navbar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './Login/Login.jsx';
-import List from './List/List.jsx';
-import Signup from './Signup/Signup.jsx';
-import Welcome from './Welcome/Welcome.jsx';
+import React from 'react'
+import Items from './Items/Items'
+import Navbar from './Navbar/Navbar'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Login from './Login/Login.jsx'
+import List from './List/List.jsx'
+import Signup from './Signup/Signup.jsx'
+import Welcome from './Welcome/Welcome.jsx'
 
 
 const App = () => {
@@ -31,7 +31,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </div>
-  );
-};
+  )
+}
 
 export default App;

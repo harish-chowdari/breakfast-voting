@@ -29,6 +29,7 @@ const Signup = () => {
       })
       .then((res)=>res.json())
       .then((data)=>{responseData=data})
+      
       if(responseData.success)
       {
         localStorage.setItem("auth-token", responseData.token)
@@ -38,8 +39,9 @@ const Signup = () => {
       else{
         alert(responseData.errors)
       }
-  
+      
     }
+    
   
     return (
   

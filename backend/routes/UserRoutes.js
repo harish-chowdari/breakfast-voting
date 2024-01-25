@@ -58,7 +58,7 @@ router.post("/login", async(req,res)=>{
         if(passCompare)
         {
             const data = {
-                user :{
+                user :{ 
                     id:user.id
                 }
             }
@@ -73,6 +73,8 @@ router.post("/login", async(req,res)=>{
         res.json({errors:"please signup user not exist"})
     }
 }) 
+
+
 
 
 

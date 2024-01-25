@@ -19,8 +19,8 @@ const userDetails = new mongoose.Schema({
     type: String,
     required: true
   },
-  voteData:{
-    type:Object
+  vote:{
+    type:Number
 }
 },
   {

@@ -31,90 +31,114 @@ router.post("/upload", upload.single("product"), (req,res)=>{
 
     
 router.post("/addbreakfast", async (req, res) => {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
-    const currentMinutes = currentTime.getMinutes();
+    const currentTime = new Date()
+    const currentHour = currentTime.getHours()
+    const currentMinutes = currentTime.getMinutes()
 
-    if (currentHour === 17 && currentMinutes <= 59) {
-        const currentDate = moment().startOf('day');
-
-        const itemNameRegex = new RegExp("^" + req.body.itemName + "$", "i");
+    if (currentHour === 19 && currentMinutes <= 59) {
+        const currentDate = moment().startOf('day')
+ 
 
         const exist = await bfList.findOne({
-            itemName: itemNameRegex,
+            itemName: req.body.itemName.toLowerCase().trim(),
             date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
-        });
+        })
 
         if (exist) {
             return res.json({
                 success: false,
                 message: "Can't add duplicate item for the current day."
-            });
+            })
         }
 
         const itemCountToday = await bfList.countDocuments({
             date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
-        });
+        })
 
-        if (itemCountToday > 9) {
+        if (itemCountToday > 9) 
+        {
             return res.json({
                 success: false,
-                message: "Cannot add more items for the current day, limit reached."
-            });
+                message: "Cannot add more than 10 items for the current day, limit reached."
+            })
         }
 
-        let products = await bfList.find({});
-        let id;
+        let products = await bfList.find({})
+        let id
 
         if (products.length > 0) {
-            let all_prod_array = products.slice(-1);
-            let prod = all_prod_array[0];
-            id = prod.id + 1;
+            let all_prod_array = products.slice(-1)
+            let prod = all_prod_array[0]
+            id = prod.id + 1
         } else {
-            id = 1;
+            id = 1
         }
 
         const list = new bfList({
             id: id,
-            itemName: req.body.itemName,
+            itemName: req.body.itemName.toLowerCase().trim(),
             image: req.body.image,
             date: currentDate.toDate()
-        });
+        })
 
-        console.log(list,currentDate.toDate());
-        await list.save();
-        res.json({
+        console.log(list,currentDate.toDate())
+        await list.save()
+        res.status(200).json({
             success: true,
             itemName: req.body.itemName
-        });
+        })
     } else {
-        res.json("Cannot add the item before 16 or after 16");
+        res.json("Cannot add the item before 11 or after 11")
     }
-});
-
- 
+})
 
 
-router.get("/getBreakfastByTimestamp", async (req, res) => {
-    try {
+
+router.get("/getbreakfastitemcount", async(req,res)=>{
+    try
+    {
+        const currentDate = moment().startOf('day')
+
+        const count = await bfList.countDocuments({
+            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        })    
+    res.status(200).json({count})
+    }
+
+    catch(error)
+    {
+        console.log(error)
+        res.status(500).json({
+            success: false, 
+            message: "Failed to fetch breakfast item count" 
+        })
+    }
+})
+
+  
+
+
+router.get("/getbreakfastbytimestamp", async (req, res) => {
+    try
+    {
         const currentDate = moment().startOf('day')
 
         const data = await bfList.find({
             date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
         })
 
-        res.json(data)
-    } catch (error) {
+        res.status(200).json(data)
+    } 
+
+    catch (error) 
+    {
         console.error("Error fetching breakfast items by timestamp:", error)
-        res.status(500).json({ success: false, message: "Failed to fetch breakfast items" })
+        res.status(500).json({ 
+            success: false, 
+            message: "Failed to fetch breakfast items" 
+        })
     }
 })
-
-
-
-
-
-
 
 
 

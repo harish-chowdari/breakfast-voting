@@ -18,16 +18,22 @@ const Items = () => {
   })
 
   const [listItems, setListItems] = React.useState([])
-
+  const [itemCount,setItemCount] =React.useState(0)
+  const [enabled,setEnabled] =React.useState(true)
 
   const fetchData = async()=>{
-    const res = await axios.get("http://localhost:2008/getBreakfastByTimestamp")
+    const res = await axios.get("http://localhost:2008/getbreakfastbytimestamp")
     setListItems(res.data)
   }
 
+  const fetchCount = async()=>{
+    const res = await axios.get("http://localhost:2008/getbreakfastitemcount")
+    setItemCount(res.data.count)
+  } 
+
   React.useEffect(()=>{
     fetchData()
-     
+    fetchCount()
   },[])
 
   const changeHandler = (e) =>{
@@ -49,19 +55,51 @@ const Items = () => {
       itemName:String(addItem.itemName),
       image: imageResponse.data.image_url
     })
-    .then(res=>res.data)
+  
   }
 
- 
+  React.useEffect(() => {
+    const interval = setInterval(()=>{
+      const currentTime = new Date()
+      const currentHour = currentTime.getHours()
+      const currentMinutes = currentTime.getMinutes()
+  
+      if (currentHour === 19 && currentMinutes <= 59) {
+        setEnabled(true)
+      } else {
+        setEnabled(false)
+      }
+    }, 1000)
 
-  const submitHandler = async(e)=>{
+    return ()=> clearInterval(interval)
+    },[])
+  
+
+  const submitHandler = async()=>{
     console.log(addItem)
-    
-      await senReq()
-      setAddItem({ itemName: "",image: null })
-      setImage(null)
-      fetchData()
+
+  const currentDate = new Date()
+  
+  const exist = listItems.find(
+    (item) => item.itemName.toLowerCase().trim() === addItem.itemName.toLowerCase().trim() && 
+              new Date(item.date).toDateString() === currentDate.toDateString()
+  )
+
+  if(exist)
+  {
+    alert("item already exist")
   }
+  
+  else
+  {
+    await senReq()
+    setAddItem({ itemName: "",image: null })
+    setImage(null)
+    fetchData()
+    fetchCount()
+  }
+     
+}
 
   return (
     <div className='container'>
@@ -70,21 +108,22 @@ const Items = () => {
           value={addItem.itemName}
           onChange={changeHandler}
           placeholder='Enter Breakfast Name'
+          hidden={itemCount > 9}
            />
 
       <label htmlFor='file-input'>
-        <img src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
+        <img hidden={itemCount>9} src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
       </label>
       <input  type='file' name='image' id='file-input' hidden onChange={imageHandler} />
 
-
-        <button onClick={submitHandler} >ADD</button>
+        <button disabled={!enabled} hidden={itemCount>9} onClick={submitHandler} >ADD</button>
     </div>
 
     <div >
         <ol className='items'>{listItems.map((item,index)=>{
           return <div key={index} className='item'>
             <li>{item.itemName}</li>
+            
             {item.image && <img  src={item.image} alt={item.itemName} height="180px" width="220px" />}
           </div>
         })}

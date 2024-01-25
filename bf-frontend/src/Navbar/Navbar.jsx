@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 
-  const isAuthTokenPresent = localStorage.getItem('auth-token');
+  const isAuthToken = localStorage.getItem('auth-token');
 
   return (
     <div className='navbar'>
@@ -17,7 +17,7 @@ const Navbar = () => {
 
         <Link to="/signup"><button>Register</button></Link>
 
-        <Link to="/list"><button hidden={!isAuthTokenPresent}>List</button></Link>
+        <Link to="/list"><button hidden={!isAuthToken}>List</button></Link>
     </div>
   )
 }
