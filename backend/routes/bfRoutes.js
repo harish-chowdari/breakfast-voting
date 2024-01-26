@@ -35,7 +35,7 @@ router.post("/addbreakfast", async (req, res) => {
     const currentHour = currentTime.getHours()
     const currentMinutes = currentTime.getMinutes()
 
-    if (currentHour === 15 && currentMinutes <= 59) {
+    if (currentHour === 16 && currentMinutes <= 59) {
         const currentDate = moment().startOf('day')
 
 

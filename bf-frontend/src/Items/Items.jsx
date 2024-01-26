@@ -64,7 +64,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 15 && currentMinutes <= 59) {
+      if (currentHour === 16 && currentMinutes <= 18) {
         setEnabled(true)
       } else {
         setEnabled(false)
@@ -103,23 +103,28 @@ const Items = () => {
 
   return (
     <div className='container'>
+    
     <div className='menu'>
         <input type='text' name='itemName'
           value={addItem.itemName}
           onChange={changeHandler}
           placeholder='Enter Breakfast Name'
+          disabled={!enabled}
           hidden={itemCount > 9}
            />
 
       <label htmlFor='file-input'>
-        <img hidden={itemCount>9} src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
+        <img hidden={itemCount>9}
+        
+         src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
       </label>
-      <input  type='file' name='image' id='file-input' hidden onChange={imageHandler} />
+      <input disabled={!enabled} type='file' name='image' id='file-input' hidden onChange={imageHandler} />
 
         <button disabled={!enabled} hidden={itemCount>9} onClick={submitHandler} >ADD</button>
     </div>
 
     <div >
+    <h2 className='title'>Breakfast Items</h2>
         <ol className='items'>{listItems.map((item,index)=>{
           return <div key={index} className='item'>
             <li>{item.itemName}</li>

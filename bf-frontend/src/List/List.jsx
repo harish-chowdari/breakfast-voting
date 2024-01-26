@@ -71,7 +71,7 @@ const List = () => {
   }
 
   const votesData = async()=>{
-    const res = await axios.get("http://localhost:2008/getVotesCount")
+    const res = await axios.get("http://localhost:2008/getvotescount")
     setVotesCount(res.data)
   }
 
@@ -90,7 +90,7 @@ const List = () => {
     const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 14 && currentMinutes <= 59 )
+      if(currentHour === 16 && currentMinutes <= 59 )
       {
         setEnable(true)
       }
@@ -104,7 +104,7 @@ const List = () => {
       const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 15 && currentMinutes >= 51 )
+      if(currentHour === 16 && currentMinutes <= 59 )
       {
         setVisible(true)
         fetchWinner()
@@ -121,7 +121,7 @@ const List = () => {
     <div className='container'>
       
       <div className='vote-fields'>
-       <h3>{enable ? "please verify your details and vote" : "Time up for voting" }</h3>
+       <h3>{enable ? "Please verify your details and vote" : "Time up for voting" }</h3>
 
           <input type='email' 
           name='email'

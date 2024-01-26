@@ -146,7 +146,7 @@ router.post("/vote", async (req, res) => {
 
 
 
-router.get('/getVotesCount', async (req, res) => {
+router.get('/getvotescount', async (req, res) => {
     try {
 
         const votesCount = await Votes.aggregate([
@@ -172,20 +172,20 @@ router.get('/getWinner', async (req, res) => {
             { $group: { _id: "$itemName", count: { $sum: 1 } } }
         ])
 
-        let maxVotes = 0;
-        let winningItem = "";
+        let maxCount = 0
+        let winningItem = ""
 
         votesCount.forEach(item => {
-            if (item.count > maxVotes) {
-                maxVotes = item.count;
+            if (item.count > maxCount) {
+                maxCount = item.count;
                 winningItem = item._id;
             }
         })
 
         res.json({ winner: winningItem })
     } catch (error) {
-        console.error("Error retrieving winner:", error);
-        res.status(500).json({ error: "Internal server error" });
+        console.error("Error retrieving winner:", error)
+        res.status(500).json({ error: "Internal server error" })
     }
 })
 
