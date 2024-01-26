@@ -3,7 +3,8 @@ const router = express.Router()
 const jwt = require("jsonwebtoken")
 
 const userDetails = require("../model/UserModel")
-
+const Votes=require("../model/VotesModel")
+const bfList = require("../model/bfModel")
 
 
 router.post("/signup", async(req,res)=>{
@@ -73,6 +74,123 @@ router.post("/login", async(req,res)=>{
         res.json({errors:"please signup user not exist"})
     }
 }) 
+
+
+router.get("/userdetails", async(req,res)=>{
+    const data = await userDetails.find()
+    res.json(data)
+})   
+
+
+const moment = require('moment')
+
+
+router.post("/vote", async (req, res) => {
+    try {
+        const currentDate = moment().startOf('day');
+
+        const userVotedToday = await Votes.findOne({
+            email: req.body.email,
+            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        })
+
+        if (userVotedToday) {
+            return res.json("Already voted today")
+        }  
+
+        const userExist = await userDetails.findOne({ email: req.body.email })
+        const passwordUser = await userDetails.findOne({ password: req.body.password })
+
+        const itemExist = await bfList.findOne({
+            itemName: req.body.itemName.toLowerCase().trim(),
+            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        })
+
+        if(!userExist)
+        {
+            res.json("please sign up first")
+        }
+
+        else if (!passwordUser) 
+        {
+            return res.json("Password is incorrect")
+        }
+
+        else if (itemExist) 
+        {
+            const vote = new Votes({
+                email: req.body.email,
+                password: req.body.password,
+                itemName: req.body.itemName
+            })
+
+            const savedVote = await vote.save()
+
+            const itemCounts = await Votes.aggregate([
+                { $group: { _id: "$itemName", count: { $sum: 1 } } }
+            ])
+
+            return res.json({ savedVote, itemCounts })
+        }
+        else
+        {
+            return res.json("item does not exist")
+
+        }
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" })
+    }
+})
+
+
+
+router.get('/getVotesCount', async (req, res) => {
+    try {
+
+        const votesCount = await Votes.aggregate([
+            { $group: { _id: "$itemName", count: { $sum: 1 } } }
+        ])
+
+        const votesCountObject = {};
+        votesCount.forEach(item => {
+            votesCountObject[item._id] = item.count;
+        })
+
+        res.json(votesCountObject)
+    } catch (error) {
+        console.error("Error retrieving votes count:", error)
+        res.status(500).json({ error: "Internal server error" })
+    }
+})
+
+
+router.get('/getWinner', async (req, res) => {
+    try {
+        const votesCount = await Votes.aggregate([
+            { $group: { _id: "$itemName", count: { $sum: 1 } } }
+        ])
+
+        let maxVotes = 0;
+        let winningItem = "";
+
+        votesCount.forEach(item => {
+            if (item.count > maxVotes) {
+                maxVotes = item.count;
+                winningItem = item._id;
+            }
+        })
+
+        res.json({ winner: winningItem })
+    } catch (error) {
+        console.error("Error retrieving winner:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+})
+
+
+
 
 
 

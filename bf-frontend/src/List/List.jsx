@@ -5,53 +5,156 @@ import "./List.css"
 
 const List = () => {
 
-  const [Winner,setWinner] = React.useState(null)
-
+  
   const [listItems, setListItems] = React.useState([])
 
-  const [vote,setVote] =React.useState({})
+  const [votesCount, setVotesCount] = React.useState({})
 
-  const voteHandler = (itemId)=>{
-    setVote((prevVotes) => (
-      {
-      ...prevVotes,
-      [itemId]: (prevVotes[itemId] || 0) + 1
-    }
-    ))
+  const [winner,setWinner] = React.useState("")
+
+  const [enable,setEnable] = React.useState(true)
+
+  const [visible,setVisible] = React.useState(true)
+
+  const [voteDetails,setVoteDetails] =React.useState({
+    email:"",
+    password:"",
+    itemName:""
+  })
+
+  const changeHandler = (e)=>{
+    setVoteDetails({...voteDetails, [e.target.name]:e.target.value})
   }
 
+  const submitHandler = async () => {
+    try {
+        const res = await axios.post("http://localhost:2008/vote", voteDetails)
+
+        if (res.data === "Already voted today") 
+        {
+          alert("You have already voted today.")
+        } 
+        else if (res.data === "please sign up first") {
+          alert("Please sign up first.")
+        } 
+        else if (res.data === "Password is incorrect") {
+          alert("Password is incorrect.")
+        } 
+        else if (res.data === "item does not exist") 
+        {
+            alert("Item does not exist.")
+        } 
+        else 
+        {
+            setVoteDetails({
+                email: "",
+                password: "",
+                itemName: ""
+            })
+            votesData()
+            fetchWinner()
+
+            const votedItem = listItems.find(item => item.itemName === voteDetails.itemName)
+            if (votedItem) {
+                alert(`Your vote has been added to ${votedItem.itemName}`)
+            }        
+          }
+    } 
+    catch (error) {
+        console.error("Error submitting vote:", error)
+    }
+}
 
   const fetchData = async()=>{
     const res = await axios.get("http://localhost:2008/getBreakfastByTimestamp")
     setListItems(res.data)
   }
 
+  const votesData = async()=>{
+    const res = await axios.get("http://localhost:2008/getVotesCount")
+    setVotesCount(res.data)
+  }
+
+  const fetchWinner = async()=>{
+    const res = await axios.get("http://localhost:2008/getWinner")
+    setWinner(res.data.winner)
+  }
+
   React.useEffect(()=>{
     fetchData()
-     
+    votesData()
+    
   },[])
 
-  React.useEffect(() => {
+  React.useEffect(()=>{
+    const currentTime = new Date()
+      const currentHour = currentTime.getHours()
+      const currentMinutes = currentTime.getMinutes()
+      if(currentHour === 14 && currentMinutes <= 59 )
+      {
+        setEnable(true)
+      }
+      else{
+        setEnable(false)
+      }
+  },[])
 
-    const delay = setTimeout(() => {
-      const maxVotes = Math.max(...Object.values(vote), 0);
-      const winningItemId = Object.keys(vote).find((itemId) => vote[itemId] === maxVotes);
-      
-      setWinner(winningItemId);
-    }, 15000)
-  
-    return () => clearTimeout(delay)
-  }, [vote]);
+  React.useEffect(()=>{
+    const interval =setInterval(()=>{
+      const currentTime = new Date()
+      const currentHour = currentTime.getHours()
+      const currentMinutes = currentTime.getMinutes()
+      if(currentHour === 15 && currentMinutes >= 51 )
+      {
+        setVisible(true)
+        fetchWinner()
+      }
+      else{
+        setVisible(false)
+      }
+    },1000)
+    return ()=> clearInterval(interval)
+  },[])
 
   
   return (
     <div className='container'>
-    {listItems.length >=0  ? <h2 className='title'>Items List is empty</h2> : <h2 className='title'>Vote for your favorite breakfast</h2>}
+      
+      <div className='vote-fields'>
+       <h3>{enable ? "please verify your details and vote" : "Time up for voting" }</h3>
+
+          <input type='email' 
+          name='email'
+          value={voteDetails.email}
+          onChange={changeHandler}
+          disabled={!enable}
+          placeholder='Email'/>
+
+          <input type='password' 
+          name='password'
+          value={voteDetails.password}
+          onChange={changeHandler}
+          disabled={!enable}
+          placeholder='Password'/>
+
+          <input type='text' 
+          name='itemName'
+          value={voteDetails.itemName}
+          onChange={changeHandler}
+          disabled={!enable}
+          placeholder='Item Name to vote'/>
+
+          <button disabled={!enable}
+          onClick={submitHandler}>ADD</button>
+      </div>
+
+    {listItems.length <=0  ? <h2 className='title'>Items List is empty</h2> : <h2 className='title'>Breakfast Items List</h2>}
     <div >
         <ul className='list-items'>{listItems.map((item,index)=>{
+          const voteCount = votesCount[item.itemName] || 0
           return <div className='list-item' key={index}>
             
-            <p><strong>{item.itemName}</strong> votes = {vote[item._id] || 0}</p>
+            {visible ? <p><strong>{item.itemName}</strong> votes = {voteCount} </p> : <></>}
             <img src={item.image} width="200px" height="150px" alt='breakfast item'/>
             
             <div className='votes'>
@@ -59,21 +162,17 @@ const List = () => {
               {item.itemName}
             
             </div>
-
-            <button onClick={() => voteHandler(item._id)}>vote</button>
-
           </div>
         })}
         </ul>
       </div>
-
-      <div>
-       {listItems.length <=0 ? <></> :
-         <h2 className='winner'>Winner : {Winner ? listItems.find(item => item._id === Winner).itemName : 'winner will be announced after 15 seconds'} </h2> }
-      </div>
-
+<div className='winner-data'>
+<h2 className='winner'>The Winner is :</h2>
+<p>{visible ? winner : "winner will be announced at 10 AM"}</p>
+</div>
+      
     </div>
   )
 }
 
-export default List;
+export default List

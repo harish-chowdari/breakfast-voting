@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const bfListSchema = mongoose.Schema({
   id: {
@@ -29,6 +29,6 @@ const bfListSchema = mongoose.Schema({
 },  {
     timestamps: true
     }
-);
+)
 
 module.exports = mongoose.model('bfList', bfListSchema)

@@ -18,10 +18,7 @@ const userDetails = new mongoose.Schema({
   cnfmpassword: {
     type: String,
     required: true
-  },
-  vote:{
-    type:Number
-}
+  }
 },
   {
     timestamp:true

@@ -35,9 +35,9 @@ router.post("/addbreakfast", async (req, res) => {
     const currentHour = currentTime.getHours()
     const currentMinutes = currentTime.getMinutes()
 
-    if (currentHour === 19 && currentMinutes <= 59) {
+    if (currentHour === 15 && currentMinutes <= 59) {
         const currentDate = moment().startOf('day')
- 
+
 
         const exist = await bfList.findOne({
             itemName: req.body.itemName.toLowerCase().trim(),
