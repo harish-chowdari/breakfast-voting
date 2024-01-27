@@ -28,18 +28,20 @@ const List = () => {
 
   const submitHandler = async () => {
     try {
-        const res = await axios.post("http://localhost:2008/vote", voteDetails)
+
+        const Email = localStorage.getItem("user-email")
+        const voteData = {
+            email: Email,
+            itemName: voteDetails.itemName
+        }
+
+        const res = await axios.post("http://localhost:2008/vote", voteData)
 
         if (res.data === "Already voted today") 
         {
           alert("You have already voted today.")
         } 
-        else if (res.data === "please sign up first") {
-          alert("Please sign up first.")
-        } 
-        else if (res.data === "Password is incorrect") {
-          alert("Password is incorrect.")
-        } 
+         
         else if (res.data === "item does not exist") 
         {
             alert("Item does not exist.")
@@ -47,8 +49,6 @@ const List = () => {
         else 
         {
             setVoteDetails({
-                email: "",
-                password: "",
                 itemName: ""
             })
             votesData()
@@ -62,6 +62,7 @@ const List = () => {
     } 
     catch (error) {
         console.error("Error submitting vote:", error)
+        alert("You have already voted")
     }
 }
 
@@ -90,7 +91,7 @@ const List = () => {
     const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 16 && currentMinutes <= 59 )
+      if(currentHour === 12 && currentMinutes <= 59 )
       {
         setEnable(true)
       }
@@ -104,7 +105,7 @@ const List = () => {
       const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 16 && currentMinutes <= 59 )
+      if(currentHour === 12 && currentMinutes <= 59 )
       {
         setVisible(true)
         fetchWinner()
@@ -122,20 +123,6 @@ const List = () => {
       
       <div className='vote-fields'>
        <h3>{enable ? "Please verify your details and vote" : "Time up for voting" }</h3>
-
-          <input type='email' 
-          name='email'
-          value={voteDetails.email}
-          onChange={changeHandler}
-          disabled={!enable}
-          placeholder='Email'/>
-
-          <input type='password' 
-          name='password'
-          value={voteDetails.password}
-          onChange={changeHandler}
-          disabled={!enable}
-          placeholder='Password'/>
 
           <input type='text' 
           name='itemName'

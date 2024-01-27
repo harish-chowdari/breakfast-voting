@@ -11,7 +11,7 @@ router.post("/signup", async(req,res)=>{
     let check = await userDetails.findOne({email:req.body.email})
     if(check){
         return res.json({errors: "user already exist"})
-    }
+    } 
 
     const {password, cnfmpassword } = req.body;
 
@@ -99,7 +99,6 @@ router.post("/vote", async (req, res) => {
         }  
 
         const userExist = await userDetails.findOne({ email: req.body.email })
-        const passwordUser = await userDetails.findOne({ password: req.body.password })
 
         const itemExist = await bfList.findOne({
             itemName: req.body.itemName.toLowerCase().trim(),
@@ -111,16 +110,10 @@ router.post("/vote", async (req, res) => {
             res.json("please sign up first")
         }
 
-        else if (!passwordUser) 
-        {
-            return res.json("Password is incorrect")
-        }
-
         else if (itemExist) 
         {
             const vote = new Votes({
                 email: req.body.email,
-                password: req.body.password,
                 itemName: req.body.itemName
             })
 
@@ -139,7 +132,7 @@ router.post("/vote", async (req, res) => {
         }
 
     } catch (error) {
-        console.error(error);
+        console.error(error)
         return res.status(500).json({ error: "Internal server error" })
     }
 })
@@ -148,27 +141,35 @@ router.post("/vote", async (req, res) => {
 
 router.get('/getvotescount', async (req, res) => {
     try {
-
+        const currentDate = moment().startOf('day'); // Define currentDate here
+        
         const votesCount = await Votes.aggregate([
+            { $match: { createdAt: { $gte: currentDate.toDate(),
+                $lt: moment(currentDate).endOf('day').toDate() } } },
             { $group: { _id: "$itemName", count: { $sum: 1 } } }
-        ])
+        ]);
 
         const votesCountObject = {};
         votesCount.forEach(item => {
             votesCountObject[item._id] = item.count;
-        })
+        });
 
-        res.json(votesCountObject)
+        res.json(votesCountObject);
     } catch (error) {
-        console.error("Error retrieving votes count:", error)
-        res.status(500).json({ error: "Internal server error" })
+        console.error("Error retrieving votes count:", error);
+        res.status(500).json({ error: "Internal server error" });
     }
-})
+});
+
 
 
 router.get('/getWinner', async (req, res) => {
     try {
+        const currentDate = moment().startOf('day')
+        
         const votesCount = await Votes.aggregate([
+            { $match: { createdAt: { $gte: currentDate.toDate(), 
+                $lt: moment(currentDate).endOf('day').toDate() } } },
             { $group: { _id: "$itemName", count: { $sum: 1 } } }
         ])
 
@@ -193,9 +194,5 @@ router.get('/getWinner', async (req, res) => {
 
 
 
-
-
-
-
-
+ 
 module.exports=router

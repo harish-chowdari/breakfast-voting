@@ -64,7 +64,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 16 && currentMinutes <= 18) {
+      if (currentHour === 11 && currentMinutes <= 59) {
         setEnabled(true)
       } else {
         setEnabled(false)

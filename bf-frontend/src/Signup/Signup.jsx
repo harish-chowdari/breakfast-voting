@@ -33,6 +33,8 @@ const Signup = () => {
       if(responseData.success)
       {
         localStorage.setItem("auth-token", responseData.token)
+        localStorage.setItem("user-email", signup.email)
+
         window.location.replace("/list")
         alert("signup successful ")
       }
@@ -78,5 +80,4 @@ const Signup = () => {
 }
 
 export default Signup
-
 

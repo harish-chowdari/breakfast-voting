@@ -4,8 +4,8 @@ import Navbar from './Navbar/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './Login/Login.jsx'
 import List from './List/List.jsx'
-import Signup from './Signup/Signup.jsx'
 import Welcome from './Welcome/Welcome.jsx'
+import Signup from './Signup/Signup.jsx'
 
 
 const App = () => {
@@ -19,8 +19,7 @@ const App = () => {
         <Routes>
           <Route path="/items" element={<Items />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          
+          <Route path='/signup' element={<Signup/>} />
           {authToken ? (
             <Route path="/list" element={<List />} />
           ) : (

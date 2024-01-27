@@ -12,10 +12,10 @@ const Navbar = () => {
         <Link to="/items"><button>Items</button></Link>
 
          {localStorage.getItem("auth-token")
-            ? <button onClick={()=>{localStorage.removeItem("auth-token"); window.location.replace("/")} }>Logout</button>: 
+            ? <button onClick={()=>{localStorage.removeItem("auth-token"); localStorage.removeItem("user-email"); window.location.replace("/")} }>Logout</button>: 
             <Link to="/login">  <button>Login</button></Link> }
 
-        <Link to="/signup"><button>Register</button></Link>
+            {localStorage.getItem("auth-token")  ? <></> : <Link to="/signup">  <button>Register</button></Link> }
 
         <Link to="/list"><button hidden={!isAuthToken}>List</button></Link>
     </div>

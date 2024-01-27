@@ -30,7 +30,7 @@ const Login = () => {
     if(responseData.success)
     {
       localStorage.setItem("auth-token", responseData.token)
-      
+      localStorage.setItem("user-email", login.email)
       window.location.replace("/list")
       alert("log in successful")
     }
