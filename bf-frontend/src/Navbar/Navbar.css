@@ -4,12 +4,74 @@
     padding: 20px 0px;
     align-items: center;
     background-color: antiquewhite;
+    position: sticky;
+    top: 0;
 
 }
 
-.navbar button {
+.chef-button{
+    height: 35px;
+    width: 80px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.comment-button{
+    height: 35px;
+    width: 120px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.login-button{
+    height: 35px;
+    width: 90px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.signup-button{
     height: 35px;
     width: 100px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.items-button{
+    height: 35px;
+    width: 75px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.list-button{
+    height: 35px;
+    width: 60px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(194, 170, 216);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.winner-button {
+    height: 35px;
+    width: 85px;
     border-radius: 20px;
     border: none;
     background-color: rgb(194, 170, 216);

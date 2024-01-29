@@ -1,0 +1,33 @@
+.winner-container {
+    height: 100%;
+    display: flex;
+    background-color: rgb(209, 230, 248);
+}
+
+.winner-data{
+    display: flex;
+    margin-top: 100px;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;   
+    
+
+}
+
+.winner-data span{
+    font-size: 22px;
+}
+
+.get-winner-button{
+    width: 120px;
+    border: none;
+    background-color: rgb(125, 223, 101);
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+
+

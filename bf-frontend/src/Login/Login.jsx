@@ -31,8 +31,14 @@ const Login = () => {
     {
       localStorage.setItem("auth-token", responseData.token)
       localStorage.setItem("user-email", login.email)
-      window.location.replace("/list")
-      alert("log in successful")
+      alert("Login successful")
+
+      if(login.email === "chef@gmail.com")
+      {
+        window.location.replace("/chef")
+      } else {
+        window.location.replace("/items")
+      }
     }
     else{
       alert(responseData.errors)

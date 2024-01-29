@@ -4,13 +4,10 @@ import "./List.css"
 
 
 const List = () => {
-
   
   const [listItems, setListItems] = React.useState([])
 
   const [votesCount, setVotesCount] = React.useState({})
-
-  const [winner,setWinner] = React.useState("")
 
   const [enable,setEnable] = React.useState(true)
 
@@ -18,7 +15,6 @@ const List = () => {
 
   const [voteDetails,setVoteDetails] =React.useState({
     email:"",
-    password:"",
     itemName:""
   })
 
@@ -52,7 +48,6 @@ const List = () => {
                 itemName: ""
             })
             votesData()
-            fetchWinner()
 
             const votedItem = listItems.find(item => item.itemName === voteDetails.itemName)
             if (votedItem) {
@@ -76,11 +71,6 @@ const List = () => {
     setVotesCount(res.data)
   }
 
-  const fetchWinner = async()=>{
-    const res = await axios.get("http://localhost:2008/getWinner")
-    setWinner(res.data.winner)
-  }
-
   React.useEffect(()=>{
     fetchData()
     votesData()
@@ -91,7 +81,7 @@ const List = () => {
     const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 12 && currentMinutes <= 59 )
+      if(currentHour === 10 && currentMinutes <= 59 )
       {
         setEnable(true)
       }
@@ -105,10 +95,10 @@ const List = () => {
       const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 12 && currentMinutes <= 59 )
+      if(currentHour === 10 && currentMinutes <= 59 )
       {
         setVisible(true)
-        fetchWinner()
+        
       }
       else{
         setVisible(false)
@@ -153,10 +143,6 @@ const List = () => {
         })}
         </ul>
       </div>
-<div className='winner-data'>
-<h2 className='winner'>The Winner is :</h2>
-<p>{visible ? winner : "winner will be announced at 10 AM"}</p>
-</div>
       
     </div>
   )

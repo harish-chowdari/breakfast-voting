@@ -9,15 +9,34 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-        <Link to="/items"><button>Items</button></Link>
+        
+        {
+          localStorage.getItem("user-email") === "chef@gmail.com" ? 
+        <>
+        <Link to="/chef"><button className='chef-button'>Chef</button></Link>
+        <Link to="/cheflist"><button className='comment-button'>Comments</button></Link>
+        </>
+         : 
+        <>
+        <Link to="/items"><button hidden={!isAuthToken} className='items-button'>Items</button></Link> 
+        <Link to="/list"><button hidden={!isAuthToken} className='list-button'>List</button></Link>
+        </>
+        }
 
-         {localStorage.getItem("auth-token")
-            ? <button onClick={()=>{localStorage.removeItem("auth-token"); localStorage.removeItem("user-email"); window.location.replace("/")} }>Logout</button>: 
-            <Link to="/login">  <button>Login</button></Link> }
+        <Link to="/winner"><button className='winner-button'>Winner</button></Link>
 
-            {localStorage.getItem("auth-token")  ? <></> : <Link to="/signup">  <button>Register</button></Link> }
+        {localStorage.getItem("auth-token")
+            ? <button onClick={()=>{localStorage.removeItem("auth-token"); 
+            localStorage.removeItem("user-email"); window.location.replace("/")} } className='login-button'>Logout</button>  : 
+            
+          <Link to="/login">  <button className='login-button'>Login</button></Link> 
+        }
 
-        <Link to="/list"><button hidden={!isAuthToken}>List</button></Link>
+        {localStorage.getItem("auth-token")  ? <></> : <Link to="/signup">  <button className='signup-button'>Register</button></Link> }
+
+
+        
+    
     </div>
   )
 }

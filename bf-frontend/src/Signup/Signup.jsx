@@ -35,7 +35,7 @@ const Signup = () => {
         localStorage.setItem("auth-token", responseData.token)
         localStorage.setItem("user-email", signup.email)
 
-        window.location.replace("/list")
+        window.location.replace("/items")
         alert("signup successful ")
       }
       else{

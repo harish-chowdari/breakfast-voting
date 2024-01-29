@@ -4,56 +4,83 @@ import "./Chef.css"
 
 
 const Chef = () => {
-  
+
   const [listItems, setListItems] = React.useState([])
-   
-  const [com,setcom]=React.useState({
+
+  const [addComment,setAddComment] = React.useState({
+    itemName:"",
     comment:""
   })
 
-  const changeHandler =(e)=>{
-      setcom({...com, [e.target.name]:e.target.value})
+  const changeHandler = (e)=>{
+    setAddComment({...addComment, [e.target.name]: e.target.value})
   }
 
-  const submitHandler =()=>{
-    console.log(com)
-  }
+  const submitHandler = async()=>{
   
+    const res = await axios.post("http://localhost:2008/chefcomment",addComment)
+    if(res.data === "Item does not exist")
+    {
+      alert(res.data)
+    }
+
+    else if(res.data === "already commented")
+    {
+      alert(res.data)
+    } 
+
+    else
+    {
+      setAddComment(res.data)
+      setAddComment({itemName:"", comment:""})
+      alert("Comment added")
+    }
+  }
+
+
   const fetchData = async()=>{
-    const res = await axios.get("http://localhost:2008/getbreakfast")
+    const res = await axios.get("http://localhost:2008/getbreakfastbytimestamp")
     setListItems(res.data)
   }
 
   React.useEffect(()=>{
     fetchData()
-     
-  },[])
-
-  return (
-    <div className='container'>
     
-    <div >
-        <ul className='chef-items'>{listItems.map((item,index)=>{
-          return <div className='chef-item' key={index}>
-          
+  },[])
+  
+  return (
+
+    <div className='chef'>
+    <div className='chef-data'>
+      <input type='text' 
+      name='itemName'
+      value={addComment.itemName}
+      onChange={changeHandler}
+      placeholder='Item Name'/>
+
+      <textarea 
+      name='comment'
+      value={addComment.comment}
+      onChange={changeHandler}
+      placeholder='comment' />
+      <button className="submit" onClick={submitHandler}>Submit</button>
+    </div>
+
+    <div className='chef-items'>
+    <h2 className='title'>Breakfast Items</h2>
+        <ol className='items'>{listItems.map((item,index)=>{
+          return <div key={index} className='item'>
+            <li className='itemName'><strong>ItemName : </strong><p>{item.itemName}</p></li>
             
-            {item.itemName}
-            <img src={item.image} width="200px" 
-            height="150px" alt='breakfast item'/>
-            
-            <input type='text' 
-            name='comment'
-            value={com.comment}
-            onChange={changeHandler}
-            placeholder='comment' />
-            <button onClick={submitHandler} className='submit'>submit</button>
-            
+            {item.image && <img  src={item.image} alt={item.itemName} 
+            height="180px" width="220px" />}
           </div>
         })}
-        </ul>
+        </ol>
+      </div>   
       </div>
-    </div>
+
   )
 }
 
-export default Chef;
+export default Chef

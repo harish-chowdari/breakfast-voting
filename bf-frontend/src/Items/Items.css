@@ -1,5 +1,6 @@
 .container{
-    background-color: rgb(240, 208, 166);
+    
+    background-color: rgb(245, 211, 167);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -7,6 +8,7 @@
 }
 
 .menu{
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -35,11 +37,6 @@ img{
     margin-bottom: 20px;
 }
 
-.breakfast-title{
-  margin-left: 70px;
-  margin-top: 20px;
-}
-
 .items{
     display: flex;
     flex-direction: row;
@@ -48,13 +45,12 @@ img{
     flex-wrap: wrap;
     list-style: none;
     margin-right: 50px;
+    margin-bottom: 50px;
 }
 
 .item{
     display: flex;
-    flex-direction: column;
-   
-    
+    flex-direction: column;   
 }
 
 .bf-name{
@@ -64,12 +60,6 @@ img{
     height: 25px;
     font-size: 20px;
     padding-bottom: 5px;
-}
-
-.start-time{
-    display: flex;
-    height: 30px;
-    align-items: center;
 }
 
 

@@ -1,15 +1,79 @@
-.chef-items{
+.chef{
+    background-color: rgb(152, 182, 164);
     display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+    
+}
+
+.chef-items{
+    margin-top: 20px;
 }
 
 .chef-item{
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
 
-.submit{
-    width: 70px;
+li strong{
+    font-size: 23px;
 }
+
+li p{
+    font-size: 20px;
+}
+
+.itemName{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chef-data{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 40px;   
+}
+.chef-data input {
+    height: 22px;
+    font-size: 18px;
+    width: 150px;
+    margin-top: 20px;
+}
+
+.chef-hr{
+    width: 200vh;
+    height: 1.7px;
+    background-color: black;
+    border: none;
+}
+
+.chef-data textarea {
+    height: 60px;
+    font-size: 18px;
+    width: 40vh;
+    
+}
+.chef-data button {
+    height: 25px;
+    width: 70px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+
+
+
+
+
+

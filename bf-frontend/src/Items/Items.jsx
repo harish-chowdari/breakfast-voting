@@ -18,7 +18,9 @@ const Items = () => {
   })
 
   const [listItems, setListItems] = React.useState([])
+
   const [itemCount,setItemCount] =React.useState(0)
+
   const [enabled,setEnabled] =React.useState(true)
 
   const fetchData = async()=>{
@@ -30,6 +32,8 @@ const Items = () => {
     const res = await axios.get("http://localhost:2008/getbreakfastitemcount")
     setItemCount(res.data.count)
   } 
+
+  
 
   React.useEffect(()=>{
     fetchData()
@@ -64,7 +68,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 11 && currentMinutes <= 59) {
+      if (currentHour === 10 && currentMinutes <= 59) {
         setEnabled(true)
       } else {
         setEnabled(false)
@@ -73,7 +77,8 @@ const Items = () => {
 
     return ()=> clearInterval(interval)
     },[])
-  
+
+     
 
   const submitHandler = async()=>{
     console.log(addItem)
@@ -101,6 +106,10 @@ const Items = () => {
      
 }
 
+
+
+
+
   return (
     <div className='container'>
     
@@ -123,6 +132,7 @@ const Items = () => {
         <button disabled={!enabled} hidden={itemCount>9} onClick={submitHandler} >ADD</button>
     </div>
 
+
     <div >
     <h2 className='title'>Breakfast Items</h2>
         <ol className='items'>{listItems.map((item,index)=>{
@@ -134,7 +144,7 @@ const Items = () => {
         })}
         </ol>
       </div>
-
+      
     </div>
   )
 }

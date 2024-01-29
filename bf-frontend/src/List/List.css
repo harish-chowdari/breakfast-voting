@@ -22,7 +22,7 @@ button {
 
 .title{
     margin-left: 40px;
-    
+    font-size: 30px;
 }
 
 .vote-fields{
@@ -35,17 +35,3 @@ button {
     
 }
 
-.winner{
-    margin-left: 30px;
-}
-
-.winner-data{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-}
-
-.winner-data p{
-    font-size: 20px;
-}
