@@ -20,7 +20,7 @@ async function addVote(req, res) {
 
         //checking, if the user has already been voted today
         if (userVotedToday) {
-            return res.status(200).json("Already voted today")
+            return res.status(409).json("Already voted today")
         }  
 
         const userExist = await userDetails.findOne({ email: req.body.email })
@@ -50,7 +50,7 @@ async function addVote(req, res) {
         }
         else
         {
-            return res.status(200).json("item does not exist")
+            return res.status(400).json("item does not exist")
 
         }
 
@@ -155,6 +155,7 @@ async function getWinner(req, res) {
         else  
         {
             console.log("No winner found")
+            return res.status(200).json("winner not found")
         }
     } 
     

@@ -18,7 +18,7 @@ async function postComments(req,res) {
     // checking, if the itemName is not exist on the current day, then it will show item not exist
     if(!itemExist)
     {
-        return res.status(200).json("Item does not exist");
+        return res.status(404).json("Item does not exist");
     }
 
     const commentExist = await ChefModel.findOne({
@@ -29,7 +29,7 @@ async function postComments(req,res) {
     // checking, if the comment has been added for the item on current date
     if(commentExist)
     {
-       return res.status(200).json("already commented") 
+       return res.status(409).json("already commented") 
     }
 
         const d = new ChefModel({
@@ -63,7 +63,10 @@ async function getComments(req, res) {
                 $gte: currentDate.toDate(), 
                 $lt: endOfDay.toDate() 
             }
-        })
+        },
+        
+        {itemName:1, comment:1, _id:0}
+        )
 
         // getting comments on current date
 

@@ -12,14 +12,14 @@ async function signUp(req,res) {
 
     // checking, if the user already exist
     if(check){
-        return res.status(200).json({errors: "user already exist"})
+        return res.status(409).json({errors: "user already exist"})
     } 
 
     const {password, cnfmpassword } = req.body;
 
     // checking, if the password and cnfmpasswords are matching
     if (password !== cnfmpassword) {
-        return res.status(200).json({ errors: "Passwords do not match" });
+        return res.status(400).json({ errors: "Passwords do not match" });
     }   
 
     let vote = {}
@@ -109,7 +109,7 @@ async function logIn(req,res) {
 async function getUsers(req,res) {
 
     try{
-        const data = await userDetails.find()
+        const data = await userDetails.find({},{email:1, name:1, _id:0})
         return res.status(200).json(data)
     }
 

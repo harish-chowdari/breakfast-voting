@@ -30,7 +30,7 @@ function uploadImage(req,res) {
         })
  
         if (exist) {
-            return res.status(200).json({
+            return res.status(409).json({
                 success: false,
                 message: "Can't add duplicate item for the current day."
             })
@@ -42,7 +42,7 @@ function uploadImage(req,res) {
 
         if (itemCountToday > 9) 
         {
-            return res.status(200).json({
+            return res.status(401).json({
                 success: false,
                 message: "Cannot add more than 10 items for the current day, limit reached."
             })
@@ -77,7 +77,7 @@ function uploadImage(req,res) {
     
     // if we are trying to add the item after the time period then else block will execute
     else {
-        return res.status(200).json("Cannot add the item before 11 or after 11")
+        return res.status(400).json("Cannot add the item before 11 or after 11")
     }
  }
 
@@ -118,8 +118,16 @@ async function getItems(req, res) {
         const currentDate = moment().startOf('day')
 
         const data = await bfList.find({
-            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
-        })
+            
+            date: { 
+                $gte: currentDate.toDate(), 
+                $lt: moment(currentDate).endOf('day').toDate() 
+            }, 
+        },
+
+        { itemName: 1, image: 1, _id: 0 }
+
+        )
 
         return res.status(200).json(data)
     } 
