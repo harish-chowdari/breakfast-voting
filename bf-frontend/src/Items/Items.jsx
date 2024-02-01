@@ -68,7 +68,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 10 && currentMinutes <= 59) {
+      if (currentHour === 14 && currentMinutes <= 59) {
         setEnabled(true)
       } else {
         setEnabled(false)
@@ -108,9 +108,7 @@ const Items = () => {
 
 
 
-
-
-  return (
+return (
     <div className='container'>
     
     <div className='menu'>
@@ -120,6 +118,7 @@ const Items = () => {
           placeholder='Enter Breakfast Name'
           disabled={!enabled}
           hidden={itemCount > 9}
+          required
            />
 
       <label htmlFor='file-input'>
@@ -129,21 +128,22 @@ const Items = () => {
       </label>
       <input disabled={!enabled} type='file' name='image' id='file-input' hidden onChange={imageHandler} />
 
-        <button disabled={!enabled} hidden={itemCount>9} onClick={submitHandler} >ADD</button>
+        <button className='menu-button' disabled={!enabled} hidden={itemCount>9} onClick={submitHandler} >ADD</button>
     </div>
 
 
-    <div >
+    <div className='user-items'>
     <h2 className='title'>Breakfast Items</h2>
-        <ol className='items'>{listItems.map((item,index)=>{
-          return <div key={index} className='item'>
-            <li>{item.itemName}</li>
+        <ol className='user-items-list'>{listItems.map((item,index)=>{
+          return <div key={index} className='item-in-user'>
+            <li className='user-itemName'><strong>ItemName : </strong><p>{item.itemName}</p></li>
             
-            {item.image && <img  src={item.image} alt={item.itemName} height="180px" width="220px" />}
+            {item.image && <img className='user-img' src={item.image} alt={item.itemName} 
+            height="180px" width="220px" />}
           </div>
         })}
         </ol>
-      </div>
+      </div>  
       
     </div>
   )

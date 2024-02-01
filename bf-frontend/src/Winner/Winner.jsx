@@ -17,7 +17,7 @@ const Winner = () => {
           const currentHour = currentTime.getHours()
           const currentMinutes = currentTime.getMinutes()
       
-          if (currentHour === 21 && currentMinutes <= 59) {
+          if (currentHour === 20 && currentMinutes <= 59) {
             setVisible(true)
             
           } else {

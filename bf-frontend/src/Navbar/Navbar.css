@@ -6,12 +6,14 @@
     background-color: antiquewhite;
     position: sticky;
     top: 0;
+    z-index: 1;
 
 }
 
 .chef-button{
     height: 35px;
-    width: 80px;
+    width: 60px;
+    padding: 1px;
     border-radius: 20px;
     border: none;
     background-color: rgb(194, 170, 216);
@@ -34,7 +36,7 @@
     width: 90px;
     border-radius: 20px;
     border: none;
-    background-color: rgb(194, 170, 216);
+    background-color: rgb(106, 221, 131);
     font-size: 22px;
     cursor: pointer;
 }
@@ -44,7 +46,7 @@
     width: 100px;
     border-radius: 20px;
     border: none;
-    background-color: rgb(194, 170, 216);
+    background-color: rgb(106, 221, 131);
     font-size: 22px;
     cursor: pointer;
 }
@@ -74,7 +76,7 @@
     width: 85px;
     border-radius: 20px;
     border: none;
-    background-color: rgb(194, 170, 216);
+    background-color: rgb(221, 220, 223);
     font-size: 22px;
     cursor: pointer;
 }

@@ -68,16 +68,15 @@ const Chef = () => {
 
     <div className='chef-items'>
     <h2 className='title'>Breakfast Items</h2>
-        <ol className='items'>{listItems.map((item,index)=>{
-          return <div key={index} className='item'>
-            <li className='itemName'><strong>ItemName : </strong><p>{item.itemName}</p></li>
+        <ol className='chef-items-list'>{listItems.map((item,index)=>{
+          return <div key={index} className='item-in-chef'>
+            <li className='chef-itemName'><strong>ItemName : </strong><p>{item.itemName}</p></li>
             
-            {item.image && <img  src={item.image} alt={item.itemName} 
-            height="180px" width="220px" />}
+            {item.image && <img className='chef-img' src={item.image} alt={item.itemName} />}
           </div>
         })}
         </ol>
-      </div>   
+      </div> 
       </div>
 
   )

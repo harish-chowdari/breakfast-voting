@@ -1,5 +1,4 @@
 .winner-container {
-    height: 100%;
     display: flex;
     background-color: rgb(209, 230, 248);
 }
@@ -7,7 +6,7 @@
 .winner-data{
     display: flex;
     margin-top: 100px;
-    height: 100vh;
+    height: 75vh;
     width: 100%;
     justify-content: center;
     gap: 10px;   
@@ -21,6 +20,7 @@
 
 .get-winner-button{
     width: 120px;
+    height: 25px;
     border: none;
     background-color: rgb(125, 223, 101);
     border-radius: 7px;

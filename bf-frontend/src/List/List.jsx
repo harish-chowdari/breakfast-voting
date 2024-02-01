@@ -81,7 +81,7 @@ const List = () => {
     const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 10 && currentMinutes <= 59 )
+      if(currentHour === 14 && currentMinutes <= 59 )
       {
         setEnable(true)
       }
@@ -95,7 +95,7 @@ const List = () => {
       const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 10 && currentMinutes <= 59 )
+      if(currentHour === 14 && currentMinutes <= 59 )
       {
         setVisible(true)
         
@@ -112,8 +112,8 @@ const List = () => {
     <div className='container'>
       
       <div className='vote-fields'>
-       <h3>{enable ? "Please verify your details and vote" : "Time up for voting" }</h3>
-
+       <h3>{enable ? "Please vote" : "Time up for voting" }</h3>
+        <div className='vote-data'>
           <input type='text' 
           name='itemName'
           value={voteDetails.itemName}
@@ -121,22 +121,23 @@ const List = () => {
           disabled={!enable}
           placeholder='Item Name to vote'/>
 
-          <button disabled={!enable}
+          <button className='add-vote' disabled={!enable}
           onClick={submitHandler}>ADD</button>
+      </div>
       </div>
 
     {listItems.length <=0  ? <h2 className='title'>Items List is empty</h2> : <h2 className='title'>Breakfast Items List</h2>}
-    <div >
+    <div className='list-items-container'>
         <ul className='list-items'>{listItems.map((item,index)=>{
           const voteCount = votesCount[item.itemName] || 0
           return <div className='list-item' key={index}>
             
             {visible ? <p><strong>{item.itemName}</strong> votes = {voteCount} </p> : <></>}
-            <img src={item.image} width="200px" height="150px" alt='breakfast item'/>
+            <img className='list-img' src={item.image} alt='breakfast item'/>
             
             <div className='votes'>
-            <p><strong>Item Name :</strong></p>
-              {item.itemName}
+            <h3>Item Name : </h3> <p>{item.itemName}</p>
+              
             
             </div>
           </div>

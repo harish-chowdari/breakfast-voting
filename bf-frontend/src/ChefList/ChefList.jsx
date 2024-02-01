@@ -19,7 +19,7 @@ const ChefList = () => {
 
   return (
     <div className='comments-container'>
-        <ol >{getComments.map((item,i)=>{
+        <ol className='comments-div'>{getComments.map((item,i)=>{
           return <div >
             <div className='comments-list'>
 

@@ -1,37 +1,81 @@
-.list-items {
+.container{
     display: flex;
-    flex-direction: row;
-    gap: 70px;
-    flex-wrap: wrap;
-    list-style: none;
-    
-}
-
-button {
-    width: 50px;
-    height: 25px;
-    font-size: 18px;
-}
-
-.votes{
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.title{
-    margin-left: 40px;
-    font-size: 30px;
+    flex-direction: column;
 }
 
 .vote-fields{
-    margin-bottom: 20px;
+    background-color: rgb(166, 168, 170);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 15px;
+    padding-top: 0px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    height: 30vh;
     align-items: center;
     
 }
+
+.vote-fields h3{
+    font-size: 25px;
+}
+
+.vote-data{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.vote-data input{
+    height: 28px;
+    font-size: 20px;
+    border-radius: 7px;
+    border: 1px solid rgb(233, 233, 152);
+}
+
+.add-vote{
+    width: 50px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 3px;
+    background-color: rgb(219, 231, 184);
+    cursor: pointer;
+}
+
+
+
+.list-items{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.list-item{
+    background-color: rgb(212, 219, 224);
+    border-radius: 10px;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+
+.list-img{
+    width: 250px;
+}
+
+.votes{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.votes p{
+    font-size: 20px;
+}
+
+
+
+
+
 
