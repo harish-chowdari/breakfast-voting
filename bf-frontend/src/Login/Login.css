@@ -1,38 +1,78 @@
-.loginform{
-    height: 88vh;
+.loginform {
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
+    height: 450px;
+    width: 400px;
+    margin: auto; 
+    margin-top: 35px; 
+    box-shadow: 4px 4px 10px rgb(50, 139, 216);
+    animation: slideIn 0.5s ease-in-out;
+
+}
+
+
+.login-title{
+    height: 80px;
+    color: white;
+    font-weight: 700;
+    background-color: rgb(44, 132, 209);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 400px;
+    display: flex;
+    margin: 0px;
+    justify-content: center;
     align-items: center;
-    background-color: rgb(184, 217, 247);
+    margin-bottom: 30px;
+    font-size: 37px;
 }
 
 .login-signup-fields{
     display: flex;
     flex-direction: column;
-    width: 300px;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.login-signup-fields button {
-    width: 100px;
-    font-size: 18px;
+    gap: 20px;
+    align-items: center;
 }
 
 .login-signup-fields input{
-    height: 22px;
+    width: 53vh;
+    height: 40px;
+    padding: 8px;
+    padding-left: 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgb(240, 235, 221);
+    font-size: 22px;
+
+}
+
+.login-signup-fields input:focus {
+    outline: none;
+    border: 1px solid #66afe9;
+    
+}
+
+.login{
+    width: 56vh;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 30px;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-footer p{
     font-size: 18px;
 }
 
-.login {
-    margin-top: 20px;
-    width: 60px;
-    height: 27px;
-    cursor: pointer;
-    border: none;
-    background-color: rgb(118, 197, 138);
-    border-radius: 5px;
-}
 
+.login-signup{
+    color: red;
+    text-decoration: none;
+}
 

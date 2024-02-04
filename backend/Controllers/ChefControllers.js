@@ -12,13 +12,13 @@ async function postComments(req,res) {
 
     const itemExist = await bfList.findOne({
         itemName: req.body.itemName.toLowerCase().trim(),
-        date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+        createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
     })
 
     // checking, if the itemName is not exist on the current day, then it will show item not exist
     if(!itemExist)
     {
-        return res.status(404).json("Item does not exist");
+        return res.json("Item does not exist");
     }
 
     const commentExist = await ChefModel.findOne({
@@ -29,13 +29,12 @@ async function postComments(req,res) {
     // checking, if the comment has been added for the item on current date
     if(commentExist)
     {
-       return res.status(409).json("already commented") 
+       return res.json("already commented") 
     }
 
         const d = new ChefModel({
             itemName:req.body.itemName,
-            comment:req.body.comment,
-            date: new Date()
+            comment:req.body.comment
 
         })
         const data = await d.save()

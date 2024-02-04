@@ -11,20 +11,7 @@ const bfListSchema = mongoose.Schema({
   },
   image: {
     type: String,
-  },
-  date: {
-    type: String,
-    default: Date.now,
-  },
-  time: {
-    type: String,
-    default: () => {
-      const currentTime = new Date();
-      const options = { hour: '2-digit', 
-      minute: '2-digit', second: '2-digit', hour12: false }
-      return currentTime.toLocaleTimeString('en-US', options)
-    },
-  },
+  }
 
 },  {
     timestamps: true

@@ -3,79 +3,87 @@
     flex-direction: column;
 }
 
-.vote-fields{
-    background-color: rgb(166, 168, 170);
-    border-radius: 10px;
-    margin-top: 20px;
-    padding: 15px;
-    padding-top: 0px;
+.vote-title{
+    background-color: rgb(235, 250, 207);
     display: flex;
+    padding-top: 0px;
     flex-direction: column;
     align-items: center;
+    width: 100vh;
+    height: 9vh;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    position: sticky;
+    top: 65px;
+    margin-top: 0px;
+
     
 }
 
-.vote-fields h3{
-    font-size: 25px;
+.vote-title h2{
+    margin-top: 80px;
 }
-
-.vote-data{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-
-.vote-data input{
-    height: 28px;
-    font-size: 20px;
-    border-radius: 7px;
-    border: 1px solid rgb(233, 233, 152);
-}
-
-.add-vote{
-    width: 50px;
-    height: 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 3px;
-    background-color: rgb(219, 231, 184);
-    cursor: pointer;
-}
-
 
 
 .list-items{
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px;
+    margin-right: 50px;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 
 .list-item{
-    background-color: rgb(212, 219, 224);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
     border-radius: 10px;
-    padding: 15px;
-    padding-bottom: 0px;
+    width: 200px;
+    margin-bottom: 20px;
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+.list-item:hover {
+    transform: translateY(-5px); 
 }
 
 .list-img{
-    width: 250px;
-}
-
-.votes{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    width: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 0px;
 }
 
 .votes p{
+    margin: 0px;
     font-size: 20px;
+    font-weight: 500;
+    width: 190px;
+    text-align: center;
+}
+.votes{
+    height: 70px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap: 8px;
+    text-align: center;
 }
 
-
-
-
-
-
+.vote-button{
+    height: 35px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(128, 127, 118);
+}

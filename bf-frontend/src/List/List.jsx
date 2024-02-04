@@ -7,137 +7,95 @@ const List = () => {
   
   const [listItems, setListItems] = React.useState([])
 
-  const [votesCount, setVotesCount] = React.useState({})
 
   const [enable,setEnable] = React.useState(true)
 
-  const [visible,setVisible] = React.useState(true)
+  const submitVote = async (itemName) => {
+    try {
+      const Email = localStorage.getItem("user-email")
+      const voteData = {
+        email: Email,
+        itemName: itemName
+      }
 
-  const [voteDetails,setVoteDetails] =React.useState({
-    email:"",
-    itemName:""
-  })
+      const res = await axios.post("http://localhost:2008/vote", voteData)
 
-  const changeHandler = (e)=>{
-    setVoteDetails({...voteDetails, [e.target.name]:e.target.value})
+      if (res.data === "Already voted today")
+      {
+        alert("You have already voted today.")
+      } 
+      
+      else 
+      {
+        const votedItem = listItems.find(item => item.itemName === itemName)
+        if(votedItem) 
+        {
+          alert(`Your vote has been added to ${votedItem.itemName}`)
+        }
+      }
+    } 
+    
+    catch(error) 
+    {
+      console.log("Error submitting vote:", error)
+      alert("Already voted")
+    }
   }
 
-  const submitHandler = async () => {
-    try {
-
-        const Email = localStorage.getItem("user-email")
-        const voteData = {
-            email: Email,
-            itemName: voteDetails.itemName
-        }
-
-        const res = await axios.post("http://localhost:2008/vote", voteData)
-
-        if (res.data === "Already voted today") 
-        {
-          alert("You have already voted today.")
-        } 
-         
-        else if (res.data === "item does not exist") 
-        {
-            alert("Item does not exist.")
-        } 
-        else 
-        {
-            setVoteDetails({
-                itemName: ""
-            })
-            votesData()
-
-            const votedItem = listItems.find(item => item.itemName === voteDetails.itemName)
-            if (votedItem) {
-                alert(`Your vote has been added to ${votedItem.itemName}`)
-            }        
-          }
-    } 
-    catch (error) {
-        console.error("Error submitting vote:", error)
-        alert("You have already voted")
-    }
-}
 
   const fetchData = async()=>{
-    const res = await axios.get("http://localhost:2008/getBreakfastByTimestamp")
+    const res = await axios.get("http://localhost:2008/getbreakfastbytimestamp")
     setListItems(res.data)
   }
 
-  const votesData = async()=>{
-    const res = await axios.get("http://localhost:2008/getvotescount")
-    setVotesCount(res.data)
-  }
 
   React.useEffect(()=>{
     fetchData()
-    votesData()
     
   },[])
 
-  React.useEffect(()=>{
-    const currentTime = new Date()
-      const currentHour = currentTime.getHours()
-      const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 14 && currentMinutes <= 59 )
-      {
-        setEnable(true)
-      }
-      else{
-        setEnable(false)
-      }
-  },[])
 
-  React.useEffect(()=>{
-    const interval =setInterval(()=>{
+
+  React.useEffect(() => {
+    const interval = setInterval(()=>{
       const currentTime = new Date()
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
-      if(currentHour === 14 && currentMinutes <= 59 )
-      {
-        setVisible(true)
-        
+  
+      if (currentHour === 20 && currentMinutes <= 59) {
+        setEnable(true)
+      } else {
+        setEnable(false)
       }
-      else{
-        setVisible(false)
-      }
-    },1000)
+    }, 100)
+
     return ()=> clearInterval(interval)
-  },[])
+    },[])
 
   
   return (
     <div className='container'>
       
-      <div className='vote-fields'>
-       <h3>{enable ? "Please vote" : "Time up for voting" }</h3>
-        <div className='vote-data'>
-          <input type='text' 
-          name='itemName'
-          value={voteDetails.itemName}
-          onChange={changeHandler}
-          disabled={!enable}
-          placeholder='Item Name to vote'/>
+      <div className='vote-title'>
+      <h3>
+  {enable ? "Vote for your favorite Breakfast" : "Time up for voting"}
+  <h2>{listItems.length <= 0 &&  "Items List is empty"}</h2>
+</h3>
 
-          <button className='add-vote' disabled={!enable}
-          onClick={submitHandler}>ADD</button>
-      </div>
       </div>
 
-    {listItems.length <=0  ? <h2 className='title'>Items List is empty</h2> : <h2 className='title'>Breakfast Items List</h2>}
     <div className='list-items-container'>
         <ul className='list-items'>{listItems.map((item,index)=>{
-          const voteCount = votesCount[item.itemName] || 0
+          
           return <div className='list-item' key={index}>
             
-            {visible ? <p><strong>{item.itemName}</strong> votes = {voteCount} </p> : <></>}
             <img className='list-img' src={item.image} alt='breakfast item'/>
             
             <div className='votes'>
-            <h3>Item Name : </h3> <p>{item.itemName}</p>
-              
+            <p>{item.itemName}</p>
+          <button disabled={!enable} className='vote-button'  
+            onClick={()=>submitVote(item.itemName)}>Vote</button>
+
             
             </div>
           </div>

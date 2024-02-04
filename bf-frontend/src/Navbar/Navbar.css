@@ -3,81 +3,48 @@
     justify-content: space-around;
     padding: 20px 0px;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: #5e5e5e; 
     position: sticky;
     top: 0;
-    z-index: 1;
-
+    box-shadow: -2px 3px 4px  #444444;
+    z-index: 2;
 }
 
-.chef-button{
+.navbar button {
     height: 35px;
-    width: 60px;
-    padding: 1px;
+    padding: 0 20px;
     border-radius: 20px;
     border: none;
-    background-color: rgb(194, 170, 216);
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.comment-button{
-    height: 35px;
-    width: 120px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(194, 170, 216);
-    font-size: 22px;
-    cursor: pointer;
+.chef-button {
+    background-color: #e6c649; 
+    color: #ffffff; 
 }
 
-.login-button{
-    height: 35px;
-    width: 90px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(106, 221, 131);
-    font-size: 22px;
-    cursor: pointer;
+.comment-button {
+    background-color: #f35858; 
+    color: #ffffff; 
 }
 
-.signup-button{
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(106, 221, 131);
-    font-size: 22px;
-    cursor: pointer;
+.login-button {
+    background-color: #72a0f5; 
+    color: #ffffff; 
 }
 
-.items-button{
-    height: 35px;
-    width: 75px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(194, 170, 216);
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.list-button{
-    height: 35px;
-    width: 60px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(194, 170, 216);
-    font-size: 22px;
-    cursor: pointer;
+.items-button, .list-button {
+    background-color: #ff8533; 
+    color: #ffffff; 
 }
 
 .winner-button {
-    height: 35px;
-    width: 85px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(221, 220, 223);
-    font-size: 22px;
-    cursor: pointer;
+    background-color: #a0a0a0; 
+    color: #000000; 
 }
 
+.navbar button:hover {
+    background-color: #666666; 
+}

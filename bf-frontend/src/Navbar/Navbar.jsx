@@ -32,7 +32,6 @@ const Navbar = () => {
           <Link to="/login">  <button className='login-button'>Login</button></Link> 
         }
 
-        {localStorage.getItem("auth-token")  ? <></> : <Link to="/signup">  <button className='signup-button'>Register</button></Link> }
 
 
         

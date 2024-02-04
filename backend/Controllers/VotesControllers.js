@@ -15,19 +15,19 @@ async function addVote(req, res) {
 
         const userVotedToday = await Votes.findOne({
             email: req.body.email,
-            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+            createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
         })
 
         //checking, if the user has already been voted today
         if (userVotedToday) {
-            return res.status(409).json("Already voted today")
+            return res.json("Already voted today")
         }  
 
         const userExist = await userDetails.findOne({ email: req.body.email })
 
         const itemExist = await bfList.findOne({
             itemName: req.body.itemName.toLowerCase().trim(),
-            date: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+            createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
         })
 
         // if the user does not exist then he needs to signup first
@@ -50,7 +50,7 @@ async function addVote(req, res) {
         }
         else
         {
-            return res.status(400).json("item does not exist")
+            return res.json("item does not exist")
 
         }
 
@@ -86,8 +86,8 @@ async function voteCount(req, res) {
     
     catch(error) 
     {
-        console.error("Error retrieving votes count:", error);
-        res.status(500).json({ error: "Internal server error" });
+        console.error(error);
+        return res.status(500).json({ error: 'Internal server error' });
     }
 }
 
@@ -167,12 +167,37 @@ async function getWinner(req, res) {
 }
 
 
+async function getVotes(req, res) {
+    try {
+        const currentDate = moment().startOf('day')
+
+        const votes = await Votes.find({
+            createdAt: {
+                $gte: currentDate.toDate(),
+                $lt: moment(currentDate).endOf('day').toDate()
+            }
+        }, {itemName :1 , email:1, _id:0})
+
+        return res.status(200).json({ votes })
+    } 
+    
+    catch(error) 
+    {
+        console.log(error)
+        return res.status(500).json({ error: "Internal server error" })
+    }
+}
+
+
+
+
 
 
 module.exports = {
     addVote,
     voteCount,
     cronJob,
-    getWinner
+    getWinner,
+    getVotes
     
 }

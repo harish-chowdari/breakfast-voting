@@ -1,32 +1,35 @@
 .winner-container {
     display: flex;
     background-color: rgb(209, 230, 248);
-}
-
-.winner-data{
-    display: flex;
-    margin-top: 100px;
-    height: 75vh;
-    width: 100%;
+    padding: 20px;
     justify-content: center;
-    gap: 10px;   
-    
-
 }
 
-.winner-data span{
-    font-size: 22px;
+.winner-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
-.get-winner-button{
-    width: 120px;
-    height: 25px;
+.winner-data span {
+    font-size: 24px;
+    color: #333;
+}
+
+.get-winner-button {
+    width: 150px;
+    height: 40px;
     border: none;
     background-color: rgb(125, 223, 101);
-    border-radius: 7px;
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 20px;
-    margin-top: 5px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.get-winner-button:hover {
+    background-color: rgb(82, 180, 71);
 }
 
 

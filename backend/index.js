@@ -7,6 +7,7 @@ const app = express()
 app.use(express.json()) 
 app.use(cors())
 
+const errorHandler = require("./ErrorHandler/ErrorHandler")
 
 const db = require("./DB")
 
@@ -21,11 +22,14 @@ app.use("/",ChefRoutes)
  
 const VoteRoutes = require("./routes/VotesRoutes")
 app.use("/", VoteRoutes)
- 
 
-process.env.TZ = 'Asia/Kolkata'; // Set to the time zone of your choice
+app.all('*', (req, res, next) => {
+    
+    const err = new Error(`Can't find ${req.originalUrl} on the server!`, 404);
+    next(err);
+})
 
-
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3008;
 

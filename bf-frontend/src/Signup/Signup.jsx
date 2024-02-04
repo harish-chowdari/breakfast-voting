@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Signup.css"
+import axios from 'axios';
+import { Link } from "react-router-dom";
 
 
 
@@ -17,64 +19,71 @@ const Signup = () => {
     }
   
   
-    const signupForm = async()=>{
-      let responseData
-      await fetch("http://localhost:2008/signup",{
-        method:"POST",
-        headers:{
-            Accept: "application/json",
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(signup)
-      })
-      .then((res)=>res.json())
-      .then((data)=>{responseData=data})
-      
-      if(responseData.success)
-      {
-        localStorage.setItem("auth-token", responseData.token)
-        localStorage.setItem("user-email", signup.email)
+  
+  const signupForm = async () => {
+  try {
+    const response = await axios.post("http://localhost:2008/signup", signup);
 
-        window.location.replace("/items")
-        alert("signup successful ")
-      }
-      else{
-        alert(responseData.errors)
-      }
-      
+    if (response.data.success) {
+      localStorage.setItem("auth-token", response.data.token);
+      localStorage.setItem("user-email", signup.email);
+      alert("Signup successful");
+      window.location.replace("/items");
+    } 
+
+    else if(response.data === "user already exist")
+    {
+      alert("User Exist")
     }
+
+    else if(response.data === "Passwords are not matched")
+    {
+      alert("Passwords are not matched")
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred during signup");
+  }
+}
+
     
   
     return (
   
-      <div className='register'>
-      <h1 className='heading'>Register</h1>
+      <div className='signup-form'>
+      <h1 className='signup-title'>Signup Form</h1>
       <div className='signup-fields'>
   
         <input type='text' placeholder='name'
         value={signup.name} onChange={changeHandler}
         name='name'  />
   
-         <input type='text' placeholder='email'
+         <input type='email' placeholder='email'
          onChange={changeHandler}
          value={signup.email} 
          name='email'
          />
   
-         <input type='text' placeholder='password'
+         <input type='password' placeholder='password'
          value={signup.password}
          onChange={changeHandler} 
          name='password'
          />
   
-         <input type='text'
+         <input type='password'
          value={signup.cnfmpassword} placeholder='confirm password'
          onChange={changeHandler} 
          name='cnfmpassword'
          />
+            
+          <button className='signup' onClick={signupForm}>Signup</button>
       
+      <div className='signup-footer'>
+      <p>Already a member ?<span><Link to="/login" className='signup-login'>  Login</Link> </span>now</p>
+
       </div>
-      <button className='signup' onClick={signupForm}>Register</button>
+      </div>
   </div>
   )
 }

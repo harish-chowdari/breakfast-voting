@@ -44,23 +44,46 @@ const Items = () => {
     setAddItem({...addItem, [e.target.name]:e.target.value})
   }
 
-  const senReq = async()=>{
 
-    const formData = new FormData();
-    formData.append('product', image);
 
-    const imageResponse = await axios.post('http://localhost:2008/upload', formData, {
-      headers: { 
-        'Content-Type': 'multipart/form-data' 
-      }
-    })
+  const submitHandler = async () => {
+    try {
+        const formData = new FormData()
+        formData.append('product', image)
 
-    return await axios.post("http://localhost:2008/addbreakfast",{
-      itemName:String(addItem.itemName),
-      image: imageResponse.data.image_url
-    })
-  
-  }
+        const imageResponse = await axios.post('http://localhost:2008/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+
+        const res = await axios.post("http://localhost:2008/addbreakfast", {
+            itemName: String(addItem.itemName),
+            image: imageResponse.data.image_url
+        })
+
+
+        if(res.data === "Can't add duplicate item for the current day.") 
+        {
+            alert("Item already exists")
+        }
+
+        else
+        {
+        setAddItem({ itemName: "", image: null })
+        setImage(null)
+        fetchData()
+        fetchCount()
+        } 
+    } 
+    
+    catch(error) 
+    {
+        console.log(error)
+        alert("An error adding breakfast item")
+    }
+}
+
 
   React.useEffect(() => {
     const interval = setInterval(()=>{
@@ -68,7 +91,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 14 && currentMinutes <= 59) {
+      if (currentHour === 18 && currentMinutes <= 59) {
         setEnabled(true)
       } else {
         setEnabled(false)
@@ -80,66 +103,50 @@ const Items = () => {
 
      
 
-  const submitHandler = async()=>{
-    console.log(addItem)
-
-  const currentDate = new Date()
-  
-  const exist = listItems.find(
-    (item) => item.itemName.toLowerCase().trim() === addItem.itemName.toLowerCase().trim() && 
-              new Date(item.date).toDateString() === currentDate.toDateString()
-  )
-
-  if(exist)
-  {
-    alert("item already exist")
-  }
-  
-  else
-  {
-    await senReq()
-    setAddItem({ itemName: "",image: null })
-    setImage(null)
-    fetchData()
-    fetchCount()
-  }
-     
-}
-
 
 
 return (
     <div className='container'>
     
-    <div className='menu'>
+    <div className='menu' >
+
+    <p className='menu-title'>{itemCount > 9 ? <p >Sorry, the items list is currently full.</p>: 
+        enabled ? <></> : <p>Sorry time up for adding items</p>}</p>
+        
         <input type='text' name='itemName'
           value={addItem.itemName}
           onChange={changeHandler}
           placeholder='Enter Breakfast Name'
-          disabled={!enabled}
-          hidden={itemCount > 9}
+          
+          hidden={itemCount > 9 || !enabled}
           required
            />
 
       <label htmlFor='file-input'>
-        <img hidden={itemCount>9}
+        <img hidden={itemCount > 9 || !enabled}
         
          src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
       </label>
       <input disabled={!enabled} type='file' name='image' id='file-input' hidden onChange={imageHandler} />
 
-        <button className='menu-button' disabled={!enabled} hidden={itemCount>9} onClick={submitHandler} >ADD</button>
+        <button className='menu-button' hidden={itemCount > 9 || !enabled} onClick={submitHandler} >ADD</button>
     </div>
 
 
     <div className='user-items'>
     <h2 className='title'>Breakfast Items</h2>
+      <hr/>
         <ol className='user-items-list'>{listItems.map((item,index)=>{
           return <div key={index} className='item-in-user'>
-            <li className='user-itemName'><strong>ItemName : </strong><p>{item.itemName}</p></li>
             
             {item.image && <img className='user-img' src={item.image} alt={item.itemName} 
             height="180px" width="220px" />}
+                  
+                  <div className='user-itemName'>
+                  
+                  <p>{item.itemName} </p>
+                  
+                  </div>
           </div>
         })}
         </ol>
