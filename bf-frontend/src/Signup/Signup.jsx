@@ -13,18 +13,30 @@ const Signup = () => {
       password:"",
       cnfmpassword:""
     }) 
+
+    const [ErrorMessage, setErrorMessage] =React.useState("")
+
   
     const changeHandler =(e)=>{
         setSignup({...signup, [e.target.name]:e.target.value})
-    }
+      setErrorMessage("")
+      }
   
   
   
   const signupForm = async () => {
+
+    if (!signup.name || !signup.email || !signup.password || !signup.cnfmpassword) 
+    {
+      setErrorMessage('All fields are required')
+      return
+    }
+
   try {
     const response = await axios.post("http://localhost:2008/signup", signup);
 
-    if (response.data.success) {
+    if (response.data.success) 
+    {
       localStorage.setItem("auth-token", response.data.token);
       localStorage.setItem("user-email", signup.email);
       alert("Signup successful");
@@ -33,17 +45,20 @@ const Signup = () => {
 
     else if(response.data === "user already exist")
     {
-      alert("User Exist")
+      setErrorMessage("User Already Exist")
     }
 
     else if(response.data === "Passwords are not matched")
     {
-      alert("Passwords are not matched")
+      setErrorMessage("Passwords are not matched")
     }
 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("An error occurred during signup");
+  } 
+  
+  catch(error) 
+  {
+    console.error("Error:", error)
+    alert("An error occurred during signup")
   }
 }
 
@@ -76,13 +91,18 @@ const Signup = () => {
          onChange={changeHandler} 
          name='cnfmpassword'
          />
-            
-          <button className='signup' onClick={signupForm}>Signup</button>
-      
-      <div className='signup-footer'>
-      <p>Already a member ?<span><Link to="/login" className='signup-login'>  Login</Link> </span>now</p>
+    
 
+    <div>
+        {ErrorMessage && <p className='error-signup'>{ErrorMessage}</p>}
+      <button className='signup' onClick={signupForm}>Signup</button>
+
+      <div className='signup-footer'>
+        <p>Already a member? <span className='signup-span'>        
+            <Link to="/login" className='signup-login'>Login</Link> now </span></p>
       </div>
+      </div>
+
       </div>
   </div>
   )

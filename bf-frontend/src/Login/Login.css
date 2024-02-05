@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     border-radius: 15px;
-    height: 450px;
     width: 400px;
     margin: auto; 
     margin-top: 35px; 
@@ -66,8 +65,19 @@
     cursor: pointer;
 }
 
+.error-message{
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    font-size: 18px;
+}
+
 .login-footer p{
     font-size: 18px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
 }
 
 
@@ -76,3 +86,40 @@
     text-decoration: none;
 }
 
+
+@media screen and (max-width:500px) {
+    .loginform{
+        width: 260px;
+
+    }
+
+    .login-title{
+        height: 50px;
+        width: 260px;
+        font-size: 30px;
+    }
+    
+    .login-signup-fields input{
+        width: 210px;
+        height: 20px;
+        font-size: 14px;
+    }
+
+    .login{
+        width: 235px;
+        height: 35px;
+        font-size: 18px;
+    }
+
+    .error-message{
+        font-size: 14px;
+    }
+
+    .login-footer p{
+        font-size: 14px;
+    }
+
+
+
+
+}

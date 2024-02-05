@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-around;
     padding: 20px 0px;
+    flex-wrap: wrap;
+    gap: 10px;
     align-items: center;
     background-color: #5e5e5e; 
     position: sticky;
@@ -48,3 +50,29 @@
 .navbar button:hover {
     background-color: #666666; 
 }
+
+/*
+@media screen and (max-width:500px) {
+    .navbar button{
+        padding: 0 10px;
+        font-size: 15px;
+        height: 27px;
+    }
+
+    .navbar{
+        width: 500px;
+    }
+
+    .comment-button{
+        width: 90px;
+    }
+
+    .chef-button{
+        font-size: 12px;
+    }
+
+    
+   
+}
+
+*/

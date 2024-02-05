@@ -14,27 +14,44 @@ const Chef = () => {
     comment:""
   })
 
+  const [errMsg, setErrMsg] =React.useState("")
+
   const changeHandler = (e)=>{
     setAddComment({...addComment, [e.target.name]: e.target.value})
+    setErrMsg("")
   }
 
 
   const submitHandler = async () => {
-    
+
+    if(!addComment.itemName || !addComment.comment)
+    {
+      setErrMsg("All fields are required")
+      return
+    }
+
     try {
       const res = await axios.post("http://localhost:2008/chefcomment", addComment);
 
-    if (res.data === "Item does not exist") {
-        alert(res.data);
-    } else if (res.data === "already commented") {
-        alert(res.data);
-    } else {
+    if (res.data === "Item does not exist") 
+    {
+        setErrMsg(res.data);
+    } 
+    
+    else if(res.data === "already commented") 
+    {
+        setErrMsg(res.data);
+    } 
+    
+    else {
         setAddComment(res.data);
         setAddComment({ itemName: "", comment: "" });
         alert("Comment added");
     }
-    }
-    catch(error){
+  }
+
+    catch(error)
+    {
       alert("Error adding comment")
     }
 }
@@ -57,9 +74,13 @@ const Chef = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 19 && currentMinutes <= 59) {
+      if (currentHour === 20 && currentMinutes <= 59) 
+      {
         setEnabled(true)
-      } else {
+      } 
+      
+      else 
+      {
         setEnabled(false)
       }
     }, 100)
@@ -74,14 +95,18 @@ const Chef = () => {
 
     <div className='chef-title'><p >{!enabled ? "Sorry Chef, time up for adding comments" : "Add your comments" }</p></div>
       
-      <input type='text' 
-      required
-      name='itemName'
-      value={addComment.itemName}
-      onChange={changeHandler}
-      placeholder='Item Name'
-      hidden={!enabled}
-       />
+    <div className="err-div">
+    <input 
+        type='text' 
+        required
+        name='itemName'
+        value={addComment.itemName}
+        onChange={changeHandler}
+        placeholder='Item Name'
+        hidden={!enabled}
+    /> 
+    <p className='err-msg'>{errMsg}</p>
+</div>
 
       <textarea 
       required
@@ -96,7 +121,7 @@ const Chef = () => {
     </div>
 
     <div className='chef-items'>
-    <h2 className='title'>Breakfast Items</h2>
+    <h1 className='bf-chef-title'>Breakfast Items </h1>
       <hr/>
         <ol className='chef-items-list'>{listItems.map((item,index)=>{
           return <div key={index} className='item-in-chef'>
@@ -104,11 +129,8 @@ const Chef = () => {
             {item.image && <img className='chef-img' src={item.image} alt={item.itemName} 
             height="180px" width="220px" />}
                   
-                  <div className='chef-itemName'>
-                  
-                  <p>{item.itemName} </p>
-                  
-                  </div>
+            <p className='chef-itemname'>{item.itemName} </p>
+                         
           </div>
         })}
         </ol>

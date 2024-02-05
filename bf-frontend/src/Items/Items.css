@@ -34,13 +34,19 @@ img{
     width: 100px;
 }
 
-.menu input{
+.menu input {
     width: 250px;
     height: 31px;
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid rgb(216, 216, 167);
 }
+
+.menu input:focus {
+    outline: none;
+    border: 1px solid #66afe9;
+}
+
 
 .menu-button {
     background-color: rgb(144, 183, 218);
@@ -55,10 +61,19 @@ img{
     
 }
 
-.menu-button:hover{
-   transform: scale(1.1);
+
+.item-error{
+    display: flex;
+    color: red;
+    margin: 0px;
+    font-size: 18px;
 }
 
+.bf-title{
+    margin:0px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
 
 .user-items{
     display: flex;
@@ -86,7 +101,7 @@ img{
     gap: 20px;
     justify-content: space-around;
     margin-right: 50px;
-    
+    margin-top: 30px;
 }
 
 .item-in-user{
@@ -106,19 +121,16 @@ img{
     transform: translateY(-5px);
 }
 
-.user-itemName{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.user-itemName {
     margin: 0px;
+    margin-bottom: 10px;
+    margin-top: 4px;
     width: 190px;
-}
-
-.user-itemName p{
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 500;
     text-align: center;
-}
+  }
+  
 
 .user-img{
     border-top-left-radius: 10px;
@@ -127,6 +139,62 @@ img{
     height: 110px;
     margin: 0px;
     background-color: #fa8484;
+}
+
+
+@media screen and (max-width: 500px) {
+
+
+    .menu input{
+        height: 18px;
+        font-size: 12px;
+        width: auto;
+    }
+
+    .menu img{
+        height: 70px;
+    }
+
+    .menu button {
+        height: 20px;
+        font-size: 13px;
+        width: 40px;
+    }
+
+    .item-error{
+        font-size: 13px;
+    }
+
+    .menu-title{
+        font-size: 14px;
+    }
+
+    .user-items hr {
+        width: 80%; 
+        height: 1.5px;
+    }
+
+    .item-in-user{
+        width: 160px;
+        margin-bottom: 5px;
+    }
+
+    .user-img{
+        width: 160px;
+        height: 90px;
+    }
+
+    .bf-title {
+       font-size: 17px;
+    }
+
+    .user-itemName{
+        width: 155px;
+        font-size: 14px;
+        font-weight: 650;
+    }
+    
+    
 }
 
 

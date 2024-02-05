@@ -11,11 +11,21 @@ const Login = () => {
     password:""
   }) 
 
+  const [ErrorMessage, setErrorMessage] =React.useState("")
+
   const changeHandler =(e)=>{
     setLoginDetails({...loginDetails, [e.target.name]:e.target.value})
+    setErrorMessage("")
   }
 
   const loginForm = async () => {
+
+    if (!loginDetails.email || !loginDetails.password) 
+    {
+      setErrorMessage('All fields are required')
+      return
+    }
+
     try {
       const res = await axios.post('http://localhost:2008/login', loginDetails);
 
@@ -35,12 +45,19 @@ const Login = () => {
       } 
       
       else {
-        if (res.data === "please signup user not exist") {
-          alert("User does not exist. Please sign up.");
-        } else if (res.data === 'wrong password') {
-          alert('Incorrect password. Please try again.');
-        } else {
-          alert('An error occurred during login');
+
+        if (res.data === "please signup user not exist") 
+        {
+          setErrorMessage("User does not exist. Please sign up.")
+        } 
+        
+        else if (res.data === 'wrong password') 
+        {
+          setErrorMessage('Incorrect password. Please try again.')
+        } 
+        
+        else {
+          setErrorMessage('An error occurred during login')
         }
       }
     } 
@@ -61,6 +78,7 @@ const Login = () => {
        onChange={changeHandler}
        value={loginDetails.email} 
        name='email'
+       autoComplete="off"
        />
 
        <input type='password' placeholder='password'
@@ -68,12 +86,15 @@ const Login = () => {
        onChange={changeHandler} 
        name='password'
        />
-    <button className='login' onClick={loginForm}>Login</button>
+
+      <div>
+        {ErrorMessage && <p className='error-message'>{ErrorMessage}</p>}
+      <button className='login' onClick={loginForm}>Login</button>
 
       <div className='login-footer'>
         <p>Not a member ? <span className='login-span'>        
             <Link to="/signup" className='login-signup'>SignUp</Link> now </span></p>
-
+      </div>
       </div>
     </div>
     </div>

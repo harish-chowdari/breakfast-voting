@@ -33,7 +33,7 @@ async function signUp(req,res) {
             email:req.body.email,
             password:req.body.password,
             cnfmpassword:req.body.cnfmpassword,
-            voteData:vote
+            
         })
 
         await user.save()

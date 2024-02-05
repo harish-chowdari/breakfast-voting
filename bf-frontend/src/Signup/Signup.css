@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     border-radius: 15px;
-    height: 570px;
     width: 400px;
     margin: auto; 
     margin-bottom: 30px;
@@ -44,7 +43,7 @@
     border: none;
     background-color: rgb(240, 235, 221);
     font-size: 22px;
-
+    margin: 0px;
 }
 
 .signup-fields input:focus {
@@ -53,7 +52,7 @@
     
 }
 
-.signup{
+.signup {
     width: 56vh;
     height: 50px;
     font-size: 22px;
@@ -62,20 +61,31 @@
     border: none;
     color: white;
     font-weight: 600;
-    margin-top: 12px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
-.signup-footer p{
+.signup-footer p {
     font-size: 18px;
-    margin-top: 2px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
 }
 
 
-.signup-login{
+.signup-login {
     color: red;
     text-decoration: none;
 }
+
+.error-signup{
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    font-size: 18px;
+}
+
 
 
 @keyframes slideIn {
@@ -86,5 +96,41 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+
+@media screen and (max-width:500px) {
+    .signup-form{
+        width: 260px;
+    }
+
+    .signup-title{
+        height: 50px;
+        width: 260px;
+        font-size: 30px;
+        
+    }
+    
+    .signup-fields input{
+        width: 210px;
+        height: 20px;
+        font-size: 14px;
+    }
+
+    .signup{
+        width: 235px;
+        height: 35px;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .error-signup{
+        font-size: 14px;
+    }
+
+    .signup-footer p{
+        font-size: 14px;
     }
 }

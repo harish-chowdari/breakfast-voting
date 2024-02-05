@@ -6,10 +6,11 @@ import upload_area from "../assets/upload_area.svg"
 
 const Items = () => {
 
-  const [image,setImage] =React.useState(false)
+  const [image,setImage] =React.useState(null)
 
   const imageHandler = (e)=>{
     setImage(e.target.files[0])
+    setErrorMsg("")
   }
 
   const [addItem,setAddItem] = React.useState({
@@ -22,6 +23,9 @@ const Items = () => {
   const [itemCount,setItemCount] =React.useState(0)
 
   const [enabled,setEnabled] =React.useState(true)
+
+  const [Errormsg, setErrorMsg] =React.useState("")
+
 
   const fetchData = async()=>{
     const res = await axios.get("http://localhost:2008/getbreakfastbytimestamp")
@@ -42,11 +46,18 @@ const Items = () => {
 
   const changeHandler = (e) =>{
     setAddItem({...addItem, [e.target.name]:e.target.value})
+    setErrorMsg("")
   }
 
 
-
   const submitHandler = async () => {
+
+    if(!addItem.itemName || !image)
+    {
+      setErrorMsg("All fields are required")
+      return
+    }
+
     try {
         const formData = new FormData()
         formData.append('product', image)
@@ -65,7 +76,7 @@ const Items = () => {
 
         if(res.data === "Can't add duplicate item for the current day.") 
         {
-            alert("Item already exists")
+            setErrorMsg("Item already exists")
         }
 
         else
@@ -91,7 +102,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 18 && currentMinutes <= 59) {
+      if (currentHour === 20 && currentMinutes <= 59) {
         setEnabled(true)
       } else {
         setEnabled(false)
@@ -110,8 +121,8 @@ return (
     
     <div className='menu' >
 
-    <p className='menu-title'>{itemCount > 9 ? <p >Sorry, the items list is currently full.</p>: 
-        enabled ? <></> : <p>Sorry time up for adding items</p>}</p>
+    <p className='menu-title'>{itemCount > 9 ? <p >Sorry, the items list is currently full</p>: 
+        enabled ? <></> : <p>Sorry, time up for adding items</p>}</p>
         
         <input type='text' name='itemName'
           value={addItem.itemName}
@@ -121,6 +132,8 @@ return (
           hidden={itemCount > 9 || !enabled}
           required
            />
+
+    {Errormsg && <p className='item-error'>{Errormsg}</p>}
 
       <label htmlFor='file-input'>
         <img hidden={itemCount > 9 || !enabled}
@@ -134,19 +147,17 @@ return (
 
 
     <div className='user-items'>
-    <h2 className='title'>Breakfast Items</h2>
+    <h1 className='bf-title'>Breakfast Items</h1>
       <hr/>
         <ol className='user-items-list'>{listItems.map((item,index)=>{
           return <div key={index} className='item-in-user'>
             
-            {item.image && <img className='user-img' src={item.image} alt={item.itemName} 
-            height="180px" width="220px" />}
+            {item.image && <img className='user-img' 
+               src={item.image} alt={item.itemName} 
+             />}
                   
-                  <div className='user-itemName'>
-                  
-                  <p>{item.itemName} </p>
-                  
-                  </div>
+            <p className='user-itemName'>{item.itemName} </p>
+
           </div>
         })}
         </ol>

@@ -77,31 +77,29 @@ const List = () => {
     <div className='container'>
       
       <div className='vote-title'>
-      <h3>
-  {enable ? "Vote for your favorite Breakfast" : "Time up for voting"}
+      
+  {enable ? <p className='vote-bf'>Vote for your favorite Breakfast</p> : <p className='timup-title'>Sorry, time up for voting</p>}
   <h2>{listItems.length <= 0 &&  "Items List is empty"}</h2>
-</h3>
+
 
       </div>
 
-    <div className='list-items-container'>
-        <ul className='list-items'>{listItems.map((item,index)=>{
-          
-          return <div className='list-item' key={index}>
-            
-            <img className='list-img' src={item.image} alt='breakfast item'/>
-            
-            <div className='votes'>
-            <p>{item.itemName}</p>
-          <button disabled={!enable} className='vote-button'  
-            onClick={()=>submitVote(item.itemName)}>Vote</button>
+      <div className='list-items'>
 
+        <ol className='list-items-list'>{listItems.map((item,index)=>{
+          return <div key={index} className='item-in-list'>
             
-            </div>
+            <img className='list-img' 
+            
+               src={item.image} alt={item.itemName} 
+             />
+                  
+            <p className='list-itemName'>{item.itemName} </p>
+            <button disabled={!enable} onClick={()=>submitVote(item.itemName)} className='vote-button'>Vote</button>
           </div>
         })}
-        </ul>
-      </div>
+        </ol>
+      </div>  
       
     </div>
   )

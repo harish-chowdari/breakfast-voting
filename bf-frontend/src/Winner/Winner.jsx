@@ -17,7 +17,7 @@ const Winner = () => {
           const currentHour = currentTime.getHours()
           const currentMinutes = currentTime.getMinutes()
       
-          if (currentHour === 20 && currentMinutes <= 59) {
+          if (currentHour === 22 && currentMinutes <= 59) {
             setVisible(true)
             
           } else {
@@ -32,10 +32,22 @@ const Winner = () => {
 
   
   
-    const fetchWinner = async()=>{
+
+  
+  const fetchWinner = async()=>{
+    try 
+    {
       const res = await axios.get("http://localhost:2008/getwinner")
       setWinner(res.data.winner)
     }
+    
+  catch(error)
+  {
+    alert("An error occurred while fetching winner")
+  }
+
+  }
+
   
   
     return (
