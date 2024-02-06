@@ -74,7 +74,7 @@ const Chef = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 20 && currentMinutes <= 59) 
+      if (currentHour === 15 && currentMinutes <= 59) 
       {
         setEnabled(true)
       } 
@@ -83,7 +83,7 @@ const Chef = () => {
       {
         setEnabled(false)
       }
-    }, 100)
+    }, 1)
 
     return ()=> clearInterval(interval)
     },[])
@@ -91,9 +91,11 @@ const Chef = () => {
   return (
 
     <div className='chef'>
+    <p className='chef-title'>{!enabled ? 
+        "Sorry Chef, time up for adding comments" : "Add your comments" }</p>
+
     <div className='chef-data'>
 
-    <div className='chef-title'><p >{!enabled ? "Sorry Chef, time up for adding comments" : "Add your comments" }</p></div>
       
     <div className="err-div">
     <input 
@@ -122,14 +124,14 @@ const Chef = () => {
 
     <div className='chef-items'>
     <h1 className='bf-chef-title'>Breakfast Items </h1>
-      <hr/>
+     
         <ol className='chef-items-list'>{listItems.map((item,index)=>{
           return <div key={index} className='item-in-chef'>
             
             {item.image && <img className='chef-img' src={item.image} alt={item.itemName} 
             height="180px" width="220px" />}
                   
-            <p className='chef-itemname'>{item.itemName} </p>
+            <p className='chef-itemName'>{item.itemName} </p>
                          
           </div>
         })}

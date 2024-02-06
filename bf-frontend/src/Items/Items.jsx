@@ -102,12 +102,12 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 20 && currentMinutes <= 59) {
+      if (currentHour === 13 && currentMinutes <= 59) {
         setEnabled(true)
       } else {
         setEnabled(false)
       }
-    }, 1000)
+    }, 1)
 
     return ()=> clearInterval(interval)
     },[])
@@ -118,17 +118,17 @@ const Items = () => {
 
 return (
     <div className='container'>
-    
-    <div className='menu' >
 
     <p className='menu-title'>{itemCount > 9 ? <p >Sorry, the items list is currently full</p>: 
         enabled ? <></> : <p>Sorry, time up for adding items</p>}</p>
         
+    <div className='menu' >
+
+    
         <input type='text' name='itemName'
           value={addItem.itemName}
           onChange={changeHandler}
-          placeholder='Enter Breakfast Name'
-          
+          placeholder='Breakfast Name'
           hidden={itemCount > 9 || !enabled}
           required
            />
@@ -148,7 +148,7 @@ return (
 
     <div className='user-items'>
     <h1 className='bf-title'>Breakfast Items</h1>
-      <hr/>
+      
         <ol className='user-items-list'>{listItems.map((item,index)=>{
           return <div key={index} className='item-in-user'>
             

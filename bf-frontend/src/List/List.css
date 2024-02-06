@@ -4,33 +4,28 @@
 }
 
 .vote-title{
-    background-color: rgb(235, 250, 207);
-    display: flex;
-    padding-top: 0px;
-    flex-direction: column;
     align-items: center;
+    padding: 0px;
+    padding-bottom: 5px;
     width: auto;
-    height: 9vh;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     position: sticky;
-    top: 65px;
+    top: 62px;
     margin-top: 0px;
+    background-color: #d8f3bf;
 
     
 }
 
-.vote-title h2{
-    margin-top: 80px;
-}
 
 .timup-title{
     color: red;
     font-size: 23px;
-    margin-top: 10px;
     font-weight: 500;
     margin: 0px 70px;
-    margin-top: 15px;
+    margin-top: 10px;
+    padding-bottom: 5px;
 
 }
 
@@ -44,33 +39,32 @@
 }
 
 
-.list-items{
+.list-items {
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 0px;
-    
+    flex-direction: column; 
 }
  
 .list-items-list{
+    list-style-type: none;
+    padding: 0px; 
+    margin: 0px;
     display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-    margin-right: 50px;
-    margin-top: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+    justify-content: center;
+    margin-top: 40px;
+    
 }
 
 .item-in-list{
-    align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0px;
+    text-align: center;
     border-radius: 10px;
-    width: 200px;
-    margin-bottom: 20px;
+    margin: 15px;
+    margin-bottom: 0px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
 
@@ -80,25 +74,25 @@
     transform: translateY(-5px);
 }
 
-.list-itemName {
+.list-itemName{
     margin: 0px;
     margin-bottom: 10px;
     margin-top: 4px;
-    width: 190px;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 500;
     text-align: center;
-  }
-  
+    width: 177px;
+}
 
 .list-img{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    width: 200px;
+    width: 180px;
     height: 110px;
     margin: 0px;
-    background-color: #fa8484;
+    background-color: #9aec7a;
 }
+
 
 .list-title{
     margin: 0px;
@@ -107,72 +101,139 @@
 }
 
 .vote-button{
-    width: 200px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    width: 180px;
     font-size: 18px;
     margin-top: 0px;
     border: none;
     height: 28px;
     cursor: pointer;
+    border-top: 2px solid white;
 }
+
+.popup {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.66);
+    color: white;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    z-index: 9999;
+  }
+  
+  .popup-content {
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .popup button {
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 3px 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+
 
 
 @media screen and (max-width: 500px) {
 
     .timup-title{
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 500;
-        margin: 0px 35px;
-        margin-top: 15px;
+        margin: 0px 10px;
+        margin-top: 5px;
     
     }
 
     .vote-title{
         width: auto;
-        height: 7.9vh;
-        font-size: 15px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;    
+        font-size: 12px;  
+        position: sticky;
+        top: 32px;
+        width: auto;
+        margin: 0px 10px;
+        padding: 0px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
         
     }
     
     .vote-title h2{
-        margin-top: 60px;
-        font-size: 14px;
+        font-size: 12px;
     }
     .vote-bf{
-        font-size: 17px;
+        font-size: 12px;
         font-weight: 500;
-        margin: 0px 35px;
-        margin-top: 15px;
+        margin: 5px 5px;
 
     }
 
     .list-title{
         font-size: 15px;
     }
+
+    
+    .list-items-list {
+        margin-top: 10px;
+    }
+
+    .list-itemName {
+        font-size: 12px;
+        font-weight: 650;
+        margin-bottom: 3px;
+        margin-top: 0px;
+        width: 77px;
+        text-align:center;
+    }
+
     .item-in-list{
-        width: 160px;
-        margin-bottom: 5px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
     }
 
     .list-img{
-        width: 160px;
-        height: 90px;
-    }
-
-    .list-itemName{
-        width: 155px;
-        font-size: 14px;
-        font-weight: 650;
+        width: 80px;
+        height: 50px;
     }
 
     .vote-button{
-        width: 160px;
-        font-size: 14px;
+        width: 80px;
+        font-size: 13px;
         height: 24px;
+        border-top: 2px solid white;
     }
+
+    .item-in-list:hover {
+        transform: none;
+    }
+
+    .popup {
+        padding: 7px;
+        padding-top: 0px;
+        margin: 0px;
+      }
+      
+      .popup-content {
+        text-align: center;
+        font-size: 13px;
+        
+        padding: 0px;
+      }
+      
+      .popup button {
+        margin-top: 0px;
+        padding: 2px 6px;
+        font-size: 14px;
+        
+      }
     
     
 }

@@ -9,14 +9,13 @@
 
 .menu{
     margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
     align-items: center;
     background-color: #f0f8ff;
-    padding: 20px;
     border-radius: 15px;
-    box-shadow: 8px 15px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
     
 }
 
@@ -25,18 +24,20 @@
     margin: 0px;
     display: flex;
     align-items: center;
-    height: 0vh;
-    margin-top: 10px;
+    color: red;
+    
 }
 
 img{
     cursor: pointer;
     width: 100px;
+    margin-top: 10px;
 }
 
 .menu input {
     width: 250px;
     height: 31px;
+    margin: 10px;
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid rgb(216, 216, 167);
@@ -58,6 +59,7 @@ img{
     border-radius: 5px;
     font-size: 22px;
     transition: 0.4s;
+    margin: 10px 0px;
     
 }
 
@@ -69,49 +71,46 @@ img{
     font-size: 18px;
 }
 
-.bf-title{
-    margin:0px;
-    margin-top: 40px;
-    margin-bottom: 10px;
-}
+.user-items {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+  }
 
+
+
+ 
 .user-items{
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 0px;
-    
-}
-
-.user-items hr{
-    width: 600px;
-    display: flex;
-    height: 1.5px ;
-    background-color: black;
-    border: none;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; 
+        
 }
  
 .user-items-list{
+    list-style-type: none;
+    padding: 0px; 
+    margin: 0px;
     display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-    margin-right: 50px;
-    margin-top: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+    justify-content: center;
+    
+}
+
+.bf-title{
+    margin:0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .item-in-user{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
+    text-align: center;
     border-radius: 10px;
-    width: 200px;
-    margin-bottom: 20px;
+    margin: 15px;
+    margin-bottom: 0px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
 
@@ -121,21 +120,19 @@ img{
     transform: translateY(-5px);
 }
 
-.user-itemName {
+.user-itemName{
     margin: 0px;
     margin-bottom: 10px;
     margin-top: 4px;
-    width: 190px;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 500;
     text-align: center;
-  }
-  
+}
 
 .user-img{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    width: 200px;
+    width: 180px;
     height: 110px;
     margin: 0px;
     background-color: #fa8484;
@@ -144,55 +141,78 @@ img{
 
 @media screen and (max-width: 500px) {
 
+    .menu{
+        padding: 0px 8px;
+        margin: 15px 5px;
+    }
 
     .menu input{
         height: 18px;
-        font-size: 12px;
-        width: auto;
+        font-size: 11px;
+        width: 100px;
+        margin-top: 7px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left:7px;
+        margin-bottom: 3px;
     }
 
     .menu img{
-        height: 70px;
+        height: 50px;
+        width: 70px;
+    }
+    
+    img{
+        margin-top: 3px;
+        width: 100px;
     }
 
     .menu button {
-        height: 20px;
-        font-size: 13px;
-        width: 40px;
+        height: 18px;
+        font-size: 11px;
+        width: 30px;
+        margin-bottom: 7px;
+        margin-top: 2px;
     }
 
     .item-error{
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .menu-title{
-        font-size: 14px;
-    }
-
-    .user-items hr {
-        width: 80%; 
-        height: 1.5px;
-    }
-
-    .item-in-user{
-        width: 160px;
-        margin-bottom: 5px;
-    }
-
-    .user-img{
-        width: 160px;
-        height: 90px;
+        font-size: 12px;
+        margin: 0px;
     }
 
     .bf-title {
-       font-size: 17px;
-    }
+        font-size: 15px;
+        margin-top: 0px;
+     }
+ 
+     .user-items-list {
+         margin-left: 0px;
+     }
+ 
+     .user-itemName {
+         font-size: 12px;
+         font-weight: 650;
+         margin-bottom: 5px;
+         margin-top: 0px;
+         width: 77px;
+     }
 
-    .user-itemName{
-        width: 155px;
-        font-size: 14px;
-        font-weight: 650;
+     .item-in-user{
+         margin: 10px;
+     }
+
+     .item-in-user:hover {
+        transform: none;
     }
+ 
+     .user-img{
+         width: 80px;
+         height: 50px;
+     }
     
     
 }

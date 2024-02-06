@@ -3,12 +3,28 @@ import React from 'react'
 import "./List.css"
 
 
+const Popup = ({ message, handleClose }) => {
+  return (
+    <div className="popup">
+      <div className="popup-content">
+       <p>{message}</p>
+       <button onClick={handleClose}>X</button>
+      </div>
+    </div>
+  )
+}
+
+
 const List = () => {
   
   const [listItems, setListItems] = React.useState([])
 
 
   const [enable,setEnable] = React.useState(true)
+
+  const [showPopup, setShowPopup] = React.useState(false)
+
+  const [popupMessage, setPopupMessage] = React.useState('')
 
   const submitVote = async (itemName) => {
     try {
@@ -22,7 +38,8 @@ const List = () => {
 
       if (res.data === "Already voted today")
       {
-        alert("You have already voted today.")
+        setPopupMessage("You have already voted today.")
+        setShowPopup(true)
       } 
       
       else 
@@ -30,7 +47,8 @@ const List = () => {
         const votedItem = listItems.find(item => item.itemName === itemName)
         if(votedItem) 
         {
-          alert(`Your vote has been added to ${votedItem.itemName}`)
+          setPopupMessage(`Your vote has been added to ${votedItem.itemName}`)
+          setShowPopup(true)
         }
       }
     } 
@@ -38,7 +56,8 @@ const List = () => {
     catch(error) 
     {
       console.log("Error submitting vote:", error)
-      alert("Already voted")
+      setPopupMessage("Already voted")
+      setShowPopup(true)
     }
   }
 
@@ -62,27 +81,43 @@ const List = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 20 && currentMinutes <= 59) {
+      if (currentHour === 17 && currentMinutes <= 59) {
         setEnable(true)
       } else {
         setEnable(false)
       }
-    }, 100)
+    }, 1)
 
     return ()=> clearInterval(interval)
     },[])
 
+    React.useEffect(() => {
+      let timeoutId
+      if(showPopup) {
+        timeoutId = setTimeout(() => {
+          setShowPopup(false)
+        }, 5000)
+      }
+  
+      return () => {
+        clearTimeout(timeoutId)
+      }
+    }, [showPopup])
+
+
+    const closePopup = () => {
+      setShowPopup(false)
+    }
+
   
   return (
     <div className='container'>
-      
-      <div className='vote-title'>
-      
-  {enable ? <p className='vote-bf'>Vote for your favorite Breakfast</p> : <p className='timup-title'>Sorry, time up for voting</p>}
-  <h2>{listItems.length <= 0 &&  "Items List is empty"}</h2>
 
+       <div className='vote-title'>
+    {enable ? <p className='vote-bf'>Vote for your favorite Breakfast</p> : <p className='timup-title'>Sorry, time up for voting</p>}
 
       </div>
+    {listItems.length <= 0 ?  "Items List is empty" :
 
       <div className='list-items'>
 
@@ -93,13 +128,19 @@ const List = () => {
             
                src={item.image} alt={item.itemName} 
              />
-                  
+            
+            <button disabled={!enable} onClick={()=>submitVote(item.itemName)} 
+               className='vote-button'>Vote</button>
             <p className='list-itemName'>{item.itemName} </p>
-            <button disabled={!enable} onClick={()=>submitVote(item.itemName)} className='vote-button'>Vote</button>
           </div>
         })}
         </ol>
       </div>  
+}
+
+        {showPopup && <Popup message={popupMessage} 
+            handleClose={closePopup} />}
+
       
     </div>
   )

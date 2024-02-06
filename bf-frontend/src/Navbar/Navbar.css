@@ -1,78 +1,72 @@
 .navbar {
     display: flex;
-    justify-content: space-around;
-    padding: 20px 0px;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    background-color: #5e5e5e; 
+    padding: 15px 25px;
+    width: auto;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
     position: sticky;
     top: 0;
-    box-shadow: -2px 3px 4px  #444444;
-    z-index: 2;
 }
-
-.navbar button {
-    height: 35px;
-    padding: 0 20px;
-    border-radius: 20px;
-    border: none;
+  
+.links {
+    display: flex;
+}
+  
+.link {
+    text-decoration: none;
+    color: #000000;
+    margin-right: 45px;
+    transition: color 0.3s ease;
     font-size: 18px;
+  }
+  
+
+.login-links{
+    display: flex;
+    align-items: center;
+}
+  
+.login-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 10px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+  }
+  
+.login-button:hover {
+    background-color: #0056b3; 
+  }
+  
 
-.chef-button {
-    background-color: #e6c649; 
-    color: #ffffff; 
-}
 
-.comment-button {
-    background-color: #f35858; 
-    color: #ffffff; 
-}
 
-.login-button {
-    background-color: #72a0f5; 
-    color: #ffffff; 
-}
 
-.items-button, .list-button {
-    background-color: #ff8533; 
-    color: #ffffff; 
-}
+@media screen and (max-width:500px){
+    .link {
+        
+        margin-right: 12px;
+        font-size: 12px;
+      }
 
-.winner-button {
-    background-color: #a0a0a0; 
-    color: #000000; 
-}
+      .login-links{
+        display: flex;
+        align-items: center;
+      }
 
-.navbar button:hover {
-    background-color: #666666; 
-}
-
-/*
-@media screen and (max-width:500px) {
-    .navbar button{
-        padding: 0 10px;
-        font-size: 15px;
-        height: 27px;
+    .login-button{
+        padding: 3px 3px;
+        font-size: 11px;
     }
 
     .navbar{
-        width: 500px;
-    }
-
-    .comment-button{
-        width: 90px;
-    }
-
-    .chef-button{
-        font-size: 12px;
+        padding: 7px 10px;
     }
 
     
-   
+    
 }
-
-*/

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 15px;
-    width: 400px;
+    width: 420px;
     margin: auto; 
     margin-top: 35px; 
     box-shadow: 4px 4px 10px rgb(50, 139, 216);
@@ -18,7 +18,7 @@
     background-color: rgb(44, 132, 209);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    width: 400px;
+    width: 100%;
     display: flex;
     margin: 0px;
     justify-content: center;
@@ -35,7 +35,7 @@
 }
 
 .login-signup-fields input{
-    width: 53vh;
+    width: 85%;
     height: 40px;
     padding: 8px;
     padding-left: 20px;
@@ -53,7 +53,7 @@
 }
 
 .login{
-    width: 56vh;
+    width: 62vh;
     height: 50px;
     font-size: 22px;
     border-radius: 30px;

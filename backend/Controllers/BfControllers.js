@@ -20,7 +20,7 @@ function uploadImage(req,res) {
     const currentMinutes = currentTime.getMinutes()
     
     // if we are trying to add the item between the time period then this block will execute
-    if (currentHour === 20 && currentMinutes <= 59) {
+    if (currentHour === 13 && currentMinutes <= 59) {
         const currentDate = moment().startOf('day')
 
 

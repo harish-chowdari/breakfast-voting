@@ -3,17 +3,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
     
 }
-
 
 
 .chef-data{
     background-color: #f0f8ff;
     border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 0px;
+    margin: 25px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -24,12 +22,10 @@
 .chef-title{
     font-size: 22px;
     margin: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 0vh;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin: 15px 5px;
+    color: rgb(12, 14, 12);
+    text-align: center;
 }
 
 .chef-data input {
@@ -37,8 +33,9 @@
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid rgb(119, 150, 143);
-    width: 250px;
+    width: 200px;
     transition: border-color 0.3s ease;
+    margin: 10px;
 }
 
 .err-div{
@@ -52,15 +49,17 @@
     color: red;
     margin: 0px;
     margin-bottom: 5px;
+    padding: 0px;
 }
 
 .chef-data textarea {
     height: 100px;
     font-size: 16px;
-    width: 80vh;
+    width: 70vh;
     border-radius: 5px;
     border: 1px solid rgb(119, 150, 143);
-    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
     transition: border-color 0.3s ease;
 }
 
@@ -78,6 +77,9 @@
     font-size: 22px;
     height: 40px;
     transition: background-color 0.3s ease;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .submit:hover {
@@ -87,49 +89,35 @@
 
 
 .chef-items{
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 0px;
+    flex-direction: column; 
         
-}
-
-.chef-items hr{
-    width: 600px;
-    display: flex;
-    height: 2px ;
-    background-color: black;
-    border: none;
-    align-items: center;
-    justify-content: center;
 }
  
 .chef-items-list{
+    list-style-type: none;
+    padding: 0px; 
+    margin: 0px;
     display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-    margin-right: 50px;
-    margin-top: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+    justify-content: center;
     
 }
 
 .bf-chef-title{
     margin:0px;
-    margin-top: 40px;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
 .item-in-chef{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
+    text-align: center;
     border-radius: 10px;
-    width: 200px;
-    margin-bottom: 20px;
+    margin: 15px;
+    margin-bottom: 0px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
 
@@ -143,8 +131,7 @@
     margin: 0px;
     margin-bottom: 10px;
     margin-top: 4px;
-    width: 190px;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 500;
     text-align: center;
 }
@@ -152,7 +139,7 @@
 .chef-img{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    width: 200px;
+    width: 180px;
     height: 110px;
     margin: 0px;
     background-color: #fa8484;
@@ -161,63 +148,81 @@
 
 @media screen and (max-width: 500px) {
 
-    .chef-data {
-        width: 70%;
-    }
-
     .chef-title {
-        font-size: 15px;
+        font-size: 12px;
+        margin-bottom: 0px;
     }
 
     .chef-data input {
-        font-size: 12px;
-        width: auto;
-        height: 20px;
-        margin-right: 0px;
+        font-size: 11px;
+        width: 60px;
+        height: 17px;
+        margin-right: 5px;
+        margin-top: 5px;
+        margin-bottom: 0px;
+        margin-left: 0px;
     }
 
     .err-msg{
         color: red;
-        font-size: 12px;
+        font-size: 11px;
+        margin-bottom: 0px;
     }
 
     .err-div{
-        gap: 10px;
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-left: 5px;
     }
 
     .chef-data textarea {
-        font-size: 14px;
+        font-size: 12px;
         width: auto;
-        height: 50px;
+        height: 40px;
+        margin: 0px 5px;
     }
 
     .submit{
-        height: 23px;
-        font-size: 14px;
+        height: 18px;
+        font-size: 12px;
+        margin: 0px 5px;
+        margin-bottom: 5px;
     }
 
-    .chef-items hr {
-        width: 80%; 
-        height: 1.5px;
+    .item-in-chef:hover {
+        transform: none;
     }
+
 
     .bf-chef-title {
-       font-size: 17px;
+       font-size: 15px;
     }
 
     .chef-items-list {
-        margin-right: 40px;
-        margin-left: 20px;
+        margin-left: 0px;
     }
 
-    .chef-itemname {
-        font-size: 14px;
-        font-weight: 700;
+    .chef-itemName {
+        font-size: 12px;
+        font-weight: 650;
+        margin-bottom: 5px;
+        margin-top: 0px;
+    }
+
+    .item-in-chef{
+        margin: 5px;
+    }
+
+    .chef-img{
+        width: 80px;
+        height: 50px;
     }
     
     
 }
-
 
 
 

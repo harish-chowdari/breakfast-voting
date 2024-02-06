@@ -13,17 +13,22 @@ const Navbar = () => {
         {
           localStorage.getItem("user-email") === "chef@gmail.com" ? 
         <>
-        <Link to="/chef"><button className='chef-button'>Chef</button></Link>
-        <Link to="/cheflist"><button className='comment-button'>Comments</button></Link>
+        <div className='links'>
+        <Link className='link' to="/chef">Chef</Link>
+          <Link className='link' to='/cheflist'>Comments</Link>
+          </div>
         </>
          : 
         <>
-        <Link to="/items"><button hidden={!isAuthToken} className='items-button'>Items</button></Link> 
-        <Link to="/list"><button hidden={!isAuthToken} className='list-button'>List</button></Link>
+        <div className='links'>
+         {isAuthToken && <Link className='link' to='/items'>Items</Link>}
+          {isAuthToken && <Link className='link' to='/list'>List</Link>}
+        </div>
         </>
+        
         }
-
-        <Link to="/winner"><button className='winner-button'>Winner</button></Link>
+        <div className='login-links'>
+        <Link className='link' to="/winner"> Winner</Link>
 
         {localStorage.getItem("auth-token")
             ? <button onClick={()=>{localStorage.removeItem("auth-token"); 
@@ -31,11 +36,7 @@ const Navbar = () => {
             
           <Link to="/login">  <button className='login-button'>Login</button></Link> 
         }
-
-
-
-        
-    
+</div>
     </div>
   )
 }
