@@ -93,8 +93,10 @@ const List = () => {
 
     React.useEffect(() => {
       let timeoutId
-      if(showPopup) {
-        timeoutId = setTimeout(() => {
+      if(showPopup) 
+      {
+        timeoutId = setTimeout(() => 
+        {
           setShowPopup(false)
         }, 5000)
       }

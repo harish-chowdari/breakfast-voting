@@ -74,7 +74,7 @@ const Chef = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 15 && currentMinutes <= 59) 
+      if (currentHour === 19 && currentMinutes <= 59) 
       {
         setEnabled(true)
       } 
@@ -92,7 +92,7 @@ const Chef = () => {
 
     <div className='chef'>
     <p className='chef-title'>{!enabled ? 
-        "Sorry Chef, time up for adding comments" : "Add your comments" }</p>
+        <p className='red-color'>Sorry Chef, time up for adding comments"</p> : "Add your comments" }</p>
 
     <div className='chef-data'>
 

@@ -19,13 +19,14 @@
     
 }
 
+
 .menu-title{
     font-size: 22px;
     margin: 0px;
-    display: flex;
-    align-items: center;
+    height: 0vh;
+    margin-bottom: 30px;
     color: red;
-    
+    text-align: center;
 }
 
 img{
@@ -71,14 +72,18 @@ img{
     font-size: 18px;
 }
 
+.bf-title{
+    margin:0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
 .user-items {
     overflow: hidden;
     display: flex;
     align-items: center;
     flex-direction: column; 
   }
-
-
 
  
 .user-items{
@@ -100,17 +105,12 @@ img{
     
 }
 
-.bf-title{
-    margin:0px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
+
 
 .item-in-user{
     text-align: center;
     border-radius: 10px;
     margin: 15px;
-    margin-bottom: 0px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
 
@@ -182,6 +182,7 @@ img{
     .menu-title{
         font-size: 12px;
         margin: 0px;
+        margin-bottom: 10px;
     }
 
     .bf-title {
@@ -190,19 +191,20 @@ img{
      }
  
      .user-items-list {
-         margin-left: 0px;
+        margin-bottom: 15px;
      }
  
-     .user-itemName {
-         font-size: 12px;
-         font-weight: 650;
-         margin-bottom: 5px;
-         margin-top: 0px;
-         width: 77px;
+    .user-itemName {
+        font-size: 12px;
+        font-weight: 650;
+        margin-bottom: 5px;
+        margin-top: 0px;
+        width: 77px;
      }
 
      .item-in-user{
-         margin: 10px;
+        margin: 10px 15px;         
+        box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
      }
 
      .item-in-user:hover {
