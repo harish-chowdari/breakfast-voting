@@ -11,72 +11,71 @@ function uploadImage(req,res) {
 }
 
 
- async function postItem(req, res) {
+async function postItem(req, res) {
     
     try {
         
-    const currentTime = new Date()
-    const currentHour = currentTime.getHours()
-    const currentMinutes = currentTime.getMinutes()
+        const currentTime = new Date()
+        const currentHour = currentTime.getHours()
+        const currentMinutes = currentTime.getMinutes()
+        
+        // if we are trying to add the item between the time period then this block will execute
+        if (currentHour === 12 && currentMinutes <= 59) {
+            const currentDate = moment().startOf('day')
+
+            const userExist = await bfList.findOne({
+                userId: req.params.userId,
+                createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+            })
+
+            if(userExist) {
+                return res.json("You have already Added an item.")
+            }
+
+            const exist = await bfList.findOne({
+                itemName: req.body.itemName.toLowerCase().trim(),
+                createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+            })
     
-    // if we are trying to add the item between the time period then this block will execute
-    if (currentHour === 13 && currentMinutes <= 59) {
-        const currentDate = moment().startOf('day')
+            if(exist) {
+                return res.json("Can't add duplicate item for the current day.")
+            }
 
+            const itemCountToday = await bfList.countDocuments({
+                createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
+            })
 
-        const exist = await bfList.findOne({
-            itemName: req.body.itemName.toLowerCase().trim(),
-            createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
-        })
- 
-        if(exist) {
-            return res.json("Can't add duplicate item for the current day.")
+            if(itemCountToday > 9) 
+            {
+                return res.json("Cannot add more than 10 items for the current day, limit reached.")
+            }
+
+           
+
+            const list = new bfList({
+                
+                userId:req.params.userId,
+                itemName: req.body.itemName.toLowerCase().trim(),
+                image: req.body.image,
+            })
+
+            console.log(list,currentDate.toDate())
+            await list.save()
+
+            return res.status(200).json(req.body.itemName)
+        } 
+        
+        // if we are trying to add the item after the time period then else block will execute
+        else {
+            return res.json("Cannot add the item before 11 or after 11")
         }
+ }
 
-        const itemCountToday = await bfList.countDocuments({
-            createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
-        })
-
-        if(itemCountToday > 9) 
+        catch(error) 
         {
-            return res.json("Cannot add more than 10 items for the current day, limit reached.")
+            console.error(error);
+            return res.status(500).json({ error: 'Internal server error' });
         }
-
-        let products = await bfList.find({})
-        let id
-
-        if (products.length > 0) {
-            let all_prod_array = products.slice(-1)
-            let prod = all_prod_array[0]
-            id = prod.id + 1
-        } else {
-            id = 1
-        }
-
-        const list = new bfList({
-            id: id,
-            email:req.body.email,
-            itemName: req.body.itemName.toLowerCase().trim(),
-            image: req.body.image,
-        })
-
-        console.log(list,currentDate.toDate())
-        await list.save()
-
-        return res.status(200).json(req.body.itemName)
-    } 
-    
-    // if we are trying to add the item after the time period then else block will execute
-    else {
-        return res.json("Cannot add the item before 11 or after 11")
-    }
- }
-
- catch(error) 
- {
-     console.error(error);
-     return res.status(500).json({ error: 'Internal server error' });
- }
 }
 
 

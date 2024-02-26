@@ -1,3 +1,5 @@
+/*
+
 const jwt = require("jsonwebtoken")
 
 module.exports = function(req,res, next) {
@@ -16,3 +18,4 @@ module.exports = function(req,res, next) {
         return res.json("not valid token")
     }
 }
+*/

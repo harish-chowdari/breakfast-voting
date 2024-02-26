@@ -1,6 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
+    
 }
 
 .vote-title{
@@ -66,7 +67,7 @@
     margin: 15px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
-
+    background-color: white;
 }
 
 .item-in-list:hover {

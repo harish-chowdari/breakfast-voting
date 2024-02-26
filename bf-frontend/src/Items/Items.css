@@ -4,6 +4,8 @@
     flex-direction: column;
     height: 100%;
     align-items: center;
+    animation: slideLeft 0.66s ease-in-out;
+
 
 }
 
@@ -13,16 +15,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f8ff;
+    background-image: url("../assets/all-bf-items.jpg");
+    background-size: cover;
+    background-position: center;
     border-radius: 15px;
     box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1);
-    
+    width: 40%;
+    height: 250px;
+
 }
+
+.add-item{
+    color: black;
+    font-size: 20px;
+}
+
+
 
 
 .menu-title{
     font-size: 22px;
-    margin: 0px;
     height: 0vh;
     margin-bottom: 30px;
     color: red;
@@ -31,17 +43,23 @@
 
 img{
     cursor: pointer;
-    width: 100px;
+    width: 150px;
     margin-top: 10px;
+    height: 100px;
+    image-rendering: crisp-edges;
 }
 
 .menu input {
-    width: 250px;
     height: 31px;
     margin: 10px;
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid rgb(216, 216, 167);
+    background-color: rgb(255, 255, 255,0.5);
+    color: black;
+    margin-top: 25px;
+    width: 60%;
+    padding-left: 15px;
 }
 
 .menu input:focus {
@@ -61,6 +79,9 @@ img{
     font-size: 22px;
     transition: 0.4s;
     margin: 10px 0px;
+    background-color: rgb(255, 255, 255,0.3);
+    color: black;
+    margin-bottom: 25px;
     
 }
 
@@ -70,6 +91,8 @@ img{
     color: red;
     margin: 0px;
     font-size: 18px;
+    background-color: rgb(255, 255, 255,0.66);
+    
 }
 
 .bf-title{
@@ -84,6 +107,8 @@ img{
     align-items: center;
     flex-direction: column; 
   }
+
+  
 
  
 .user-items{
@@ -113,7 +138,7 @@ img{
     margin: 15px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
-
+    background-color: white;
 }
 
 .item-in-user:hover {
@@ -139,22 +164,40 @@ img{
 }
 
 
+@keyframes slideLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
 @media screen and (max-width: 500px) {
 
     .menu{
         padding: 0px 8px;
         margin: 15px 5px;
+        width: 60%;
+        height: 150px;
+    }
+
+    .add-item{
+        font-size: 16px;
     }
 
     .menu input{
         height: 18px;
         font-size: 11px;
-        width: 100px;
-        margin-top: 7px;
+        width: 80%;
+        margin-top: 20px;
         margin-right: 0px;
         margin-left: 0px;
         padding-left:7px;
-        margin-bottom: 3px;
+        margin-bottom: 6px;
     }
 
     .menu img{
@@ -172,7 +215,8 @@ img{
         font-size: 11px;
         width: 30px;
         margin-bottom: 7px;
-        margin-top: 2px;
+        margin-top: 8px;
+        margin-bottom: 10px;
     }
 
     .item-error{

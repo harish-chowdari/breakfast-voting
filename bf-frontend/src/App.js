@@ -15,7 +15,7 @@ const App = () => {
   const authToken = localStorage.getItem('auth-token');
 
   return (
-    <div>
+    <div >
       <BrowserRouter>
         <Navbar />
 

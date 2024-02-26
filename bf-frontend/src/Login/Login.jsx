@@ -33,6 +33,8 @@ const Login = () => {
       {
         localStorage.setItem('auth-token', res.data.token);
         localStorage.setItem('user-email', loginDetails.email);
+        localStorage.setItem('user-id', res.data.userId);
+
         alert('Login successful')
 
         if(loginDetails.email === 'chef@gmail.com') {
@@ -71,32 +73,32 @@ const Login = () => {
   return (
 
     <div className='loginform'>
-    <h1 className='login-title'>Login Form</h1>
-    <div className='login-signup-fields'>
+     <h1 className='login-title'>Login Form</h1>
+      <div className='login-signup-fields'>
 
-       <input type='text' placeholder='email'
-       onChange={changeHandler}
-       value={loginDetails.email} 
-       name='email'
-       autoComplete="off"
-       />
+        <input type='text' placeholder='email'
+        onChange={changeHandler}
+        value={loginDetails.email} 
+        name='email'
+        autoComplete="off"
+        />
 
-       <input type='password' placeholder='password'
-       value={loginDetails.password}
-       onChange={changeHandler} 
-       name='password'
-       />
+        <input type='password' placeholder='password'
+        value={loginDetails.password}
+        onChange={changeHandler} 
+        name='password'
+        />
 
-      <div>
-        {ErrorMessage && <p className='error-message'>{ErrorMessage}</p>}
-      <button className='login' onClick={loginForm}>Login</button>
+          <div>
+              {ErrorMessage && <p className='error-message'>{ErrorMessage}</p>}
+              <button className='login' onClick={loginForm}>Login</button>
 
-      <div className='login-footer'>
-        <p>Not a member ? <span className='login-span'>        
-            <Link to="/signup" className='login-signup'>SignUp</Link> now </span></p>
+              <div className='login-footer'>
+                <p>Not a member ? <span className='login-span'>        
+                  <Link to="/signup" className='login-signup'>SignUp</Link> now </span></p>
+              </div>
+          </div>
       </div>
-      </div>
-    </div>
     </div>
     
   )

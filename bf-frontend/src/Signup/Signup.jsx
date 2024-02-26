@@ -21,6 +21,11 @@ const Signup = () => {
         setSignup({...signup, [e.target.name]:e.target.value})
       setErrorMessage("")
       }
+
+      const isEmailValid = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
   
   
   
@@ -32,13 +37,27 @@ const Signup = () => {
       return
     }
 
+    if(!isEmailValid(signup.email))
+    {
+      setErrorMessage('Enter a valid email')
+      return
+    }
+
+    if(signup.password.length < 8)
+    {
+      setErrorMessage('password must be 8 characters')
+      return
+    }
+
+
+
   try {
     const response = await axios.post("http://localhost:2008/signup", signup);
 
     if (response.data.success) 
     {
       localStorage.setItem("auth-token", response.data.token);
-      localStorage.setItem("user-email", signup.email);
+      localStorage.setItem("user-id", response.data.userId);
       alert("Signup successful");
       window.location.replace("/items");
     } 
@@ -67,44 +86,44 @@ const Signup = () => {
     return (
   
       <div className='signup-form'>
-      <h1 className='signup-title'>Signup Form</h1>
-      <div className='signup-fields'>
-  
-        <input type='text' placeholder='name'
-        value={signup.name} onChange={changeHandler}
-        name='name'  />
-  
-         <input type='email' placeholder='email'
-         onChange={changeHandler}
-         value={signup.email} 
-         name='email'
-         />
-  
-         <input type='password' placeholder='password'
-         value={signup.password}
-         onChange={changeHandler} 
-         name='password'
-         />
-  
-         <input type='password'
-         value={signup.cnfmpassword} placeholder='confirm password'
-         onChange={changeHandler} 
-         name='cnfmpassword'
-         />
+       <h1 className='signup-title'>Signup Form</h1>
+        <div className='signup-fields'>
     
+          <input type='text' placeholder='name'
+          value={signup.name} onChange={changeHandler}
+          name='name'  />
+    
+          <input type='email' placeholder='email'
+          onChange={changeHandler}
+          value={signup.email} 
+          name='email'
+          />
+    
+          <input type='password' placeholder='password'
+          value={signup.password}
+          onChange={changeHandler} 
+          name='password'
+          />
+    
+          <input type='password'
+          value={signup.cnfmpassword} placeholder='confirm password'
+          onChange={changeHandler} 
+          name='cnfmpassword'
+          />
+      
 
-    <div>
-        {ErrorMessage && <p className='error-signup'>{ErrorMessage}</p>}
-      <button className='signup' onClick={signupForm}>Signup</button>
+          <div>
+            {ErrorMessage && <p className='error-signup'>{ErrorMessage}</p>}
+              <button className='signup' onClick={signupForm}>Signup</button>
 
-      <div className='signup-footer'>
-        <p>Already a member? <span className='signup-span'>        
-            <Link to="/login" className='signup-login'>Login</Link> now </span></p>
-      </div>
-      </div>
+              <div className='signup-footer'>
+                <p>Already a member? <span className='signup-span'>        
+                  <Link to="/login" className='signup-login'>Login</Link> now </span></p>
+              </div>
+          </div>
 
+        </div>
       </div>
-  </div>
   )
 }
 

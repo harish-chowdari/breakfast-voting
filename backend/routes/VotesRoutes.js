@@ -7,7 +7,7 @@ const cron = require('node-cron')
 
 
 
-router.post("/vote", voteController.addVote)
+router.post("/vote/:userId", voteController.addVote)
 
 
 

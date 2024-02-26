@@ -17,31 +17,10 @@ const Popup = ({popUpMsg, handleClick})=>{
 
 
 const Winner = () => {
-  
-    const [visible,setVisible] = React.useState(true)
 
     const [popUpMsg,setPopUpMsg] = React.useState("")
 
     const [showPopup,setShowPopup] = React.useState(false)
-
-  
-  
-      React.useEffect(() => {
-        const interval = setInterval(()=>{
-          const currentTime = new Date()
-          const currentHour = currentTime.getHours()
-          const currentMinutes = currentTime.getMinutes()
-      
-          if (currentHour === 20 && currentMinutes <= 59) {
-            setVisible(true)
-            
-          } else {
-            setVisible(false)
-          }
-        }, 1000)
-    
-        return ()=> clearInterval(interval)
-        },[])
 
 
         React.useEffect(()=>{
@@ -52,7 +31,7 @@ const Winner = () => {
             timeOut = setTimeout(() => 
             {
               setShowPopup(false)
-            }, 500000);
+            }, 5000);
           }
 
           return () => {
@@ -92,24 +71,21 @@ const Winner = () => {
   const clickHandle = () =>{
     setShowPopup(false)
   }
-
   
   
     return (
       <div className='winner-container'>
       
-      <div className='winner-data'>
-       
-        <button disabled={!visible} onClick={fetchWinner} 
-        className='get-winner-button'>Get Winner</button>
-        
-       
-      </div>   
+          <div className='winner-data'>
+          
+            <button onClick={fetchWinner} 
+                className='get-winner-button'>Get Winner</button>
+                      
+          </div>   
 
-       {showPopup && <Popup popUpMsg = {popUpMsg} 
-        handleClick = {clickHandle}
-        />}
-
+          {showPopup && <Popup popUpMsg = {popUpMsg} 
+            handleClick = {clickHandle}
+            />}
   
       </div>
     )

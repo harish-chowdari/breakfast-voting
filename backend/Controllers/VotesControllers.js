@@ -14,7 +14,7 @@ async function addVote(req, res) {
         const currentDate = moment().startOf('day');
 
         const userVotedToday = await Votes.findOne({
-            email: req.body.email,
+            userId: req.params.userId,
             createdAt: { $gte: currentDate.toDate(), $lt: moment(currentDate).endOf('day').toDate() }
         })
 
@@ -23,7 +23,7 @@ async function addVote(req, res) {
             return res.json("Already voted today")
         }  
 
-        const userExist = await userDetails.findOne({ email: req.body.email })
+        const userExist = await userDetails.findOne({ _id: req.params.userId })
 
         const itemExist = await bfList.findOne({
             itemName: req.body.itemName.toLowerCase().trim(),
@@ -40,7 +40,7 @@ async function addVote(req, res) {
         else if(itemExist) 
         {
             const vote = new Votes({
-                email: req.body.email,
+                userId: req.params.userId,
                 itemName: req.body.itemName
             })
 

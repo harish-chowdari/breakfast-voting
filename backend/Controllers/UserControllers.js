@@ -45,9 +45,11 @@ async function signUp(req,res) {
         }
 
         const token = jwt.sign(data, "jwtSecret")
+        const decoded = jwt.verify(token, "jwtSecret");
+        const userId = decoded.user.id;
 
         // if all the above conditions are satisfied then the token will be generated
-        return res.status(200).json({success:true,token})
+        return res.status(200).json({success:true,token, userId:userId})
     }
 
     catch(error) 
@@ -79,9 +81,11 @@ async function logIn(req,res) {
                 }
             }
             const token = jwt.sign(data, "jwtSecret")
+            const decoded = jwt.verify(token, "jwtSecret");
+                const userId = decoded.user.id;
 
             // if password is true then the jwt token will be created
-            return res.status(200).json({success:true,token})
+            return res.status(200).json({success:true,token, userId:userId})
         }
 
         else

@@ -3,24 +3,30 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    animation: slideLeft 0.56s ease-in;
+
 }
 
 
 .chef-data{
-    background-color: #f0f8ff;
+    background-image: url('../assets/chef.jpg');
+    background-size: cover;
+    background-position: 10%;
     border-radius: 10px;
-    padding: 0px;
+    padding: 50px 20px;
     margin: 25px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 50%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
+    height: 240px;
+    background-position: center;
 }
 
 .red-color{
     color: red;
+    margin-bottom: 40px;
 }
 
 .chef-title{
@@ -30,6 +36,7 @@
     margin: 15px 5px;
     color: rgb(12, 14, 12);
     text-align: center;
+    margin-bottom: 35px;
 }
 
 .chef-data input {
@@ -37,15 +44,17 @@
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid rgb(119, 150, 143);
-    width: 200px;
+    
     transition: border-color 0.3s ease;
     margin: 10px;
+    background-color: rgb(255, 255, 255,0.3);
 }
 
 .err-div{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 20px;
+    gap: 0px;
 
 }
 
@@ -53,18 +62,20 @@
     color: red;
     margin: 0px;
     margin-bottom: 5px;
-    padding: 0px;
+    background-color: rgb(255, 255, 255, 0.78);
+    margin-left: 10px;
 }
 
 .chef-data textarea {
     height: 100px;
     font-size: 16px;
-    width: 70vh;
     border-radius: 5px;
     border: 1px solid rgb(119, 150, 143);
     margin-left: 10px;
     margin-right: 10px;
     transition: border-color 0.3s ease;
+    background-color: rgb(255, 255, 255,0.3);
+
 }
 
 .chef-data input:focus, .chef-data textarea:focus {
@@ -84,10 +95,13 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
 }
 
 .submit:hover {
-    background-color: #45a049;
+    background-color: rgba(240, 235, 235, 0.3);
 }
 
 
@@ -147,6 +161,17 @@
     margin: 0px;
 }
 
+@keyframes slideLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 
 @media screen and (max-width: 500px) {
 
@@ -155,12 +180,25 @@
         margin-bottom: 0px;
     }
 
+    .chef-data{
+        background-size: cover;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 25px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: 150px;
+        width: 80%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     .chef-data input {
         font-size: 11px;
         width: 60px;
         height: 17px;
         margin-right: 5px;
-        margin-top: 5px;
+        margin-top: 12px;
         margin-bottom: 0px;
         margin-left: 0px;
     }
@@ -169,6 +207,15 @@
         color: red;
         font-size: 11px;
         margin-bottom: 0px;
+        margin-left: 0px;
+    }
+
+    .red-color{
+        margin-bottom: 100px;
+    }
+    
+    .chef-div{
+        margin-bottom: 10px;
     }
 
     .err-div{
@@ -183,7 +230,7 @@
     .chef-data textarea {
         font-size: 12px;
         width: auto;
-        height: 40px;
+        height: 50px;
         margin: 0px 5px;
     }
 

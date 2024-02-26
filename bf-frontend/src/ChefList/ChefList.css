@@ -15,6 +15,7 @@
   padding: 10px;
   border-radius: 5px;
   width: 400px;
+  animation: slideLeft 0.56s ease-in;
 }
 
 .item-name, .chef-comment-list {
@@ -22,7 +23,7 @@
   align-items: flex-start;
   align-self: center;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .item-name h3, .chef-comment-list h3 {

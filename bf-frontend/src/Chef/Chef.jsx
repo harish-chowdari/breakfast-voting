@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React from 'react'
 import "./Chef.css"
+import chef from "../assets/chef.jpg"
+
 
 
 const Chef = () => {
@@ -74,7 +76,7 @@ const Chef = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 19 && currentMinutes <= 59) 
+      if (currentHour === 10 && currentMinutes <= 59) 
       {
         setEnabled(true)
       } 
@@ -91,24 +93,25 @@ const Chef = () => {
   return (
 
     <div className='chef'>
+    <div className='chef-div'>
     <p className='chef-title'>{!enabled ? 
         <p className='red-color'>Sorry Chef, time up for adding comments"</p> : "Add your comments" }</p>
-
+</div>
     <div className='chef-data'>
 
       
-    <div className="err-div">
-    <input 
-        type='text' 
-        required
-        name='itemName'
-        value={addComment.itemName}
-        onChange={changeHandler}
-        placeholder='Item Name'
-        hidden={!enabled}
-    /> 
-    <p className='err-msg'>{errMsg}</p>
-</div>
+        <div className="err-div">
+          <input 
+              type='text' 
+              required
+              name='itemName'
+              value={addComment.itemName}
+              onChange={changeHandler}
+              placeholder='Item Name'
+              hidden={!enabled}
+          /> 
+          <p className='err-msg'>{errMsg}</p>
+        </div>
 
       <textarea 
       required

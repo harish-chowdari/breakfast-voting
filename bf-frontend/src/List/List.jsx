@@ -19,7 +19,6 @@ const List = () => {
   
   const [listItems, setListItems] = React.useState([])
 
-
   const [enable,setEnable] = React.useState(true)
 
   const [showPopup, setShowPopup] = React.useState(false)
@@ -28,13 +27,13 @@ const List = () => {
 
   const submitVote = async (itemName) => {
     try {
-      const Email = localStorage.getItem("user-email")
+      const userId = localStorage.getItem("user-id")
       const voteData = {
-        email: Email,
+        userId: userId,
         itemName: itemName
       }
 
-      const res = await axios.post("http://localhost:2008/vote", voteData)
+      const res = await axios.post(`http://localhost:2008/vote/${userId}`, voteData)
 
       if (res.data === "Already voted today")
       {
@@ -81,7 +80,7 @@ const List = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 17 && currentMinutes <= 59) {
+      if (currentHour === 11 && currentMinutes <= 59) {
         setEnable(true)
       } else {
         setEnable(false)
@@ -90,6 +89,7 @@ const List = () => {
 
     return ()=> clearInterval(interval)
     },[])
+
 
     React.useEffect(() => {
       let timeoutId
@@ -115,10 +115,11 @@ const List = () => {
   return (
     <div className='container'>
 
-       <div className='vote-title'>
-    {enable ? <p className='vote-bf'>Vote for your favorite Breakfast</p> : <p className='timup-title'>Sorry, time up for voting</p>}
+        <div className='vote-title'>
+            {enable ? <p className='vote-bf'>Vote for your favorite Breakfast</p> : 
+            <p className='timup-title'>Sorry, time up for voting</p>}
 
-      </div>
+        </div>
     {listItems.length <= 0 ?  "Items List is empty" :
 
       <div className='list-items'>
@@ -127,22 +128,21 @@ const List = () => {
           return <div key={index} className='item-in-list'>
             
             <img className='list-img' 
-            
-               src={item.image} alt={item.itemName} 
+                src={item.image} alt={item.itemName} 
              />
             
             <button disabled={!enable} onClick={()=>submitVote(item.itemName)} 
                className='vote-button'>Vote</button>
             <p className='list-itemName'>{item.itemName} </p>
+
           </div>
         })}
         </ol>
       </div>  
-}
+    }
 
         {showPopup && <Popup message={popupMessage} 
             handleClose={closePopup} />}
-
       
     </div>
   )

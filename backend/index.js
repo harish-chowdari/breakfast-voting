@@ -9,7 +9,7 @@ app.use(cors())
 
 const errorHandler = require("./ErrorHandler/ErrorHandler")
 
-const db = require("./DB")
+require("./DB")
 
 const bfRoutes = require("./routes/bfRoutes")
 app.use("/",bfRoutes) 
@@ -23,11 +23,7 @@ app.use("/",ChefRoutes)
 const VoteRoutes = require("./routes/VotesRoutes")
 app.use("/", VoteRoutes)
 
-app.all('*', (req, res, next) => {
-    
-    const err = new Error(`Can't find ${req.originalUrl} on the server!`, 404);
-    next(err);
-})
+
 
 app.use(errorHandler)
 

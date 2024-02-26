@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    animation: slideIn 0.5s ease-in-out;
   }
   
   .winner-data {

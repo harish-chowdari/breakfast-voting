@@ -8,6 +8,7 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
     position: sticky;
     top: 0;
+
 }
   
 .links {
@@ -20,6 +21,8 @@
     margin-right: 45px;
     transition: color 0.3s ease;
     font-size: 18px;
+    
+    animation: slideFromTop 0.99s ease-in-out;
   }
   
 
@@ -44,6 +47,17 @@
     background-color: #0056b3; 
   }
   
+
+  @keyframes slideFromTop {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
 
 

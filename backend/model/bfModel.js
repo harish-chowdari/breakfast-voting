@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const bfListSchema = mongoose.Schema({
-  id: {
-    type: Number,
+  userId: {
+    type: String,
     required: true,
   },
   itemName: {

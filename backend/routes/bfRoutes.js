@@ -23,7 +23,7 @@ router.use("/images", express.static("upload/images"))
 router.post("/upload", upload.single("product"), bfController.uploadImage)
  
     
-router.post("/addbreakfast", bfController.postItem)
+router.post("/addbreakfast/:userId", bfController.postItem)
 
 
 router.get("/getbreakfastitemcount", bfController.getCount)

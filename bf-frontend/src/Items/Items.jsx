@@ -44,6 +44,28 @@ const Items = () => {
     fetchCount()
   },[])
 
+
+  React.useEffect(() => {
+    const interval = setInterval(()=>{
+      const currentTime = new Date()
+      const currentHour = currentTime.getHours()
+      const currentMinutes = currentTime.getMinutes()
+  
+      if (currentHour === 12 && currentMinutes <= 59) 
+      {
+        setEnabled(true)
+      } 
+      
+      else 
+      {
+        setEnabled(false)
+      }
+    }, 1)
+
+    return ()=> clearInterval(interval)
+    },[])
+    
+
   const changeHandler = (e) =>{
     setAddItem({...addItem, [e.target.name]:e.target.value})
     setErrorMsg("")
@@ -79,12 +101,19 @@ const Items = () => {
             setErrorMsg("Item already exists")
         }
 
+        if(res.data === "You have already Added an item.") 
+        {
+            setErrorMsg(res.data)
+        }
+
         else
         {
+          localStorage.getItem("user-id")
         setAddItem({ itemName: "", image: null })
         setImage(null)
         fetchData()
         fetchCount()
+        alert("Item added")
         } 
     } 
     
@@ -96,35 +125,18 @@ const Items = () => {
 }
 
 
-  React.useEffect(() => {
-    const interval = setInterval(()=>{
-      const currentTime = new Date()
-      const currentHour = currentTime.getHours()
-      const currentMinutes = currentTime.getMinutes()
-  
-      if (currentHour === 1 && currentMinutes <= 59) {
-        setEnabled(true)
-      } else {
-        setEnabled(false)
-      }
-    }, 1)
-
-    return ()=> clearInterval(interval)
-    },[])
-
-     
-
+ 
 
 
 return (
     <div className='container'>
 
-    <p className='menu-title'>{itemCount > 9 ? <p >Sorry, the items list is currently full</p>: 
-        enabled ? <></> : <p>Sorry, time up for adding items</p>}</p>
-        
-    <div className='menu' >
+      <div className='item-div'>
+          <p className='menu-title'>{itemCount > 9 ? <p >Sorry, the items list is currently full</p>: 
+              enabled ? <p className='add-item'>Add an Item</p> : <p>Sorry, time up for adding items</p>}</p>
+      </div> 
 
-    
+    <div className='menu' >
         <input type='text' name='itemName'
           value={addItem.itemName}
           onChange={changeHandler}
@@ -136,32 +148,33 @@ return (
     {Errormsg && <p className='item-error'>{Errormsg}</p>}
 
       <label htmlFor='file-input'>
-        <img hidden={itemCount > 9 || !enabled}
-        
-         src={image ? URL.createObjectURL(image) : upload_area} alt='' width="80px" />
+          <img hidden={itemCount > 9 || !enabled}
+            src={image ? URL.createObjectURL(image) : upload_area} alt='' />
       </label>
-      <input disabled={!enabled} type='file' name='image' id='file-input' hidden onChange={imageHandler} />
+          <input disabled={!enabled} hidden type='file' 
+              name='image' id='file-input'  onChange={imageHandler} />
 
-        <button className='menu-button' hidden={itemCount > 9 || !enabled} onClick={submitHandler} >ADD</button>
+        <button className='menu-button' hidden={itemCount > 9 || !enabled} 
+            onClick={submitHandler} >ADD</button>
     </div>
 
 
-    <div className='user-items'>
-    <h1 className='bf-title'>Breakfast Items</h1>
-      
-        <ol className='user-items-list'>{listItems.map((item,index)=>{
-          return <div key={index} className='item-in-user'>
-            
-            {item.image && <img className='user-img' 
-               src={item.image} alt={item.itemName} 
-             />}
-                  
-            <p className='user-itemName'>{item.itemName} </p>
+        <div className='user-items'>
+          <h1 className='bf-title'>Breakfast Items</h1>
+          
+            <ol className='user-items-list'>{listItems.map((item,index)=>{
+              return <div key={index} className='item-in-user'>
+                
+                {item.image && <img className='user-img' 
+                  src={item.image} alt={item.itemName} 
+                      />}
+                      
+                  <p className='user-itemName'>{item.itemName} </p>
 
-          </div>
-        })}
-        </ol>
-      </div>  
+              </div>
+            })}
+            </ol>
+          </div>  
       
     </div>
   )
