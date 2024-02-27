@@ -27,6 +27,12 @@ const List = () => {
 
   const [popupMessage, setPopupMessage] = React.useState('')
 
+  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  const [showPopupImg, setShowPopupImg] = React.useState(false)
+
+
+
   const submitVote = async (itemName) => {
 
     const userId = localStorage.getItem("user-id")
@@ -123,7 +129,18 @@ const List = () => {
 
     const closePopup = () => {
       setShowPopup(false)
+      setSelectedImage(null);
+      setShowPopupImg(false)
+
     }
+
+
+    const handleImageClick = (imageURL) => {
+      setSelectedImage(imageURL);
+      setShowPopupImg(true);
+    }
+  
+  
 
   
   return (
@@ -142,7 +159,9 @@ const List = () => {
           return <div key={index} className='item-in-list'>
             
             <img className='list-img' 
+                onClick={() => handleImageClick(item.image)}
                 src={item.image} alt={item.itemName} 
+
              />
             
             <button disabled={!enable || voteBtn} onClick={()=>submitVote(item.itemName)} 
@@ -157,6 +176,15 @@ const List = () => {
 
         {showPopup && <Popup message={popupMessage} 
             handleClose={closePopup} />}
+
+{showPopupImg && (
+        <div className="list-popup-overlay" >
+          <div className="list-popup">
+            <img src={selectedImage} alt="Popup" className='list-popup-img' />
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
       
     </div>
   )

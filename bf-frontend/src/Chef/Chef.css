@@ -19,7 +19,7 @@
     flex-direction: column;
     gap: 10px;
     width: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     height: 240px;
     background-position: center;
 }
@@ -55,15 +55,18 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 0px;
+    align-items: center;
 
 }
 
 .err-msg{
     color: red;
     margin: 0px;
+    padding: 0px 5px;
     margin-bottom: 5px;
     background-color: rgb(255, 255, 255, 0.78);
     margin-left: 10px;
+    font-size: 18px;
 }
 
 .chef-data textarea {
@@ -98,6 +101,7 @@
     margin-top: 20px;
     background-color: rgba(255, 255, 255, 0.3);
     color: black;
+    font-weight: 700;
 }
 
 .submit:hover {
@@ -137,14 +141,14 @@
     margin: 15px;
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
-
+    background-color: white;
 }
 
 .item-in-chef:hover {
     transform: translateY(-5px);
 }
 
-.chef-itemname{
+.chef-itemName{
     margin: 0px;
     margin-bottom: 10px;
     margin-top: 4px;
@@ -159,7 +163,57 @@
     width: 180px;
     height: 110px;
     margin: 0px;
+    background-color: #fa8484;
 }
+
+.chef-popup-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.chef-popup{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    padding-top: 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    width: 40%;
+    height: 50%;
+    animation: slideLeft 0.3s ease-in;
+
+}
+
+
+.chef-popup-img{
+    width: 100%;
+    height: 80%;
+}
+
+.chef-popup button{
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
 
 @keyframes slideLeft {
     from {
@@ -173,72 +227,195 @@
 }
 
 
-@media screen and (max-width: 500px) {
 
-    .chef-title {
-        font-size: 12px;
-        margin-bottom: 0px;
-    }
+
+@media screen and (max-width: 768px) {
 
     .chef-data{
-        background-size: cover;
-        border-radius: 10px;
-        padding: 5px;
-        margin: 25px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        height: 150px;
-        width: 80%;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .chef-data input {
-        font-size: 11px;
-        width: 60px;
-        height: 17px;
-        margin-right: 5px;
-        margin-top: 12px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-    }
-
-    .err-msg{
-        color: red;
-        font-size: 11px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-    }
-
-    .red-color{
-        margin-bottom: 100px;
+        padding: 40px 10px;
+        padding-bottom: 0px;
+        border-radius: 7px;
+        margin: 0px 10px;
+        gap: 5px;
+        width: 65%;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+        background-position: center;
     }
     
-    .chef-div{
-        margin-bottom: 10px;
+    
+    .chef-title{
+        font-size: 16px;
+        margin: 10px 5px;
+        margin-bottom: 35px;
     }
-
-    .err-div{
-        gap: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+    
+    .chef-data input {
+        height: 20px;
+        font-size: 13px;
+        margin: 5px;
+        padding-left: 5px;
+    }
+    
+    .err-msg{
+        margin: 0px;
+        font-size: 14px;
         margin-left: 5px;
     }
-
+    
     .chef-data textarea {
-        font-size: 12px;
-        width: auto;
-        height: 50px;
-        margin: 0px 5px;
+        
+        padding-left: 5px;
+        height: 40%;
+        font-size: 13px;
+        margin-left: 5px;
+        margin-right: 5px;
+    
+    }
+    .submit {
+        font-size: 16px;
+        height: 12%;
+        margin-left: 5px;
+        margin-right: 5px;
+        background-color: rgba(255, 255, 255, 0.35);
+        font-weight: 700;
+    }
+    
+    .submit:hover {
+        background-color: rgba(240, 235, 235, 0.2);
+    }
+    
+    .bf-chef-title{
+        margin:0px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+    .chef-items-list{
+        margin-bottom: 15px;
+        
+    }
+    
+    
+    
+    .item-in-chef{
+        border-radius: 10px;
+        margin: 10px;
+        box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+        background-color: white;
+        width: 20%;
+    }
+    
+    
+    .chef-itemName{
+        margin: 0px;
+        margin-bottom: 7px;
+        margin-top: 2px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+    }
+    
+    .chef-img{
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        width: 100%;
+        height: 67%;
     }
 
-    .submit{
-        height: 18px;
+.chef-popup{
+    padding: 10px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+    border-radius: 7px;
+    gap: 10px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    width: 55%;
+    height: 40%;
+}
+
+
+.chef-popup-img{
+    width: 100%;
+    height: 80%;
+}
+
+.chef-popup button{
+    padding: 6px 10px;
+    font-size: 14px;
+    border: none;
+}
+
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 500px) {
+
+    
+    .chef-data{
+        padding: 20px 10px;
+        padding-bottom: 0px;
+        border-radius: 7px;
+        margin: 0px 10px;
+        gap: 5px;
+        width: 65%;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+        background-position: center;
+        height: 150px;
+    }
+    
+    
+    .chef-title{
+        font-size: 14px;
+        margin: 5px 5px;
+        margin-bottom: 30px;
+    }
+    
+    .chef-data input {
+        height: 16px;
         font-size: 12px;
-        margin: 0px 5px;
-        margin-bottom: 5px;
+        margin: 5px;
+        padding-left: 5px;
+    }
+    
+    .err-msg{
+        margin: 0px;
+        font-size: 12px;
+        margin-left: 5px;
+    
+    }
+
+    .chef-title{
+        font-size: 12px;
+        margin-bottom: 35px;
+    }
+    
+    .chef-data textarea {
+        
+        padding-left: 5px;
+        height: 45%;
+        font-size: 12px;
+        margin-left: 5px;
+        margin-right: 5px;
+    
+    }
+    .submit {
+        font-size: 14px;
+        height: 15%;
+        margin-left: 5px;
+        margin-right: 5px;
+        background-color: rgba(255, 255, 255, 0.35);
+        font-weight: 700;
+        margin-top: 10px;
+    }
+    
+    .submit:hover {
+        background-color: rgba(240, 235, 235, 0.35);
     }
 
     .item-in-chef:hover {
@@ -253,24 +430,51 @@
     .chef-items-list {
         margin-bottom: 15px;
     }
-
+ 
     .chef-itemName {
         font-size: 12px;
         font-weight: 650;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         margin-top: 0px;
-    }
+     }
 
-    .item-in-chef{
-        margin: 10px 15px; 
+     .item-in-chef{
+        width: 25%;
+        margin: 8px 8px;         
         box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
-    }
+     }
 
-    .chef-img{
-        width: 80px;
-        height: 50px;
+     .item-in-chef:hover {
+        transform: none;
+    }
+ 
+     .chef-img{
+         width: 100%;
+         height: 70%;
+     }
+
+     .chef-popup{
+        padding: 5px;
+        padding-bottom: 5px;
+        padding-top: 3px;
+        border-radius: 5px;
+        gap: 10px;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        width: 55%;
+        height: 30%;
     }
     
+    
+    .chef-popup-img{
+        width: 100%;
+        height: 75%;
+    }
+    
+    .chef-popup button{
+        padding: 4px 8px;
+        font-size: 12px;
+        border: none;
+    }
     
 }
 

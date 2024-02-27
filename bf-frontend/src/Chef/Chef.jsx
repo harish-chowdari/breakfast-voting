@@ -17,6 +17,10 @@ const Chef = () => {
   })
 
   const [errMsg, setErrMsg] =React.useState("")
+  
+  const [selectedImage, setSelectedImage] = React.useState(null);
+  
+  const [showPopup, setShowPopup] = React.useState(false);
 
   const changeHandler = (e)=>{
     setAddComment({...addComment, [e.target.name]: e.target.value})
@@ -76,7 +80,7 @@ const Chef = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 10 && currentMinutes <= 59) 
+      if (currentHour === 17 && currentMinutes <= 59) 
       {
         setEnabled(true)
       } 
@@ -89,10 +93,22 @@ const Chef = () => {
 
     return ()=> clearInterval(interval)
     },[])
+
+
+  const handleImageClick = (imageURL) => {
+    setSelectedImage(imageURL);
+    setShowPopup(true);
+  }
+
+  const closePopup = () => {
+    setSelectedImage(null);
+    setShowPopup(false);
+  }
+
   
   return (
 
-    <div className='chef'>
+    <div className='chef' >
     <div className='chef-div'>
     <p className='chef-title'>{!enabled ? 
         <p className='red-color'>Sorry Chef, time up for adding comments"</p> : "Add your comments" }</p>
@@ -131,8 +147,14 @@ const Chef = () => {
         <ol className='chef-items-list'>{listItems.map((item,index)=>{
           return <div key={index} className='item-in-chef'>
             
-            {item.image && <img className='chef-img' src={item.image} alt={item.itemName} 
-            height="180px" width="220px" />}
+            {
+              item.image && 
+                <img className='chef-img' 
+                  onClick={() => handleImageClick(item.image)}
+                  src={item.image} alt={item.itemName} 
+                  height="180px" width="220px" 
+                />
+            }
                   
             <p className='chef-itemName'>{item.itemName} </p>
                          
@@ -140,6 +162,16 @@ const Chef = () => {
         })}
         </ol>
       </div>
+
+        {showPopup && (
+        <div className="chef-popup-overlay" >
+          <div className="chef-popup">
+            <img src={selectedImage} alt="Popup" className='chef-popup-img' />
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
+
       </div>
 
   )

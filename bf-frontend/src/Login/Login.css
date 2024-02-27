@@ -49,6 +49,8 @@
 .login-signup-fields input:focus {
     outline: none;
     border: 1px solid #66afe9;
+    box-shadow: 0px 0px 8px rgba(102, 175, 233); 
+
     
 }
 
@@ -103,6 +105,11 @@
         width: 210px;
         height: 20px;
         font-size: 14px;
+    }
+
+    .login-signup-fields input:focus {
+        box-shadow: 0px 0px 4px rgba(102, 175, 233); 
+    
     }
 
     .login{

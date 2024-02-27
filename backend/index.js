@@ -7,7 +7,6 @@ const app = express()
 app.use(express.json()) 
 app.use(cors())
 
-const errorHandler = require("./ErrorHandler/ErrorHandler")
 
 require("./DB")
 
@@ -25,7 +24,6 @@ app.use("/", VoteRoutes)
 
 
 
-app.use(errorHandler)
 
 const PORT = process.env.PORT || 3008;
 

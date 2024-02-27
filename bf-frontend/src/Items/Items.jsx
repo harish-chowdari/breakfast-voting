@@ -21,6 +21,11 @@ const Items = () => {
 
   const [Errormsg, setErrorMsg] =React.useState("")
 
+  const [selectedImage, setSelectedImage] = React.useState(null);
+  
+  const [showPopup, setShowPopup] = React.useState(false);
+
+
   const imageHandler = (e)=>{
     setImage(e.target.files[0])
     setErrorMsg("")
@@ -144,7 +149,15 @@ const Items = () => {
     }
 }
 
+    const handleImageClick = (imageURL) => {
+      setSelectedImage(imageURL);
+      setShowPopup(true);
+    }
 
+    const closePopup = () => {
+      setSelectedImage(null);
+      setShowPopup(false);
+    }
  
 
 
@@ -185,7 +198,8 @@ return (
             <ol className='user-items-list'>{listItems.map((item,index)=>{
               return <div key={index} className='item-in-user'>
                 
-                {item.image && <img className='user-img' 
+                {item.image && <img className='user-img'
+                  onClick={() => handleImageClick(item.image)} 
                   src={item.image} alt={item.itemName} 
                       />}
                       
@@ -196,6 +210,15 @@ return (
             </ol>
           </div>  
       
+          {showPopup && (
+        <div className="item-popup-overlay" >
+          <div className="item-popup">
+            <img src={selectedImage} alt="Popup" className='item-popup-img' />
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
