@@ -6,14 +6,12 @@
 
 .vote-title{
     align-items: center;
-    padding: 0px;
-    padding-bottom: 5px;
     width: auto;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     position: sticky;
     top: 62px;
-    margin-top: 0px;
+    padding-bottom: 10px;
     background-color: #d8f3bf;
 
     
@@ -32,11 +30,8 @@
 
 .vote-bf{
     font-size: 23px;
-    margin: 0px;
-    margin-top: 10px;
     font-weight: 500;
-    margin: 0px 70px;
-    margin-top: 15px;
+    margin: 5px 40px;
 }
 
 
@@ -138,7 +133,102 @@
     margin-bottom: 5px;
     cursor: pointer;
   }
+
   
+
+
+@media screen and (max-width: 768px) {
+    
+    .vote-title{
+        align-items: center;
+        padding: 0px;
+        padding-bottom: 3px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        position: sticky;
+        top: 35px;
+    
+        
+    }
+    
+    
+    .timup-title{
+        color: red;
+        font-size: 15px;
+        font-weight: 500;
+        margin: 0px 30px;
+        margin-top: 10px;
+        padding-bottom: 5px;
+    
+    }
+    
+    .vote-bf{
+        font-size: 15px;
+        font-weight: 500;
+        margin: 5px 30px;
+        
+    }
+    
+    .item-in-list{
+        border-radius: 10px;
+        margin: 10px;
+        align-items: center;
+        box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+        background-color: white;
+        width: 20%;
+    }
+    
+    
+    .list-itemName{
+        margin: 0px;
+        margin-bottom: 7px;
+        margin-top: 2px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+    }
+    
+    .list-img{
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        width: 100%;
+        height: 67%;
+    }
+    
+    
+    .vote-button{
+        width: 100%;
+        font-size: 15px;
+        border: none;
+        height: 22px;
+        border-top: 2px solid white;
+    }
+    
+    .popup {
+        padding-top: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        z-index: 9999;
+      }
+      
+      .popup-content {
+        text-align: center;
+        font-size: 14px;
+      }
+      
+      .popup button {
+        border: none;
+        font-size: 13px;
+        padding: 3px 10px;
+        padding-right: 11px;
+        margin-bottom: 3px;
+        cursor: pointer;
+      }
+    
+
+}
 
 
 
@@ -181,37 +271,33 @@
 
     
     .list-items-list {
-        margin-top: 10px;
         margin-bottom: 15px;
-    }
-
+     }
+ 
     .list-itemName {
         font-size: 12px;
         font-weight: 650;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
         margin-top: 0px;
-        width: 77px;
-        text-align:center;
-    }
+     }
 
-    .item-in-list{
-        margin: 10px 15px; 
-        display: flex;
-        flex-direction: column;
+     .item-in-list{
+        width: 25%;
+        margin: 8px 8px;         
         box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
-    }
+     }
 
-    .item-in-list:hover {
+     .item-in-list:hover {
         transform: none;
     }
-
-    .list-img{
-        width: 80px;
-        height: 50px;
-    }
+ 
+     .list-img{
+         width: 100%;
+         height: 70%;
+     }
 
     .vote-button{
-        width: 80px;
+        width: 100%;
         font-size: 13px;
         height: 24px;
         border-top: 2px solid white;

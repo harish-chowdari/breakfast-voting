@@ -22,7 +22,7 @@ const Navbar = () => {
         <>
           <div className='links'>
             {isAuthToken && <Link className='link' to='/items'>Items</Link>}
-            {isAuthToken && <Link className='link' to='/list'>List</Link>}
+            {isAuthToken && <Link className='link' to='/list'>Vote</Link>}
           </div>
         </>
         

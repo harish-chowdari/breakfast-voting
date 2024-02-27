@@ -8,11 +8,6 @@ const Items = () => {
 
   const [image,setImage] =React.useState(null)
 
-  const imageHandler = (e)=>{
-    setImage(e.target.files[0])
-    setErrorMsg("")
-  }
-
   const [addItem,setAddItem] = React.useState({
     itemName:"",
     image:""
@@ -25,6 +20,13 @@ const Items = () => {
   const [enabled,setEnabled] =React.useState(true)
 
   const [Errormsg, setErrorMsg] =React.useState("")
+
+  const imageHandler = (e)=>{
+    setImage(e.target.files[0])
+    setErrorMsg("")
+  }
+
+  
 
 
   const fetchData = async()=>{
@@ -74,9 +76,24 @@ const Items = () => {
 
   const submitHandler = async () => {
 
-    if(!addItem.itemName || !image)
+    const userId = localStorage.getItem("user-id")
+
+
+    if(!addItem.itemName)
     {
-      setErrorMsg("All fields are required")
+      setErrorMsg("Item name is required")
+      return
+    }
+
+    if(!image)
+    {
+      setErrorMsg("Image is required")
+      return
+    }
+
+    if(!userId)
+    {
+      setErrorMsg("User Id is not found")
       return
     }
 
@@ -90,7 +107,10 @@ const Items = () => {
             }
         })
 
-        const res = await axios.post("http://localhost:2008/addbreakfast", {
+        const userId = localStorage.getItem("user-id")
+
+
+        const res = await axios.post(`http://localhost:2008/addbreakfast/${userId}`, {
             itemName: String(addItem.itemName),
             image: imageResponse.data.image_url
         })
@@ -103,17 +123,17 @@ const Items = () => {
 
         if(res.data === "You have already Added an item.") 
         {
-            setErrorMsg(res.data)
+            setErrorMsg("You've Already added an item")
         }
 
         else
         {
           localStorage.getItem("user-id")
-        setAddItem({ itemName: "", image: null })
-        setImage(null)
-        fetchData()
-        fetchCount()
-        alert("Item added")
+          setAddItem({ itemName: "", image: null })
+          setImage(null)
+          fetchData()
+          fetchCount()
+          alert("Item added")
         } 
     } 
     

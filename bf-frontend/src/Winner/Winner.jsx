@@ -31,7 +31,7 @@ const Winner = () => {
             timeOut = setTimeout(() => 
             {
               setShowPopup(false)
-            }, 5000);
+            }, 50000);
           }
 
           return () => {

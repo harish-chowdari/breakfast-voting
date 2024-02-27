@@ -20,7 +20,7 @@ async function postItem(req, res) {
         const currentMinutes = currentTime.getMinutes()
         
         // if we are trying to add the item between the time period then this block will execute
-        if (currentHour === 12 && currentMinutes <= 59) {
+        if (currentHour === 11 && currentMinutes <= 59) {
             const currentDate = moment().startOf('day')
 
             const userExist = await bfList.findOne({

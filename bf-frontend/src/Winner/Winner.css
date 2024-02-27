@@ -21,10 +21,6 @@
     transition: background-color 0.3s ease;
   }
   
-  .get-winner-button:disabled {
-    background-color: #CCCCCC;
-    
-  }
   
   .get-winner-button:hover {
     background-color: #45a049;
@@ -45,8 +41,9 @@
   .pop-content {
     background-color: #f9f9f9;
     padding: 20px;
+    padding-top: 0px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
     text-align: center;
   }
   
@@ -69,6 +66,52 @@
   .pop-content button:hover {
     background-color: #0056b3;
   }
+
+
+
+  @media screen and (max-width:768px) {
+
+    .get-winner-button {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+    
+    .get-winner-button:hover {
+      background-color: #45a049;
+    }
+ 
+    
+    .pop-content {
+      background-color: #f9f9f9;
+      padding: 12px;
+      padding-top: 0px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      text-align: center;
+    }
+    
+    .pop-content p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .pop-content button {
+      padding: 4px 10px;
+      font-size: 13px;
+      border-radius: 4px;
+    }
+    
+    .pop-content button:hover {
+      background-color: #0056b3;
+    }
+    
+  
+  }
+
+
+
+
+
 
 
   @media screen and (max-width:500px) {

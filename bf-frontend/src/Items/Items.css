@@ -176,6 +176,115 @@ img{
 }
 
 
+
+
+
+@media screen and (max-width: 768px) {
+
+.menu{
+    margin-top: 12px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    height: 180px;
+
+}
+
+.add-item{
+    color: black;
+    font-size: 16px;
+}
+
+
+
+
+.menu-title{
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+img{
+    width: 100px;
+    margin-top: 8px;
+    height: 70px;
+}
+
+.menu input {
+    height: 20px;
+    margin: 6px;
+    font-size: 13px;
+    margin-top: 10px;
+    width: 60%;
+    padding-left: 8px;
+}
+
+
+.menu-button {
+    width: 15%;
+    height: 22px;
+    font-size: 15px;
+    margin: 8px 0px;
+    margin-bottom: 5px;
+    
+}
+
+
+.item-error{
+    display: flex;
+    color: red;
+    margin: 0px;
+    padding: 0px 5px;
+    font-size: 13px;
+    
+}
+
+.bf-title{
+    font-size: 20px;
+} 
+
+.user-items-list{
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+    justify-content: center;
+    
+}
+
+
+
+.item-in-user{
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    background-color: white;
+    width: 20%;
+}
+
+
+.user-itemName{
+    margin: 0px;
+    margin-bottom: 7px;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.user-img{
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    width: 100%;
+    height: 67%;
+}
+    
+    
+    
+}
+
+
+
+
+
 @media screen and (max-width: 500px) {
 
     .menu{
@@ -186,7 +295,7 @@ img{
     }
 
     .add-item{
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .menu input{
@@ -241,13 +350,13 @@ img{
     .user-itemName {
         font-size: 12px;
         font-weight: 650;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         margin-top: 0px;
-        width: 77px;
      }
 
      .item-in-user{
-        margin: 10px 15px;         
+        width: 25%;
+        margin: 8px 8px;         
         box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
      }
 
@@ -256,8 +365,8 @@ img{
     }
  
      .user-img{
-         width: 80px;
-         height: 50px;
+         width: 100%;
+         height: 70%;
      }
     
     

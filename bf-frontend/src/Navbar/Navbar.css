@@ -1,6 +1,7 @@
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     padding: 15px 25px;
     width: auto;
@@ -10,6 +11,13 @@
     top: 0;
 
 }
+
+
+  .link:hover {
+    text-decoration: underline;
+    
+  }
+  
   
 .links {
     display: flex;
@@ -21,8 +29,7 @@
     margin-right: 45px;
     transition: color 0.3s ease;
     font-size: 18px;
-    
-    animation: slideFromTop 0.99s ease-in-out;
+    animation: slideFromTop 0.70s ease-in-out;
   }
   
 
@@ -30,8 +37,6 @@
     display: flex;
     align-items: center;
 }
-
-
   
 .login-button {
     background-color: #007bff;
@@ -57,6 +62,29 @@
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+
+
+@media screen and (max-width:768px){
+
+  .navbar {
+    padding: 7px 15px;
+    align-items: center;
+
+}
+  
+.link {
+    margin-right: 35px;
+    font-size: 13px;
+    animation: slideFromTop 0.70s ease-in-out;
+  }
+  
+.login-button {
+    padding: 4px 7px;
+    font-size: 11px;
+  }
+
 }
 
 

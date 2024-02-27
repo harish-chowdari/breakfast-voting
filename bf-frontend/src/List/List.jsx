@@ -19,6 +19,8 @@ const List = () => {
   
   const [listItems, setListItems] = React.useState([])
 
+  const [voteBtn,setVoteBtn] = React.useState(false)
+
   const [enable,setEnable] = React.useState(true)
 
   const [showPopup, setShowPopup] = React.useState(false)
@@ -26,12 +28,23 @@ const List = () => {
   const [popupMessage, setPopupMessage] = React.useState('')
 
   const submitVote = async (itemName) => {
+
+    const userId = localStorage.getItem("user-id")
+
+    if(!userId)
+      {
+        setPopupMessage("User Id not found in local storage")
+        setShowPopup(true)
+        return
+      }
+
     try {
-      const userId = localStorage.getItem("user-id")
       const voteData = {
         userId: userId,
         itemName: itemName
       }
+
+      
 
       const res = await axios.post(`http://localhost:2008/vote/${userId}`, voteData)
 
@@ -48,6 +61,7 @@ const List = () => {
         {
           setPopupMessage(`Your vote has been added to ${votedItem.itemName}`)
           setShowPopup(true)
+          setVoteBtn(true)
         }
       }
     } 
@@ -55,7 +69,7 @@ const List = () => {
     catch(error) 
     {
       console.log("Error submitting vote:", error)
-      setPopupMessage("Already voted")
+      setPopupMessage("error")
       setShowPopup(true)
     }
   }
@@ -80,7 +94,7 @@ const List = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 11 && currentMinutes <= 59) {
+      if (currentHour === 13 && currentMinutes <= 59) {
         setEnable(true)
       } else {
         setEnable(false)
@@ -98,7 +112,7 @@ const List = () => {
         timeoutId = setTimeout(() => 
         {
           setShowPopup(false)
-        }, 5000)
+        }, 7000)
       }
   
       return () => {
@@ -131,7 +145,7 @@ const List = () => {
                 src={item.image} alt={item.itemName} 
              />
             
-            <button disabled={!enable} onClick={()=>submitVote(item.itemName)} 
+            <button disabled={!enable || voteBtn} onClick={()=>submitVote(item.itemName)} 
                className='vote-button'>Vote</button>
             <p className='list-itemName'>{item.itemName} </p>
 
