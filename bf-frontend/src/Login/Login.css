@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     border-radius: 15px;
-    width: 420px;
+    width: 30%;
     margin: auto; 
     margin-top: 35px; 
     box-shadow: 4px 4px 10px rgb(50, 139, 216);
     animation: slideIn 0.5s ease-in-out;
-
 }
 
 
@@ -50,20 +49,18 @@
     outline: none;
     border: 1px solid #66afe9;
     box-shadow: 0px 0px 8px rgba(102, 175, 233); 
-
-    
 }
 
 .login{
-    width: 62vh;
+    width: 90%;
     height: 50px;
+    padding: 8px 10px;
     font-size: 22px;
     border-radius: 30px;
     background-color: blue;
     border: none;
     color: white;
     font-weight: 600;
-    margin-top: 20px;
     cursor: pointer;
 }
 
@@ -80,6 +77,7 @@
     display: flex;
     gap: 8px;
     justify-content: center;
+    margin-top: 25px;
 }
 
 
@@ -89,33 +87,123 @@
 }
 
 
+
+
+
+@media screen and (max-width:768px) {
+
+    .loginform {
+        border-radius: 10px;
+        width: 40%;
+        margin-top: 25px; 
+        box-shadow: 2px 2px 8px rgb(50, 139, 216);
+        
+    }
+    
+    
+    .login-title{
+        height: 45px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-bottom: 20px;
+        font-size: 23px;
+    }
+    
+    .login-signup-fields{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .login-signup-fields input{
+        width: 80%;
+        height: 25px;
+        padding: 6px;
+        padding-left: 15px;
+        border-radius: 20px;
+        font-size: 14px;
+    
+    }
+    
+    .login-signup-fields input:focus {
+        box-shadow: 0px 0px 5px rgba(102, 175, 233); 
+    
+        
+    }
+    
+    .login{
+        width: 87%;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 20px;
+    }
+    
+    .error-message{
+        color: red;
+        display: flex;
+        justify-content: center;
+        margin: 0px;
+        font-size: 14px;
+    }
+    
+    .login-footer p{
+        font-size: 15px;
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+    }
+    
+    
+    .login-signup{
+        color: red;
+        text-decoration: none;
+    }
+
+}
+
+
+
+
+
+
+
+
 @media screen and (max-width:500px) {
     .loginform{
-        width: 260px;
+        width: 65%;
 
     }
 
     .login-title{
-        height: 50px;
-        width: 260px;
-        font-size: 30px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .login-signup-fields{
+        gap: 10px;
     }
     
     .login-signup-fields input{
-        width: 210px;
-        height: 20px;
-        font-size: 14px;
+        width: 70%;
+        height: 14px;
+        font-size: 12px;
+        padding: 5px 10px;
+        
     }
 
     .login-signup-fields input:focus {
-        box-shadow: 0px 0px 4px rgba(102, 175, 233); 
+        box-shadow: 0px 0px 3px rgba(102, 175, 233); 
     
     }
 
     .login{
-        width: 235px;
-        height: 35px;
-        font-size: 18px;
+        width: 77%;
+        height: 25px;
+        padding: 5px 5px;
+        font-size: 14px;
+        align-items: center;
+        text-align: center;
     }
 
     .error-message{

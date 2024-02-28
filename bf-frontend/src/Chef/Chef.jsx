@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React from 'react'
 import "./Chef.css"
-import chef from "../assets/chef.jpg"
 
 
 
@@ -80,7 +79,7 @@ const Chef = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 17 && currentMinutes <= 59) 
+      if (currentHour === 12 && currentMinutes <= 59) 
       {
         setEnabled(true)
       } 

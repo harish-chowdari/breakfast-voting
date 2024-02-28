@@ -19,7 +19,7 @@ const Signup = () => {
   
     const changeHandler =(e)=>{
         setSignup({...signup, [e.target.name]:e.target.value})
-      setErrorMessage("")
+        setErrorMessage("")
       }
 
       const isEmailValid = (email) => {
@@ -86,43 +86,42 @@ const Signup = () => {
     return (
   
       <div className='signup-form'>
-       <h1 className='signup-title'>Signup Form</h1>
-        <div className='signup-fields'>
+          <h1 className='signup-title'>Signup Form</h1>
+              <div className='signup-fields'>
+        
+                <input type='text' placeholder='name'
+                value={signup.name} onChange={changeHandler}
+                name='name'  />
+          
+                <input type='email' placeholder='email'
+                onChange={changeHandler}
+                value={signup.email} 
+                name='email'
+                />
+          
+                <input type='password' placeholder='password'
+                value={signup.password}
+                onChange={changeHandler} 
+                name='password'
+                />
     
-          <input type='text' placeholder='name'
-          value={signup.name} onChange={changeHandler}
-          name='name'  />
-    
-          <input type='email' placeholder='email'
-          onChange={changeHandler}
-          value={signup.email} 
-          name='email'
-          />
-    
-          <input type='password' placeholder='password'
-          value={signup.password}
-          onChange={changeHandler} 
-          name='password'
-          />
-    
-          <input type='password'
-          value={signup.cnfmpassword} placeholder='confirm password'
-          onChange={changeHandler} 
-          name='cnfmpassword'
-          />
-      
+                <input type='password'
+                value={signup.cnfmpassword} placeholder='confirm password'
+                onChange={changeHandler} 
+                name='cnfmpassword'
+                />
 
-          <div>
-            {ErrorMessage && <p className='error-signup'>{ErrorMessage}</p>}
-              <button className='signup' onClick={signupForm}>Signup</button>
+                {ErrorMessage && 
+                  <p className='error-signup'>{ErrorMessage}</p>
+                }
+                <button className='signup' onClick={signupForm}>Signup</button>
 
-              <div className='signup-footer'>
-                <p>Already a member? <span className='signup-span'>        
-                  <Link to="/login" className='signup-login'>Login</Link> now </span></p>
-              </div>
-          </div>
-
-        </div>
+                  <div className='signup-footer'>
+                      <p>Already a member? <span className='signup-span'>        
+                      <Link to="/login" className='signup-login'>Login</Link> now </span></p>
+                  </div>
+          
+                </div>
       </div>
   )
 }

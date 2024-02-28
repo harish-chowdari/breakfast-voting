@@ -176,7 +176,7 @@ async function getVotes(req, res) {
                 $gte: currentDate.toDate(),
                 $lt: moment(currentDate).endOf('day').toDate()
             }
-        }, {itemName :1 , email:1, _id:0})
+        }, {itemName :1 , _id:0})
 
         return res.status(200).json({ votes })
     } 

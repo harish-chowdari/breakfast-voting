@@ -190,7 +190,7 @@ img{
     text-align: center;
     width: 40%;
     height: 60%;
-    animation: slideLeft 0.3s ease-in;
+    animation: slideTop 0.3s ease-in-out;
 
 }
 
@@ -203,7 +203,8 @@ img{
 .item-popup button{
     padding: 8px 16px;
     font-size: 16px;
-    background-color: #007bff;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.4);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -214,11 +215,22 @@ img{
 
 @keyframes slideLeft {
     from {
-        transform: translateX(-50px);
+        transform: translateY(-50px);
         opacity: 0;
     }
     to {
         transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideTop {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
         opacity: 1;
     }
 }
@@ -334,13 +346,13 @@ img{
     gap: 10px;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
     width: 55%;
-    height: 40%;
+    height: 45%;
 }
 
 
 .item-popup-img{
     width: 100%;
-    height: 80%;
+    height: 82%;
 }
 
 .item-popup button{
@@ -420,7 +432,7 @@ img{
      }
  
     .user-itemName {
-        font-size: 12px;
+        font-size: 0.7rem;
         font-weight: 650;
         margin-bottom: 4px;
         margin-top: 0px;
@@ -428,7 +440,8 @@ img{
 
      .item-in-user{
         width: 25%;
-        margin: 8px 8px;         
+        margin: 8px 8px; 
+        height: auto;        
         box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
      }
 
@@ -449,14 +462,14 @@ img{
         border-radius: 5px;
         gap: 10px;
         box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-        width: 55%;
-        height: 30%;
+        width: 60%;
+        height: 35%;
     }
     
     
     .item-popup-img{
         width: 100%;
-        height: 75%;
+        height: 80%;
     }
     
     .item-popup button{

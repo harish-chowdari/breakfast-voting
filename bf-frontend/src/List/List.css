@@ -161,7 +161,7 @@
     text-align: center;
     width: 40%;
     height: 60%;
-    animation: slideLeft 0.3s ease-in;
+    animation: slideTop 0.3s ease-in;
 
 }
 
@@ -174,7 +174,8 @@
 .list-popup button{
     padding: 8px 16px;
     font-size: 16px;
-    background-color: #007bff;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.4);
     color: #fff;
     border: none;
     border-radius: 4px;

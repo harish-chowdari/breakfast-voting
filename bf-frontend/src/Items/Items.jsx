@@ -58,7 +58,7 @@ const Items = () => {
       const currentHour = currentTime.getHours()
       const currentMinutes = currentTime.getMinutes()
   
-      if (currentHour === 12 && currentMinutes <= 59) 
+      if (currentHour === 20 && currentMinutes <= 59) 
       {
         setEnabled(true)
       } 
@@ -126,7 +126,7 @@ const Items = () => {
             setErrorMsg("Item already exists")
         }
 
-        if(res.data === "You have already Added an item.") 
+        else if(res.data === "You have already Added an item.") 
         {
             setErrorMsg("You've Already added an item")
         }
@@ -138,7 +138,7 @@ const Items = () => {
           setImage(null)
           fetchData()
           fetchCount()
-          alert("Item added")
+          alert("Your Item has been added")
         } 
     } 
     
