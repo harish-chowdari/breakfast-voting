@@ -183,7 +183,20 @@
     transition: background-color 0.3s ease;
 }
 
-  
+.list-btns{
+    display: flex;
+    gap: 20px;
+
+}
+
+.list-close{
+    align-items:center;
+    margin-right: auto;
+}
+
+.list-download{
+    align-items: flex-end;
+}
 
 
 @media screen and (max-width: 768px) {

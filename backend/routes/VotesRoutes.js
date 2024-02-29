@@ -14,7 +14,7 @@ router.post("/vote/:userId", voteController.addVote)
 router.get('/getvotescount', voteController.voteCount)
 
 // This function will run based on the time which I have mentioned
-cron.schedule("0 20 20 * * *", voteController.cronJob)
+cron.schedule("0 35 10 * * *", voteController.cronJob)
 
 router.get("/getwinner", voteController.getWinner)
 

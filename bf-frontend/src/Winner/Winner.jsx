@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Winner.css";
+import './Winner.css';
 import axios from 'axios';
 import Confetti from 'react-dom-confetti';
 
@@ -19,12 +19,44 @@ const Winner = () => {
   const [showPopup, setShowPopup] = React.useState(false);
   const [confettiActive, setConfettiActive] = React.useState(false);
 
+  const config = {
+    angle: 90,
+    spread: 90,
+    startVelocity: 40,
+    elementCount: 1000,
+    dragFriction: 0.09,
+    duration: 4000,
+    stagger: 3,
+    width: "6px",
+    height: "6px",
+    colors: ["#ff0000", "#00ff00", "#0000ff", "#17afdd"]
+  };
+
+  const fetchWinner = async () => {
+    try {
+      const res = await axios.get('http://localhost:2008/getwinner');
+
+      if (res.data.winner) {
+        setPopUpMsg('The winner is ' + res.data.winner);
+        setShowPopup(true);
+        setConfettiActive(true); 
+      } else {
+        setPopUpMsg('The winner will be declared at 10 PM');
+        setShowPopup(true);
+      }
+    } catch (error) {
+      alert('An error occurred while fetching winner');
+    }
+  };
+
+
   React.useEffect(() => {
     let timeOut;
     if (showPopup) {
       timeOut = setTimeout(() => {
         setShowPopup(false);
-      }, 7000);
+        setConfettiActive(false);
+      }, 6000);
     }
 
     return () => {
@@ -32,27 +64,9 @@ const Winner = () => {
     };
   }, [showPopup]);
 
-  const fetchWinner = async () => {
-    try {
-      const res = await axios.get("http://localhost:2008/getwinner");
-
-      if (res.data.winner) {
-        setPopUpMsg("The winner is " + res.data.winner);
-        setShowPopup(true);
-        setConfettiActive(true); // Activate confetti when winner is fetched
-      } else {
-        setPopUpMsg("The winner will be declared at 10 PM");
-        setShowPopup(true);
-        setConfettiActive(true)
-      }
-    } catch (error) {
-      alert("An error occurred while fetching winner");
-    }
-  };
-
   const clickHandle = () => {
     setShowPopup(false);
-    setConfettiActive(false); // Deactivate confetti when popup is closed
+    setConfettiActive(false); 
   };
 
   return (
@@ -62,10 +76,11 @@ const Winner = () => {
           Get Winner
         </button>
       </div>
-      {showPopup && (
-        <Popup popUpMsg={popUpMsg} handleClick={clickHandle} />
-      )}
+
+      {showPopup && <Popup popUpMsg={popUpMsg} handleClick={clickHandle} />}
       <Confetti active={confettiActive} />
+      <Confetti active={confettiActive}  config={config} />
+    
     </div>
   );
 };

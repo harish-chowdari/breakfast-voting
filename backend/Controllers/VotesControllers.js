@@ -92,50 +92,56 @@ async function voteCount(req, res) {
 }
 
 
+
+const Winner = mongoose.model('Winner', {
+    winner: String,
+    date: Date
+}) 
+
+
 // here this function will run with the help of cron schedule method
 async function cronJob(req, res) {
-
     try {
-        const currentDate = moment().startOf('day')
+        const currentDate = moment().startOf('day');
         
         const votesCount = await Votes.aggregate([
             { $match: { createdAt: { $gte: currentDate.toDate(), 
                 $lt: moment(currentDate).endOf('day').toDate() } } },
             { $group: { _id: "$itemName", count: { $sum: 1 } } }
-        ]) 
+        ]); 
 
-        let maxCount = 0
-        let winningItem = ""
+        let maxCount = 0;
+        let winningItem = "";
 
         votesCount.forEach(item => {
             if (item.count > maxCount) {
                 maxCount = item.count;
                 winningItem = item._id;
             }
-        })
+        });
 
-        const winner = new Winner({
-            winner: winningItem,
-            date: new Date()
-        })
+        // Ensure winner is saved only if there's a winning item
+        if (winningItem) {
+            const winner = new Winner({
+                winner: winningItem,
+                date: new Date()
+            });
 
-        await winner.save()
-        return res.status(200).json(winningItem)
-        
-    } 
-    
-    catch(error) 
-    {
-        console.log(error)
-        return res.status(500).json({ error: "Internal server error" })
+            await winner.save();
+            console.log("winner is : ", winningItem );
+        } else {
+            // Handle the case when there's no winning item
+            return res.status(200).json({ message: "No winning item found" });
+        }
+    } catch(error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
     }
 }
 
 
-const Winner = mongoose.model('Winner', {
-    winner: String,
-    date: Date
-}) 
+
+
 
 
 async function getWinner(req, res) {
@@ -187,8 +193,6 @@ async function getVotes(req, res) {
         return res.status(500).json({ error: "Internal server error" })
     }
 }
-
-
 
 
 
