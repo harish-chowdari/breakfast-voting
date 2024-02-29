@@ -1,7 +1,7 @@
 // download
 
 Download my folder from git hub or Clone my repository;
-  then unzip that folder and open pdf-extraction folder in vs code;
+  then unzip that folder and open breakfast-voting folder in vs code;
 
 // backend
 
