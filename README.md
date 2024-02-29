@@ -5,7 +5,7 @@ Download my folder from git hub or Clone my repository;
 
 // backend
 
-now open terminal for 'backend' folder , type <h2>"npm install"</h2> and clcik enter;
+now open terminal for 'backend' folder , type "npm install" and clcik enter;
   now type "npm start", and clcik enter. now server is running;
 
 // frontend
